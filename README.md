@@ -24,6 +24,5 @@ Full out-the-box backend. Essentially Firebase, but open-source and built on Pos
 - Storage (files, images)
 - Real-time updates (WebSocket-based subscriptions)
 - Serverless functions (optional backend logic)
-
-Typescript (React Native with Expo)
-Tailwind CSS (Nativewind)
+- Typescript (React Native with Expo)
+- Tailwind CSS (Nativewind)
