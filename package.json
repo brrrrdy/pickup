@@ -7,9 +7,13 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "db:up": "docker compose up -d postgres",
     "db:down": "docker compose down",
-    "db:reset": "docker compose down -v && docker compose up -d postgres"
+    "db:reset": "docker compose down -v && docker compose up -d postgres",
+    "db:migrate": "cat db/migrations/*.sql | docker compose exec -T postgres psql -U pickup -d pickup",
+    "db:seed": "cat db/seeds/*.sql | docker compose exec -T postgres psql -U pickup -d pickup"
   },
   "dependencies": {
     "expo": "~54.0.33",
@@ -19,6 +23,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.1.0",
+    "jest": "^29.7.0",
     "typescript": "~5.9.2"
   },
   "private": true
