@@ -26,3 +26,41 @@ Full out-the-box backend. Essentially Firebase, but open-source and built on Pos
 - Serverless functions (optional backend logic)
 - Typescript (React Native with Expo)
 - Tailwind CSS (Nativewind)
+
+## Local API (current)
+
+The project now includes a small Node + Express API in `api/` that connects to the local Postgres database.
+
+### Run locally
+
+1. Start Postgres:
+
+```bash
+npm run db:up
+```
+
+2. Apply schema + seed data:
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+3. Start API:
+
+```bash
+npm run api:start
+```
+
+If you want to load environment variables from `.env.local`, use:
+
+```bash
+npm run api:start:local
+```
+
+### Endpoints
+
+- `GET /health`: check API and database connectivity.
+- `GET /matches`: list matches (supports optional query params: `status`, `city`, `sport`).
+- `POST /matches`: create a new match and auto-add host as a participant.
+- `POST /matches/:id/join`: join a match and update status (`open` or `full`).
