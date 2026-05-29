@@ -12,60 +12,28 @@ Users will download and sign up to pickup. They will be able to create matches a
 
 My intention for security and privacy purposes is to handle all communication within the app itself. Users are free to share personal contact details but should be dissuaded from doing so as, in addition to security concerns, keeping these interactions in-house and within the 'ecosystem' promotes inclusion and new users hoping to join games.
 
-## Stack
+## Current architecture
 
-Supabase
+This repository currently runs as a local-first full-stack prototype.
 
-Full out-the-box backend. Essentially Firebase, but open-source and built on PostgreSQL.
+- Frontend: React Native with Expo (TypeScript), styled with NativeWind/Tailwind.
+- Backend API: Node.js + Express in `api/`.
+- Database: PostgreSQL (Docker), accessed via `pg`.
+- Database lifecycle: SQL migrations and seed scripts in `db/migrations/` and `db/seeds/`.
+- Testing: Jest + Supertest integration tests against a separate Docker test database (`postgres_test` on port `5433`).
 
-- Database (PostgreSQL)
-- Authentication (users, OAuth, social login)
-- APIs (REST and GraphQL out of the box)
-- Storage (files, images)
-- Real-time updates (WebSocket-based subscriptions)
-- Serverless functions (optional backend logic)
-- Typescript (React Native with Expo)
-- Tailwind CSS (Nativewind)
+## Planned future architecture (Supabase)
 
-## Local API (current)
+Supabase remains the intended target architecture once local POC is running and validated against test suite.
 
-The project now includes a small Node + Express API in `api/` that connects to the local Postgres database.
+Planned Supabase capabilities:
 
-### Run locally
+- Managed PostgreSQL database.
+- Authentication (users, OAuth, social login).
+- Generated APIs (REST and GraphQL).
+- Storage for user and venue media.
+- Optional serverless functions for custom backend logic.
 
-1. Start Postgres:
+## Internal docs
 
-```bash
-npm run db:up
-```
-
-2. Apply schema + seed data:
-
-```bash
-npm run db:migrate
-npm run db:seed
-```
-
-3. Start API:
-
-```bash
-npm run api:start
-```
-
-If you want to load environment variables from `.env.local`, use:
-
-```bash
-npm run api:start:local
-```
-
-### Endpoints
-
-- `GET /health`: check API and database connectivity.
-- `GET /matches`: list matches (supports optional query params: `status`, `city`, `sport`).
-- `POST /matches`: create a new match and auto-add host as a participant.
-- `POST /matches/:id/join`: join a match and update status (`open` or `full`).
-
-## Data Safety Notes
-
-- `npm run db:reset` deletes local development Postgres data (Docker volume) and recreates it.
-- The Jest suites use a separate test database/container (`postgres_test` on port `5433`) so test resets do not wipe the UI/dev dataset.
+Operational API runbooks, endpoint notes, and local data-safety procedures are maintained in private documentation and are intentionally not published in this repository.
