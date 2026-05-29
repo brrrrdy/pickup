@@ -15,7 +15,13 @@
     "db:down": "docker compose down",
     "db:reset": "docker compose down -v && docker compose up -d postgres",
     "db:migrate": "cat db/migrations/*.sql | docker compose exec -T postgres psql -U pickup -d pickup",
-    "db:seed": "cat db/seeds/*.sql | docker compose exec -T postgres psql -U pickup -d pickup"
+    "db:seed": "cat db/seeds/*.sql | docker compose exec -T postgres psql -U pickup -d pickup",
+    "db:test:up": "docker compose up -d postgres_test",
+    "db:test:down": "docker compose stop postgres_test",
+    "db:test:reset": "npm run db:test:up && docker compose exec -T postgres_test psql -U pickup -d pickup_test -c \"DROP SCHEMA IF EXISTS public CASCADE; CREATE SCHEMA public;\"",
+    "db:test:migrate": "cat db/migrations/*.sql | docker compose exec -T postgres_test psql -U pickup -d pickup_test",
+    "db:test:seed": "cat db/seeds/*.sql | docker compose exec -T postgres_test psql -U pickup -d pickup_test",
+    "db:test:prepare": "npm run db:test:reset && npm run db:test:migrate && npm run db:test:seed"
   },
   "dependencies": {
     "cors": "^2.8.6",

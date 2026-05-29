@@ -64,3 +64,8 @@ npm run api:start:local
 - `GET /matches`: list matches (supports optional query params: `status`, `city`, `sport`).
 - `POST /matches`: create a new match and auto-add host as a participant.
 - `POST /matches/:id/join`: join a match and update status (`open` or `full`).
+
+## Data Safety Notes
+
+- `npm run db:reset` deletes local development Postgres data (Docker volume) and recreates it.
+- The Jest suites use a separate test database/container (`postgres_test` on port `5433`) so test resets do not wipe the UI/dev dataset.

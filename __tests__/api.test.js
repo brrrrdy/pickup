@@ -1,5 +1,12 @@
 const path = require("path");
 const { execSync } = require("child_process");
+
+process.env.PGHOST = process.env.PGHOST || "host.docker.internal";
+process.env.PGPORT = process.env.PGPORT || "5433";
+process.env.PGUSER = process.env.PGUSER || "pickup";
+process.env.PGPASSWORD = process.env.PGPASSWORD || "pickup";
+process.env.PGDATABASE = process.env.PGDATABASE || "pickup_test";
+
 const request = require("supertest");
 const app = require("../api/app");
 const db = require("../api/db");
@@ -21,12 +28,12 @@ function run(command) {
 
 describe("API endpoints", () => {
   beforeAll(() => {
-    run("npm run db:up");
+    run("npm run db:test:reset");
     run(
-      "bash -lc 'for i in {1..40}; do docker compose exec -T postgres pg_isready -U pickup -d pickup >/dev/null 2>&1 && break; done'",
+      "bash -lc 'for i in {1..40}; do docker compose exec -T postgres_test pg_isready -U pickup -d pickup_test >/dev/null 2>&1 && break; done'",
     );
-    run("npm run db:migrate");
-    run("npm run db:seed");
+    run("npm run db:test:migrate");
+    run("npm run db:test:seed");
   });
 
   afterAll(async () => {
@@ -85,7 +92,7 @@ describe("API endpoints", () => {
     const matchId = createResponse.body.id;
 
     const participantResult = run(
-      `docker compose exec -T postgres psql -U pickup -d pickup -t -A -c "SELECT COUNT(*) FROM match_participants WHERE match_id = '${matchId}' AND user_id = '${TOM_USER_ID}' AND attendance_status = 'joined' AND is_host = TRUE;"`,
+      `docker compose exec -T postgres_test psql -U pickup -d pickup_test -t -A -c "SELECT COUNT(*) FROM match_participants WHERE match_id = '${matchId}' AND user_id = '${TOM_USER_ID}' AND attendance_status = 'joined' AND is_host = TRUE;"`,
     );
 
     expect(participantResult).toBe("1");
