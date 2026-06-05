@@ -1,6 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 
+import { FindGameButton } from "./FindGameButton";
+import { StartGameButton } from "./StartGameButton";
+
 export function LandingScreen() {
   return (
     <View className="flex-1 justify-between bg-surface px-6 pb-12 pt-[88px]">
@@ -22,17 +25,8 @@ export function LandingScreen() {
       </View>
 
       <View className="gap-3.5">
-        <View className="min-h-[56px] items-center justify-center rounded-[14px] border border-primary bg-primary">
-          <Text className="text-[17px] font-bold text-primary-foreground">
-            View Matches
-          </Text>
-        </View>
-
-        <View className="min-h-[56px] items-center justify-center rounded-[14px] border border-primary bg-white">
-          <Text className="text-[17px] font-bold text-primary">
-            Create Match
-          </Text>
-        </View>
+        <FindGameButton />
+        <StartGameButton />
 
         <View className="min-h-[56px] items-center justify-center rounded-[14px] border border-border bg-secondary">
           <Text className="text-[17px] font-bold text-foreground">
