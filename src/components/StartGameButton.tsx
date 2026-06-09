@@ -9,13 +9,13 @@ export function StartGameButton({ onPress, disabled }: StartGameButtonProps) {
   return (
     <Pressable
       accessibilityRole="button"
-      className={`min-h-[56px] items-center justify-center rounded-[14px] border border-primary bg-white ${
+      className={`min-h-[56px] items-center justify-center rounded-[14px] border border-accentgreen bg-accentgreen ${
         disabled ? "opacity-60" : ""
       }`}
       disabled={disabled}
       onPress={onPress}
     >
-      <Text className="text-[17px] font-bold text-primary">Start a Game</Text>
+      <Text className="text-[17px] font-bold text-primary">start a game</Text>
     </Pressable>
   );
 }

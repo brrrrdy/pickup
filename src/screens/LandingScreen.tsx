@@ -22,21 +22,15 @@ export function LandingScreen({
   onStartGamePress,
 }: LandingScreenProps) {
   return (
-    <View className="flex-1 justify-between bg-surface px-6 pb-12 pt-[88px]">
+    <View className="flex-1 justify-between bg-background px-6 pb-12 pt-[88px]">
       <StatusBar style="dark" />
 
       <View className="mt-6 items-center">
-        <View className="mb-5 h-24 w-24 items-center justify-center rounded-full bg-primary">
-          <Text className="text-[40px] font-extrabold tracking-[0.5px] text-primary-foreground">
-            P
-          </Text>
-        </View>
-
-        <Text className="mb-2.5 text-[42px] font-extrabold text-foreground">
+        <Text className="mb-2.5 text-[82px] font-extrabold italic text-primary">
           pickup
         </Text>
         <Text className="max-w-[290px] text-center text-[16px] leading-6 text-muted">
-          Find casual local games in minutes.
+          find casual local sports games in minutes.
         </Text>
 
         <View className="mt-6 w-full max-w-[320px] self-center">
@@ -52,9 +46,9 @@ export function LandingScreen({
         <FindGameButton onPress={onFindGamePress} />
         <StartGameButton onPress={onStartGamePress} />
 
-        <View className="min-h-[56px] items-center justify-center rounded-[14px] border border-border bg-secondary">
-          <Text className="text-[17px] font-bold text-foreground">
-            Register / Log in
+        <View className="min-h-[56px] items-center justify-center rounded-[14px] bg-accentblue">
+          <Text className="text-[17px] font-bold text-primary">
+            register or log in
           </Text>
         </View>
       </View>

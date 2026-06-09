@@ -170,11 +170,11 @@ export function FindGameScreen({ currentUser, onBack }: FindGameScreenProps) {
 
       <Pressable
         accessibilityRole="button"
-        className="mb-5 min-h-[48px] items-center justify-center rounded-2xl border border-primary bg-foreground"
+        className="mb-5 min-h-[48px] items-center justify-center rounded-2xl bg-foreground"
         onPress={handleSearch}
       >
         <Text className="text-[16px] font-bold text-primary-foreground">
-          Search
+          search
         </Text>
       </Pressable>
 

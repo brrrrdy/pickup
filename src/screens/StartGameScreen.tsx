@@ -2,23 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 
 import { Picker } from "@react-native-picker/picker";
 import { StatusBar } from "expo-status-bar";
-import {
-  Platform,
-  Pressable,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 
 import { API_BASE_URL } from "../config";
+import { DatePicker } from "../components/DatePicker";
 import type { DevUser } from "../types/user";
-
-let WebCalendar: any = null;
-
-if (Platform.OS === "web") {
-  WebCalendar = require("react-calendar").default;
-}
 
 type StartGameScreenProps = {
   currentUser: DevUser;
@@ -141,19 +129,6 @@ function toStartDateTime(dateValue: string, timeValue: string) {
   return new Date(year, month - 1, day, hours, minutes, 0, 0);
 }
 
-function toDateObject(dateValue: string) {
-  const [yearStr, monthStr, dayStr] = dateValue.split("-");
-  const year = Number(yearStr);
-  const month = Number(monthStr);
-  const day = Number(dayStr);
-
-  if ([year, month, day].some(Number.isNaN)) {
-    return new Date();
-  }
-
-  return new Date(year, month - 1, day, 12, 0, 0, 0);
-}
-
 export function StartGameScreen({
   currentUser,
   onCancel,
@@ -180,8 +155,6 @@ export function StartGameScreen({
   const [status, setStatus] = useState<string | null>(null);
   const [statusKind, setStatusKind] = useState<"ok" | "error" | null>(null);
 
-  const DateInput = TextInput as unknown as React.ComponentType<any>;
-
   useEffect(() => {
     if (!timeOptions.length) {
       setStartTime("");
@@ -203,16 +176,6 @@ export function StartGameScreen({
   function handleSaveTemplate() {
     setStatusKind("ok");
     setStatus("Template saving is coming soon.");
-  }
-
-  function handleWebDateChange(nextValue: Date | Date[] | null) {
-    const nextDate = Array.isArray(nextValue) ? nextValue[0] : nextValue;
-
-    if (!nextDate) {
-      return;
-    }
-
-    setStartDate(toDateValue(nextDate));
   }
 
   async function handleStartGame() {
@@ -378,26 +341,8 @@ export function StartGameScreen({
         </View>
 
         <Text className="mb-1 text-[14px] font-semibold text-muted">Date</Text>
-        <View className="mb-4 overflow-hidden rounded-xl border border-border bg-white">
-          {Platform.OS === "web" && WebCalendar ? (
-            <WebCalendar
-              value={toDateObject(startDate)}
-              onChange={handleWebDateChange}
-              minDate={new Date()}
-              maxDetail="month"
-              minDetail="month"
-              showNeighboringMonth={false}
-              locale="en-GB"
-            />
-          ) : (
-            <DateInput
-              className="min-h-[56px] px-4 text-[16px] text-foreground"
-              value={startDate}
-              onChangeText={setStartDate}
-              placeholder="Select date"
-              type="date"
-            />
-          )}
+        <View className="mb-4">
+          <DatePicker value={startDate} onChange={setStartDate} />
         </View>
 
         <Text className="mb-1 text-[14px] font-semibold text-muted">
