@@ -1,7 +1,5 @@
 import { Calendar } from "react-native-calendars";
 
-// Defined at module level so Fast Refresh detects changes to this object and
-// remounts <Calendar> (which only reads theme on initial mount).
 const CALENDAR_THEME = {
   backgroundColor: "#ffffff",
   calendarBackground: "#e7ce8b",
@@ -23,7 +21,6 @@ const CALENDAR_THEME = {
 };
 
 type DatePickerProps = {
-  /** YYYY-MM-DD string */
   value: string;
   onChange: (dateValue: string) => void;
   minDate?: Date;

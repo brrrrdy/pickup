@@ -54,7 +54,38 @@ describe("API endpoints", () => {
     expect(response.status).toBe(200);
     expect(response.body.ok).toBe(true);
     expect(response.body.name).toBe("pickup-api");
+    expect(response.body.endpoints).toContain("GET /sports");
+    expect(response.body.endpoints).toContain("GET /venues");
     expect(response.body.endpoints).toContain("POST /matches");
+  });
+
+  test("GET /sports returns seeded sports", async () => {
+    const response = await request(app).get("/sports");
+
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body.sports)).toBe(true);
+    expect(response.body.sports.length).toBeGreaterThan(0);
+
+    const basketball = response.body.sports.find(
+      (sport) => sport.name === "Basketball",
+    );
+
+    expect(basketball).toBeDefined();
+  });
+
+  test("GET /venues returns seeded venues", async () => {
+    const response = await request(app).get("/venues");
+
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body.venues)).toBe(true);
+    expect(response.body.venues.length).toBeGreaterThan(0);
+
+    const clapham = response.body.venues.find(
+      (venue) => venue.name === "Clapham Common Courts",
+    );
+
+    expect(clapham).toBeDefined();
+    expect(clapham.city).toBe("London");
   });
 
   test("GET /matches returns seeded match data", async () => {

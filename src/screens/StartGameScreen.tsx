@@ -15,32 +15,20 @@ type StartGameScreenProps = {
 
 type VenueOption = {
   id: string;
-  label: string;
-  city: string;
+  name: string;
+  city: string | null;
 };
 
-const SPORT_OPTIONS = [
-  { id: "33333333-3333-3333-3333-333333333333", label: "Basketball" },
-  { id: "44444444-4444-4444-4444-444444444444", label: "Tennis" },
-];
+type SportOption = {
+  id: string;
+  name: string;
+};
 
-const VENUE_OPTIONS: VenueOption[] = [
-  {
-    id: "55555555-5555-5555-5555-555555555555",
-    label: "Clapham Common Courts",
-    city: "London",
-  },
-  {
-    id: "66666666-6666-6666-6666-666666666666",
-    label: "Brockwell Park Courts",
-    city: "London",
-  },
-  {
-    id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-    label: "Public Court",
-    city: "Monforte de Lemos",
-  },
-];
+type VenueCatalogItem = {
+  id: string;
+  name: string;
+  city: string | null;
+};
 
 const DURATION_OPTIONS = [
   { label: "30 mins", value: 30 },
@@ -133,18 +121,30 @@ export function StartGameScreen({
   currentUser,
   onCancel,
 }: StartGameScreenProps) {
+  const [sports, setSports] = useState<SportOption[]>([]);
+  const [venues, setVenues] = useState<VenueCatalogItem[]>([]);
+  const [isCatalogLoading, setIsCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState<string | null>(null);
+
   const cityOptions = useMemo(
-    () => Array.from(new Set(VENUE_OPTIONS.map((venue) => venue.city))),
-    [],
+    () =>
+      Array.from(
+        new Set(
+          venues
+            .map((venue) => venue.city)
+            .filter((city): city is string => Boolean(city)),
+        ),
+      ),
+    [venues],
   );
 
-  const [sportId, setSportId] = useState(SPORT_OPTIONS[0].id);
-  const [city, setCity] = useState(cityOptions[0]);
+  const [sportId, setSportId] = useState("");
+  const [city, setCity] = useState("");
   const locationOptions = useMemo(
-    () => VENUE_OPTIONS.filter((venue) => venue.city === city),
-    [city],
+    () => venues.filter((venue) => venue.city === city),
+    [city, venues],
   );
-  const [locationId, setLocationId] = useState(locationOptions[0]?.id ?? "");
+  const [locationId, setLocationId] = useState("");
   const [playersNeeded, setPlayersNeeded] = useState(10);
   const [durationMinutes, setDurationMinutes] = useState(90);
   const [startDate, setStartDate] = useState(toDateValue(new Date()));
@@ -166,10 +166,94 @@ export function StartGameScreen({
     );
   }, [timeOptions]);
 
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function loadCatalog() {
+      setIsCatalogLoading(true);
+      setCatalogError(null);
+
+      try {
+        const [sportsResponse, venuesResponse] = await Promise.all([
+          fetch(`${API_BASE_URL}/sports`),
+          fetch(`${API_BASE_URL}/venues`),
+        ]);
+
+        if (!sportsResponse.ok || !venuesResponse.ok) {
+          throw new Error("failed_to_load_catalog");
+        }
+
+        const [sportsPayload, venuesPayload] = await Promise.all([
+          sportsResponse.json(),
+          venuesResponse.json(),
+        ]);
+
+        if (isCancelled) {
+          return;
+        }
+
+        setSports(
+          Array.isArray(sportsPayload.sports) ? sportsPayload.sports : [],
+        );
+        setVenues(
+          Array.isArray(venuesPayload.venues) ? venuesPayload.venues : [],
+        );
+      } catch (_error) {
+        if (!isCancelled) {
+          setCatalogError("Could not load sports and venues from the API.");
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsCatalogLoading(false);
+        }
+      }
+    }
+
+    loadCatalog();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!sports.length) {
+      return;
+    }
+
+    setSportId((current) =>
+      sports.some((sport) => sport.id === current) ? current : sports[0].id,
+    );
+  }, [sports]);
+
+  useEffect(() => {
+    if (!cityOptions.length) {
+      setCity("");
+      return;
+    }
+
+    setCity((current) =>
+      cityOptions.includes(current) ? current : cityOptions[0],
+    );
+  }, [cityOptions]);
+
+  useEffect(() => {
+    if (!locationOptions.length) {
+      setLocationId("");
+      return;
+    }
+
+    setLocationId((current) =>
+      locationOptions.some((venue) => venue.id === current)
+        ? current
+        : locationOptions[0].id,
+    );
+  }, [locationOptions]);
+
   function handleCityChange(nextCity: string) {
     setCity(nextCity);
 
-    const nextLocation = VENUE_OPTIONS.find((venue) => venue.city === nextCity);
+    const nextLocation = venues.find((venue) => venue.city === nextCity);
     setLocationId(nextLocation?.id ?? "");
   }
 
@@ -200,8 +284,14 @@ export function StartGameScreen({
       return;
     }
 
+    if (isCatalogLoading) {
+      setStatusKind("error");
+      setStatus("Sports and venues are still loading.");
+      return;
+    }
+
     const sportLabel =
-      SPORT_OPTIONS.find((sport) => sport.id === sportId)?.label ?? "Game";
+      sports.find((sport) => sport.id === sportId)?.name ?? "Game";
     const title = `${currentUser.displayName}'s ${sportLabel} Game`;
 
     setIsSubmitting(true);
@@ -279,14 +369,19 @@ export function StartGameScreen({
           <Picker
             selectedValue={sportId}
             onValueChange={(value) => setSportId(String(value))}
+            enabled={!isCatalogLoading && sports.length > 0}
           >
-            {SPORT_OPTIONS.map((sport) => (
-              <Picker.Item
-                key={sport.id}
-                label={sport.label}
-                value={sport.id}
-              />
-            ))}
+            {sports.length ? (
+              sports.map((sport) => (
+                <Picker.Item
+                  key={sport.id}
+                  label={sport.name}
+                  value={sport.id}
+                />
+              ))
+            ) : (
+              <Picker.Item label="Loading sports..." value="" />
+            )}
           </Picker>
         </View>
 
@@ -297,10 +392,15 @@ export function StartGameScreen({
           <Picker
             selectedValue={city}
             onValueChange={(value) => handleCityChange(String(value))}
+            enabled={!isCatalogLoading && cityOptions.length > 0}
           >
-            {cityOptions.map((cityName) => (
-              <Picker.Item key={cityName} label={cityName} value={cityName} />
-            ))}
+            {cityOptions.length ? (
+              cityOptions.map((cityName) => (
+                <Picker.Item key={cityName} label={cityName} value={cityName} />
+              ))
+            ) : (
+              <Picker.Item label="Loading cities..." value="" />
+            )}
           </Picker>
         </View>
 
@@ -311,14 +411,19 @@ export function StartGameScreen({
           <Picker
             selectedValue={locationId}
             onValueChange={(value) => setLocationId(String(value))}
+            enabled={!isCatalogLoading && locationOptions.length > 0}
           >
-            {locationOptions.map((venue) => (
-              <Picker.Item
-                key={venue.id}
-                label={venue.label}
-                value={venue.id}
-              />
-            ))}
+            {locationOptions.length ? (
+              locationOptions.map((venue) => (
+                <Picker.Item
+                  key={venue.id}
+                  label={venue.name}
+                  value={venue.id}
+                />
+              ))
+            ) : (
+              <Picker.Item label="Loading locations..." value="" />
+            )}
           </Picker>
         </View>
 
@@ -401,9 +506,9 @@ export function StartGameScreen({
           <Pressable
             accessibilityRole="button"
             className={`min-h-[52px] items-center justify-center rounded-2xl border border-primary bg-foreground ${
-              isSubmitting ? "opacity-70" : ""
+              isSubmitting || isCatalogLoading ? "opacity-70" : ""
             }`}
-            disabled={isSubmitting}
+            disabled={isSubmitting || isCatalogLoading}
             onPress={handleStartGame}
           >
             <Text className="text-[16px] font-bold text-primary-foreground">
@@ -431,6 +536,12 @@ export function StartGameScreen({
             </Text>
           </Pressable>
         </View>
+
+        {catalogError ? (
+          <View className="mt-4 rounded-xl border border-red-200 bg-white p-3">
+            <Text className="text-[14px] text-red-700">{catalogError}</Text>
+          </View>
+        ) : null}
 
         {status ? (
           <View

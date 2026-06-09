@@ -14,11 +14,45 @@ app.get("/api", (_req, res) => {
     ok: true,
     endpoints: [
       "GET /health",
+      "GET /sports",
+      "GET /venues",
       "GET /matches",
       "POST /matches",
       "POST /matches/:id/join",
     ],
   });
+});
+
+app.get("/sports", async (_req, res) => {
+  try {
+    const result = await db.query(
+      `
+      SELECT id, name
+      FROM sports
+      ORDER BY name ASC
+      `,
+    );
+
+    res.json({ sports: result.rows });
+  } catch (error) {
+    res.status(500).json({ error: "failed_to_list_sports" });
+  }
+});
+
+app.get("/venues", async (_req, res) => {
+  try {
+    const result = await db.query(
+      `
+      SELECT id, name, city
+      FROM venues
+      ORDER BY city ASC NULLS LAST, name ASC
+      `,
+    );
+
+    res.json({ venues: result.rows });
+  } catch (error) {
+    res.status(500).json({ error: "failed_to_list_venues" });
+  }
 });
 
 app.get("/", (_req, res) => {
