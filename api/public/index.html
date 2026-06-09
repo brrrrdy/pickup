@@ -71,11 +71,13 @@
         gap: 6px;
       }
 
-      input {
+      input,
+      select {
         border: 1px solid var(--border);
         border-radius: 8px;
         padding: 10px 12px;
         font-size: 14px;
+        background: #fff;
       }
 
       .row {
@@ -148,9 +150,6 @@
         <p>Simple single-page tester for your API.</p>
         <div class="meta">
           <div><strong>Logged in as:</strong> Tom</div>
-          <div>
-            <strong>Test location:</strong> Clapham Common Courts, London
-          </div>
           <div><strong>Sport:</strong> Basketball</div>
         </div>
       </div>
@@ -175,6 +174,18 @@
           </div>
 
           <label>
+            Location
+            <select id="venueId">
+              <option value="55555555-5555-5555-5555-555555555555">
+                Clapham Common Courts, London
+              </option>
+              <option value="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa">
+                Public Court, Monforte de Lemos
+              </option>
+            </select>
+          </label>
+
+          <label>
             Max Players
             <input id="maxPlayers" type="number" value="10" min="2" />
           </label>
@@ -191,6 +202,11 @@
         <h2>Open Matches</h2>
         <ul id="matches"></ul>
       </div>
+
+      <div class="card">
+        <h2>All Matches</h2>
+        <ul id="allMatches"></ul>
+      </div>
     </div>
 
     <script>
@@ -202,6 +218,7 @@
       const startsAtInput = document.getElementById("startsAt");
       const durationInput = document.getElementById("duration");
       const maxPlayersInput = document.getElementById("maxPlayers");
+      const venueIdInput = document.getElementById("venueId");
       const matchesList = document.getElementById("matches");
       const statusEl = document.getElementById("status");
 
@@ -216,6 +233,8 @@
         statusEl.className = `status ${kind || ""}`;
       }
 
+      const allMatchesList = document.getElementById("allMatches");
+
       async function loadMatches() {
         try {
           const response = await fetch("/matches?status=open");
@@ -227,16 +246,36 @@
             const li = document.createElement("li");
             li.textContent = "No open matches yet.";
             matchesList.appendChild(li);
-            return;
+          } else {
+            data.matches.forEach((match) => {
+              const li = document.createElement("li");
+              li.textContent = `${match.title} | ${match.sport_name} | ${match.venue_name} | ${new Date(match.starts_at).toLocaleString()} | ${match.joined_players}/${match.max_players}`;
+              matchesList.appendChild(li);
+            });
           }
-
-          data.matches.forEach((match) => {
-            const li = document.createElement("li");
-            li.textContent = `${match.title} | ${match.sport_name} | ${match.venue_name} | ${new Date(match.starts_at).toLocaleString()} | ${match.joined_players}/${match.max_players}`;
-            matchesList.appendChild(li);
-          });
         } catch (error) {
           setStatus("Could not load matches.", "error");
+        }
+
+        try {
+          const response = await fetch("/matches");
+          const data = await response.json();
+
+          allMatchesList.innerHTML = "";
+
+          if (!data.matches || data.matches.length === 0) {
+            const li = document.createElement("li");
+            li.textContent = "No matches yet.";
+            allMatchesList.appendChild(li);
+          } else {
+            data.matches.forEach((match) => {
+              const li = document.createElement("li");
+              li.textContent = `${match.title} | ${match.sport_name} | ${match.venue_name} | ${new Date(match.starts_at).toLocaleString()} | ${match.joined_players}/${match.max_players} | ${match.status}`;
+              allMatchesList.appendChild(li);
+            });
+          }
+        } catch (error) {
+          setStatus("Could not load all matches.", "error");
         }
       }
 
@@ -248,7 +287,7 @@
           const payload = {
             hostUserId: TOM_USER_ID,
             sportId: BASKETBALL_SPORT_ID,
-            venueId: TEST_VENUE_ID,
+            venueId: venueIdInput.value,
             title: titleInput.value.trim(),
             startsAt: startsAtIso,
             durationMinutes: Number(durationInput.value),

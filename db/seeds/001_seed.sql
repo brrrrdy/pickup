@@ -15,7 +15,8 @@ ON CONFLICT (name) DO NOTHING;
 INSERT INTO venues (id, name, city)
 VALUES
     ('55555555-5555-5555-5555-555555555555', 'Clapham Common Courts', 'London'),
-    ('66666666-6666-6666-6666-666666666666', 'Brockwell Park Courts', 'London')
+    ('66666666-6666-6666-6666-666666666666', 'Brockwell Park Courts', 'London'),
+    ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'Public Court', 'Monforte de Lemos')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO matches (

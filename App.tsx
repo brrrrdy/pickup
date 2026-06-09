@@ -1,7 +1,7 @@
 import "./global.css";
 
-import { LandingScreen } from "./components/LandingScreen";
+import { RootNavigator } from "./src/navigation/RootNavigator";
 
 export default function App() {
-  return <LandingScreen />;
+  return <RootNavigator />;
 }

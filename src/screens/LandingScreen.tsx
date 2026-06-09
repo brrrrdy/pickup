@@ -1,10 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 
-import { FindGameButton } from "./FindGameButton";
-import { StartGameButton } from "./StartGameButton";
+import { FindGameButton } from "../components/FindGameButton";
+import { StartGameButton } from "../components/StartGameButton";
 
-export function LandingScreen() {
+type LandingScreenProps = {
+  onFindGamePress?: () => void;
+};
+
+export function LandingScreen({ onFindGamePress }: LandingScreenProps) {
   return (
     <View className="flex-1 justify-between bg-surface px-6 pb-12 pt-[88px]">
       <StatusBar style="dark" />
@@ -25,7 +29,7 @@ export function LandingScreen() {
       </View>
 
       <View className="gap-3.5">
-        <FindGameButton />
+        <FindGameButton onPress={onFindGamePress} />
         <StartGameButton />
 
         <View className="min-h-[56px] items-center justify-center rounded-[14px] border border-border bg-secondary">
