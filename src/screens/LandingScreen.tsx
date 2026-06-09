@@ -1,14 +1,26 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 
+import { DevUserPicker } from "../components/DevUserPicker";
 import { FindGameButton } from "../components/FindGameButton";
 import { StartGameButton } from "../components/StartGameButton";
+import type { DevUser } from "../types/user";
 
 type LandingScreenProps = {
+  currentUser: DevUser;
+  users: DevUser[];
+  onUserChange: (userId: string) => void;
   onFindGamePress?: () => void;
+  onStartGamePress?: () => void;
 };
 
-export function LandingScreen({ onFindGamePress }: LandingScreenProps) {
+export function LandingScreen({
+  currentUser,
+  users,
+  onUserChange,
+  onFindGamePress,
+  onStartGamePress,
+}: LandingScreenProps) {
   return (
     <View className="flex-1 justify-between bg-surface px-6 pb-12 pt-[88px]">
       <StatusBar style="dark" />
@@ -26,11 +38,19 @@ export function LandingScreen({ onFindGamePress }: LandingScreenProps) {
         <Text className="max-w-[290px] text-center text-[16px] leading-6 text-muted">
           Find casual local games in minutes.
         </Text>
+
+        <View className="mt-6 w-full max-w-[320px] self-center">
+          <DevUserPicker
+            users={users}
+            selectedUserId={currentUser.id}
+            onChange={onUserChange}
+          />
+        </View>
       </View>
 
       <View className="gap-3.5">
         <FindGameButton onPress={onFindGamePress} />
-        <StartGameButton />
+        <StartGameButton onPress={onStartGamePress} />
 
         <View className="min-h-[56px] items-center justify-center rounded-[14px] border border-border bg-secondary">
           <Text className="text-[17px] font-bold text-foreground">

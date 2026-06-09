@@ -1,35 +1,96 @@
 import { useState } from "react";
 
 import { StatusBar } from "expo-status-bar";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 
+import { API_BASE_URL } from "../config";
 import { LoadingCardPlaceholder } from "../components/LoadingCardPlaceholder";
 import { MatchResultCard } from "../components/MatchResultCard";
+import { SelectedMatchDetail } from "../components/SelectedMatchDetail";
+import type { Match } from "../types/match";
+import type { DevUser } from "../types/user";
 
 type FindGameScreenProps = {
+  currentUser: DevUser;
   onBack?: () => void;
 };
 
-type Match = {
-  id: string;
-  title: string;
-  starts_at: string;
-  max_players: number;
-  sport_name: string;
-  venue_name: string;
-  city: string;
-  host_name: string;
-  joined_players: number;
-};
-
-const API_BASE_URL = "http://localhost:4000";
-
-export function FindGameScreen({ onBack }: FindGameScreenProps) {
+export function FindGameScreen({ currentUser, onBack }: FindGameScreenProps) {
   const [search, setSearch] = useState("");
   const [matches, setMatches] = useState<Match[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [selectedMatchId, setSelectedMatchId] = useState<string | null>(null);
+  const selectedMatch = matches.find((m) => m.id === selectedMatchId) ?? null;
+  const [isJoining, setIsJoining] = useState(false);
+  const [joinStatus, setJoinStatus] = useState<string | null>(null);
+  const [joinStatusKind, setJoinStatusKind] = useState<"ok" | "error" | null>(
+    null,
+  );
+
+  function handleSelectMatch(match: Match) {
+    setSelectedMatchId(match.id);
+    setJoinStatus(null);
+    setJoinStatusKind(null);
+  }
+
+  async function handleJoin() {
+    if (!selectedMatch) return;
+
+    setIsJoining(true);
+    setJoinStatus(null);
+    setJoinStatusKind(null);
+
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/matches/${selectedMatch.id}/join`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: currentUser.id }),
+        },
+      );
+
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        joinedPlayers?: number;
+        status?: string;
+        error?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(payload.error ?? "failed_to_join");
+      }
+
+      setJoinStatusKind("ok");
+      setJoinStatus(
+        `Joined! ${payload.joinedPlayers ?? ""}/${selectedMatch.max_players} players.`,
+      );
+
+      if (payload.joinedPlayers !== undefined) {
+        setMatches((prev) =>
+          prev.map((m) =>
+            m.id === selectedMatch.id
+              ? { ...m, joined_players: payload.joinedPlayers! }
+              : m,
+          ),
+        );
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "failed_to_join";
+      setJoinStatusKind("error");
+      setJoinStatus(
+        message === "match_is_full"
+          ? "This game is already full."
+          : message === "match_is_not_joinable"
+            ? "This game is no longer open to join."
+            : "Could not join game. Please try again.",
+      );
+    } finally {
+      setIsJoining(false);
+    }
+  }
 
   async function handleSearch() {
     const city = search.trim();
@@ -65,13 +126,26 @@ export function FindGameScreen({ onBack }: FindGameScreenProps) {
   }
 
   return (
-    <View className="flex-1 bg-surface px-6 pb-10 pt-[72px]">
+    <ScrollView
+      className="flex-1 bg-surface"
+      contentContainerStyle={{
+        paddingHorizontal: 24,
+        paddingBottom: 40,
+        paddingTop: 72,
+      }}
+      keyboardShouldPersistTaps="handled"
+    >
       <StatusBar style="dark" />
 
       <View className="mb-6 flex-row items-center justify-between">
-        <Text className="text-[32px] font-extrabold text-foreground">
-          Find a Game
-        </Text>
+        <View>
+          <Text className="text-[32px] font-extrabold text-foreground">
+            Find a Game
+          </Text>
+          <Text className="mt-1 text-[14px] text-muted">
+            Acting as {currentUser.displayName}
+          </Text>
+        </View>
 
         <Pressable
           accessibilityRole="button"
@@ -138,13 +212,14 @@ export function FindGameScreen({ onBack }: FindGameScreenProps) {
             matches.map((match) => (
               <View className="w-[48%]" key={match.id}>
                 <MatchResultCard
-                  title={match.title}
                   sportName={match.sport_name}
                   venueName={match.venue_name}
                   city={match.city}
                   startsAt={match.starts_at}
                   joinedPlayers={match.joined_players}
                   maxPlayers={match.max_players}
+                  selected={selectedMatch?.id === match.id}
+                  onPress={() => handleSelectMatch(match)}
                 />
               </View>
             ))
@@ -157,6 +232,17 @@ export function FindGameScreen({ onBack }: FindGameScreenProps) {
           )}
         </View>
       ) : null}
-    </View>
+
+      {selectedMatch ? (
+        <SelectedMatchDetail
+          match={selectedMatch}
+          isJoining={isJoining}
+          joinStatus={joinStatus}
+          joinStatusKind={joinStatusKind}
+          onJoin={handleJoin}
+          onDismiss={() => setSelectedMatchId(null)}
+        />
+      ) : null}
+    </ScrollView>
   );
 }

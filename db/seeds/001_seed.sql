@@ -3,7 +3,8 @@ BEGIN;
 INSERT INTO users (id, display_name, email)
 VALUES
     ('11111111-1111-1111-1111-111111111111', 'Tom', 'tom@example.com'),
-    ('22222222-2222-2222-2222-222222222222', 'Maya', 'maya@example.com')
+    ('22222222-2222-2222-2222-222222222222', 'Maya', 'maya@example.com'),
+    ('99999999-9999-9999-9999-999999999998', 'Alex', 'alex@example.com')
 ON CONFLICT (email) DO NOTHING;
 
 INSERT INTO sports (id, name)

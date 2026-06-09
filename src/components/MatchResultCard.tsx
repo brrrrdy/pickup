@@ -1,13 +1,14 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 type MatchResultCardProps = {
-  title: string;
   sportName: string;
   venueName: string;
   city: string;
   startsAt: string;
   joinedPlayers: number;
   maxPlayers: number;
+  selected?: boolean;
+  onPress?: () => void;
 };
 
 function formatStartsAt(startsAt: string) {
@@ -27,23 +28,23 @@ function formatStartsAt(startsAt: string) {
 }
 
 export function MatchResultCard({
-  title,
   sportName,
   venueName,
   city,
   startsAt,
   joinedPlayers,
   maxPlayers,
+  selected,
+  onPress,
 }: MatchResultCardProps) {
   return (
-    <View className="h-[158px] flex-1 rounded-2xl border border-border bg-white p-3.5">
-      <Text
-        className="mb-1 text-[15px] font-extrabold text-foreground"
-        numberOfLines={1}
-      >
-        {title}
-      </Text>
-
+    <Pressable
+      accessibilityRole="button"
+      onPress={onPress}
+      className={`h-[158px] flex-1 rounded-2xl border bg-white p-3.5 ${
+        selected ? "border-primary" : "border-border"
+      }`}
+    >
       <Text
         className="mb-1 text-[13px] font-semibold text-muted"
         numberOfLines={1}
@@ -64,6 +65,6 @@ export function MatchResultCard({
           {joinedPlayers}/{maxPlayers} players
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
