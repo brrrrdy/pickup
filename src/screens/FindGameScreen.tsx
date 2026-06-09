@@ -98,7 +98,7 @@ export function FindGameScreen({ currentUser, onBack }: FindGameScreenProps) {
     if (!city) {
       setHasSearched(false);
       setMatches([]);
-      setError("Enter a city name, then press Search.");
+      setError("please enter a city name, then press search.");
       return;
     }
 
@@ -119,7 +119,7 @@ export function FindGameScreen({ currentUser, onBack }: FindGameScreenProps) {
       const payload = (await response.json()) as { matches?: Match[] };
       setMatches(Array.isArray(payload.matches) ? payload.matches : []);
     } catch (_error) {
-      setError("Could not load matches from API.");
+      setError("could not load matches from the API.");
     } finally {
       setIsLoading(false);
     }
@@ -139,27 +139,25 @@ export function FindGameScreen({ currentUser, onBack }: FindGameScreenProps) {
 
       <View className="mb-6 flex-row items-center justify-between">
         <View>
-          <Text className="text-[32px] font-extrabold text-foreground">
-            Find a Game
+          <Text className="text-[32px] font-extrabold text-primary">
+            find a game
           </Text>
           <Text className="mt-1 text-[14px] text-muted">
-            Acting as {currentUser.displayName}
+            acting as {currentUser.displayName}
           </Text>
         </View>
 
         <Pressable
           accessibilityRole="button"
-          className="rounded-xl border border-border bg-white px-3 py-2"
+          className="rounded-xl bg-accentred px-3 py-2"
           onPress={onBack}
         >
-          <Text className="text-[14px] font-semibold text-foreground">
-            Back
-          </Text>
+          <Text className="text-[14px] font-semibold text-secondary">back</Text>
         </Pressable>
       </View>
 
       <TextInput
-        className="mb-5 min-h-[56px] rounded-2xl border border-border bg-white px-4 text-[16px] text-foreground"
+        className="mb-5 min-h-[56px] rounded-2xl bg-white px-4 text-[16px] text-primary"
         placeholder="where do you want to play"
         placeholderTextColor="#6e8676"
         value={search}
@@ -199,9 +197,9 @@ export function FindGameScreen({ currentUser, onBack }: FindGameScreenProps) {
       ) : null}
 
       {!hasSearched && !error ? (
-        <View className="rounded-2xl border border-border bg-white p-4">
-          <Text className="text-[14px] text-muted">
-            Search by city to load games from the API.
+        <View className="rounded-2xl p-4">
+          <Text className="text-[12px] text-muted">
+            search for pickup games happening in your city.
           </Text>
         </View>
       ) : null}

@@ -16,7 +16,7 @@ export function FindGameButton({ onPress, disabled }: FindGameButtonProps) {
       onPress={onPress}
     >
       <Text className="text-[17px] font-bold text-primary-foreground">
-        find a Game
+        find a game
       </Text>
     </Pressable>
   );

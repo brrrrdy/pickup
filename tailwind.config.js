@@ -10,6 +10,7 @@ module.exports = {
         accentpurple: "#714cdc",
         foreground: "#714cdc",
         accentgreen: "#00c8b3",
+        accentred: "#e74200",
         accentblue: "#83e2f1",
         muted: "#39423c",
         primary: "#000000",
