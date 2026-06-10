@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "uniwind";
+
+@theme {
+  --color-surface: #f5f8f4;
+  --color-foreground: #112418;
+  --color-muted: #35513f;
+  --color-primary: #ed9911;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #eaf2eb;
+  --color-border: #d2e2d4;
+}
