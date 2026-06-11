@@ -1,0 +1,27 @@
+import { type ReactNode } from "react";
+import { View } from "react-native";
+import AppFooter from "./AppFooter";
+import TopNav from "./TopNav";
+
+type AppShellProps = {
+  children: ReactNode;
+};
+
+export default function AppShell({ children }: AppShellProps) {
+  return (
+    <View className="flex-1 bg-primary">
+      {/* Top nav */}
+      <View className="border-b border-transparent px-4 pb-3 pt-5">
+        <TopNav />
+      </View>
+
+      {/* Main content */}
+      <View className="flex-1 px-4 py-6">{children}</View>
+
+      {/* Footer */}
+      <View className="border-t border-b border-transparent px-4 py-4">
+        <AppFooter />
+      </View>
+    </View>
+  );
+}

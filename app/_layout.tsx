@@ -1,6 +1,11 @@
-import { Stack } from "expo-router";
+import { Slot } from "expo-router";
 import "../global.css";
+import AppShell from "../components/layout/AppShell";
 
 export default function RootLayout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <AppShell>
+      <Slot />
+    </AppShell>
+  );
 }
