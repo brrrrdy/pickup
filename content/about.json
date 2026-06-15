@@ -1,0 +1,14 @@
+{
+  "en": {
+    "header": "about pickup",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  "es": {
+    "header": "sobre pickup",
+    "body": "¡Hola y gracias por visitar mi página! Soy un desarrollador web afincado en Galicia que crea experiencias accesibles, bien pensadas y divertidas que a la gente le encanta usar. Me especializo en el ecosistema React y cuento con experiencia profesional en investigación y diseño de UX, formación y edición digital."
+  },
+  "gz": {
+    "header": "sobre pickup",
+    "body": "Ola, e grazas por pasar por aquí! Son un desenvolvedor web con base en Galiza que crea experiencias accesibles, coidadosas e xoguetonas que á xente lle encanta usar. Especialízome no ecosistema React, con experiencia profesional en investigación e deseño de UX, educación e publicación dixital."
+  }
+}

@@ -6,8 +6,8 @@ export default function AppFooter() {
 
   return (
     <View className="w-full gap-2">
-      <View className="flex-row flex-wrap gap-4">
-        <Link href="/">
+      {/* <View className="flex-row flex-wrap gap-4"> */}
+      {/* <Link href="/">
           <Text className="text-sm text-defaulttext/70">Home</Text>
         </Link>
         <Link href="/about">
@@ -16,9 +16,10 @@ export default function AppFooter() {
         <Link href="/contact">
           <Text className="text-sm text-defaulttext/70">Contact</Text>
         </Link>
-      </View>
-      <Text className="text-xs text-defaulttext/50">
-        © {year} Pickup. All rights reserved.
+      </View> */}
+
+      <Text className="w-full text-center text-xs text-defaulttext/50">
+        © {year} tom alvarez. all rights reserved.
       </Text>
     </View>
   );

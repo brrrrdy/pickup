@@ -2,9 +2,9 @@ import { Link, usePathname } from "expo-router";
 import { Text, View } from "react-native";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "home" },
+  { href: "/about", label: "about" },
+  { href: "/contact", label: "contact" },
 ] as const;
 
 export default function TopNav() {
