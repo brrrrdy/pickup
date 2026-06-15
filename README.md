@@ -11,29 +11,3 @@ Whilst free-to-use outdoor spaces such as municipal parks, recreation grounds, b
 Users will download and sign up to pickup. They will be able to create matches at a venue, specify values such as a start time and how long they would like to play for, skill level, languages spoken, age ranges, competitiveness, availability to teach players how to play, and then push the match 'live'. Other users on the app interested in playing casual sports will be presented with these matches and subsequently sign up for a particular session.
 
 My intention for security and privacy purposes is to handle all communication within the app itself. Users are free to share personal contact details but should be dissuaded from doing so as, in addition to security concerns, keeping these interactions in-house and within the 'ecosystem' promotes inclusion and new users hoping to join games.
-
-## Current architecture
-
-This repository currently runs as a local-first full-stack prototype.
-
-- Frontend: React Native with Expo (TypeScript), styled with NativeWind/Tailwind.
-- Backend API: Node.js + Express in `api/`.
-- Database: PostgreSQL (Docker), accessed via `pg`.
-- Database lifecycle: SQL migrations and seed scripts in `db/migrations/` and `db/seeds/`.
-- Testing: Jest + Supertest integration tests against a separate Docker test database (`postgres_test` on port `5433`).
-
-## Planned future architecture (Supabase)
-
-Supabase remains the intended target architecture once local POC is running and validated against test suite.
-
-Planned Supabase capabilities:
-
-- Managed PostgreSQL database.
-- Authentication (users, OAuth, social login).
-- Generated APIs (REST and GraphQL).
-- Storage for user and venue media.
-- Optional serverless functions for custom backend logic.
-
-## Internal docs
-
-Operational API runbooks, endpoint notes, and local data-safety procedures are maintained in private documentation and are intentionally not published in this repository.
