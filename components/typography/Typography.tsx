@@ -14,7 +14,7 @@ export function PageHeader({ children, ...props }: TypographyProps) {
 
 export function PageBody({ children, ...props }: TypographyProps) {
   return (
-    <Text className="text-base text-defaulttext/100" {...props}>
+    <Text className="text-base text-defaulttext" {...props}>
       {children}
     </Text>
   );

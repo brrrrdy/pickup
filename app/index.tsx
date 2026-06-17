@@ -4,16 +4,22 @@ import Logo from "../components/common/Logo";
 import StartGameButton from "../components/buttons/StartGameButton";
 import FindGameButton from "../components/buttons/FindGameButton";
 import PageContent from "../components/layout/PageContent";
+import { PageBody, PageHeader } from "../components/typography/Typography";
 
 export default function Landing() {
   const router = useRouter();
 
   return (
     <PageContent className="items-center justify-center">
-      <Logo />
-      <View className="flex-row gap-4">
-        <StartGameButton onPress={() => router.push("/startgame")} />
-        <FindGameButton onPress={() => router.push("/findgame")} />
+      <View className="w-full items-center mt-10">
+        <Logo />
+        <View className="flex-row gap-4 mt-4">
+          <StartGameButton onPress={() => router.push("/startgame")} />
+          <FindGameButton onPress={() => router.push("/findgame")} />
+        </View>
+      </View>
+      <View className="mt-auto w-full items-center pb-4">
+        <PageBody>register or log-in.</PageBody>
       </View>
     </PageContent>
   );
