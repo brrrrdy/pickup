@@ -7,7 +7,7 @@ type StartGameButtonProps = {
 
 export default function StartGameButton({
   onPress,
-  label = "find a game",
+  label = "start a game",
 }: StartGameButtonProps) {
   return (
     <Pressable

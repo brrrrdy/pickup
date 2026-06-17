@@ -7,7 +7,7 @@ type FindGameButtonProps = {
 
 export default function FindGameButton({
   onPress,
-  label = "start a game",
+  label = "find a game",
 }: FindGameButtonProps) {
   return (
     <Pressable

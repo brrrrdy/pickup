@@ -25,3 +25,9 @@
   --color-redaccent: #fd3c59;
   --color-defaulttext: #3d3c3c;
 }
+
+/* DEBUG */
+*[class*="flex"],
+*[class*="grid"] {
+  outline: 1px solid red;
+}

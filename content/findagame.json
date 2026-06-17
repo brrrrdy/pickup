@@ -1,0 +1,14 @@
+{
+  "en": {
+    "header": "find a game",
+    "body": "search for pickup games near you!"
+  },
+  "es": {
+    "header": "find a game",
+    "body": "¡Hola y gracias por visitar mi página! Soy un desarrollador web afincado en Galicia que crea experiencias accesibles, bien pensadas y divertidas que a la gente le encanta usar. Me especializo en el ecosistema React y cuento con experiencia profesional en investigación y diseño de UX, formación y edición digital."
+  },
+  "gz": {
+    "header": "find a game",
+    "body": "Ola, e grazas por pasar por aquí! Son un desenvolvedor web con base en Galiza que crea experiencias accesibles, coidadosas e xoguetonas que á xente lle encanta usar. Especialízome no ecosistema React, con experiencia profesional en investigación e deseño de UX, educación e publicación dixital."
+  }
+}

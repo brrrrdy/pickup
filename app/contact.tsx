@@ -21,6 +21,7 @@ export default function Contact() {
       <PageBody>{content.intro}</PageBody>
 
       {/* Email */}
+
       <Pressable onPress={handleEmailPress}>
         <View className="gap-2">
           <Text className="text-sm font-semibold text-defaulttext">
@@ -55,6 +56,7 @@ export default function Contact() {
       </View>
 
       {/* Location */}
+
       <View className="gap-2">
         <Text className="text-sm font-semibold text-defaulttext">
           {content.locationLabel}

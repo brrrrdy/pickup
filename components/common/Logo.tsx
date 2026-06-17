@@ -3,11 +3,16 @@ import Svg, { Defs, LinearGradient, Mask, Rect, Stop } from "react-native-svg";
 
 import SplashLogo from "../../assets/splashlogo.svg";
 
-export default function Logo() {
+interface LogoProps {
+  width?: number;
+  height?: number;
+}
+
+export default function Logo({ width = 300, height = 180 }: LogoProps) {
   const gradientColors = ["#1317d4", "#0ea5e9", "#75073d"] as const;
 
   return (
-    <View style={{ width: 300, height: 180 }}>
+    <View style={{ width, height }}>
       <Svg width="100%" height="100%" viewBox="0 0 1640 700">
         <Defs>
           <LinearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
