@@ -15,7 +15,7 @@ export default function TopNav() {
 
   return (
     <View className="w-full py-4">
-      <View className="flex-row items-center justify-between">
+      <View className="flex-row min-h-9 items-center justify-between">
         <View className="flex-row items-center gap-5">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
