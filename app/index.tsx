@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import Logo from "../components/common/Logo";
 import StartGameButton from "../components/buttons/StartGameButton";
 import FindGameButton from "../components/buttons/FindGameButton";
 import PageContent from "../components/layout/PageContent";
-import { PageBody, PageHeader } from "../components/typography/Typography";
+import { PageBody } from "../components/typography/Typography";
 
 export default function Landing() {
   const router = useRouter();
@@ -19,7 +19,9 @@ export default function Landing() {
         </View>
       </View>
       <View className="mt-auto w-full items-center pb-4">
-        <PageBody>register or log-in.</PageBody>
+        <Link href="/register">
+          <PageBody>register or log-in.</PageBody>
+        </Link>
       </View>
     </PageContent>
   );
