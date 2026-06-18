@@ -1,34 +1,23 @@
-import { useMemo, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageSection from "../components/layout/PageSection";
 import LocationSearchBar from "../components/LocationSearch";
 import SportSearch from "../components/SportSearch";
-import MatchCard from "../components/common/MatchCard";
-import mockFindSportData from "../mockdata/find-sport-data.json";
-import {
-  mapOpenMatchesForSelectedSports,
-  mapSportsWithOpenGameCounts,
-} from "../mockdata/mapFindSports";
-import type { SportOption } from "../components/types/findGame";
-
-const availableSports = mapSportsWithOpenGameCounts(mockFindSportData);
+import MatchList from "../components/common/MatchList";
+import useFindGame from "./hooks/useFindGame";
 
 export default function FindGame() {
-  const [location, setLocation] = useState("");
-  const [selectedSports, setSelectedSports] = useState<SportOption[]>([]);
-  const [showGames, setShowGames] = useState(false);
-
-  const handleShowGames = (sports: SportOption[]) => {
-    setSelectedSports(sports);
-    setShowGames(true);
-  };
-
-  const openMatches = useMemo(
-    () => mapOpenMatchesForSelectedSports(mockFindSportData, selectedSports),
-    [selectedSports],
-  );
+  const {
+    location,
+    setLocation,
+    availableSports,
+    selectedIds,
+    toggleSport,
+    showGames,
+    handleShowGames,
+    openMatches,
+  } = useFindGame();
 
   return (
     <PageContent className="w-full px-4 pt-6">
@@ -50,26 +39,16 @@ export default function FindGame() {
             <SportSearch
               location={location}
               sports={availableSports}
+              selectedIds={selectedIds}
+              onToggleSport={toggleSport}
               onShowGames={handleShowGames}
             />
 
-            {showGames ? (
-              <>
-                {openMatches.length > 0 ? (
-                  openMatches.map((match) => (
-                    <MatchCard
-                      key={match.id}
-                      match={match}
-                      location={location}
-                    />
-                  ))
-                ) : (
-                  <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
-                    no open games found for your selected sports.
-                  </Text>
-                )}
-              </>
-            ) : null}
+            <MatchList
+              matches={openMatches}
+              location={location}
+              hasSearched={showGames}
+            />
           </PageSection>
         </View>
       </ScrollView>

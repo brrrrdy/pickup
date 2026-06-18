@@ -1,36 +1,22 @@
-import { useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import type { SportOption } from "./types/findGame";
 
 type SportSearchProps = {
   location: string;
   sports: SportOption[];
-  onShowGames?: (selectedSports: SportOption[]) => void;
+  selectedIds: string[];
+  onToggleSport: (sportId: string) => void;
+  onShowGames: () => void;
 };
 
 export default function SportSearch({
   location,
   sports,
+  selectedIds,
+  onToggleSport,
   onShowGames,
 }: SportSearchProps) {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
-
-  const selectedSports = useMemo(
-    () => sports.filter((sport) => selectedIds.includes(sport.id)),
-    [sports, selectedIds],
-  );
-
-  const toggleSport = (sportId: string) => {
-    setSelectedIds((prev) =>
-      prev.includes(sportId)
-        ? prev.filter((id) => id !== sportId)
-        : [...prev, sportId],
-    );
-  };
-
-  const handleShowGames = () => {
-    onShowGames?.(selectedSports);
-  };
+  const canShowGames = selectedIds.length > 0;
 
   return (
     <View className="w-full max-w-xl rounded-2xl bg-secondary p-4">
@@ -45,7 +31,7 @@ export default function SportSearch({
           return (
             <Pressable
               key={sport.id}
-              onPress={() => toggleSport(sport.id)}
+              onPress={() => onToggleSport(sport.id)}
               className={`rounded-full border px-3 py-2 ${
                 isSelected
                   ? "border-greenaccent bg-greenaccent"
@@ -64,10 +50,10 @@ export default function SportSearch({
       </View>
 
       <Pressable
-        onPress={handleShowGames}
-        disabled={selectedSports.length === 0}
+        onPress={onShowGames}
+        disabled={!canShowGames}
         className={`mt-4 rounded-xl px-4 py-3 ${
-          selectedSports.length === 0 ? "bg-secondary" : "bg-greenaccent"
+          canShowGames ? "bg-greenaccent" : "bg-secondary"
         }`}
         accessibilityRole="button"
         accessibilityLabel="show games for selected sports"
