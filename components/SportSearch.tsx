@@ -1,11 +1,6 @@
 import { useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-
-type SportOption = {
-  id: string;
-  name: string;
-  availableGames: number;
-};
+import type { SportOption } from "./types/findGame";
 
 type SportSearchProps = {
   location: string;

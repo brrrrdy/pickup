@@ -1,0 +1,166 @@
+{
+  "sports": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "sportname": "football"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "sportname": "basketball"
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "sportname": "padel"
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444444",
+      "sportname": "tennis"
+    }
+  ],
+  "matches": [
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      "host_user_id": null,
+      "sport_id": "11111111-1111-4111-8111-111111111111",
+      "venue_id": null,
+      "title": "Morning football scrimmage",
+      "starts_at": "2026-06-19T09:00:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:00:00Z"
+    },
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2",
+      "host_user_id": null,
+      "sport_id": "11111111-1111-4111-8111-111111111111",
+      "venue_id": null,
+      "title": "Evening football 7v7",
+      "starts_at": "2026-06-19T18:30:00Z",
+      "duration_minutes": 90,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:15:00Z"
+    },
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3",
+      "host_user_id": null,
+      "sport_id": "11111111-1111-4111-8111-111111111111",
+      "venue_id": null,
+      "title": "Sunday football pickup",
+      "starts_at": "2026-06-20T15:00:00Z",
+      "duration_minutes": 75,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:20:00Z"
+    },
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4",
+      "host_user_id": null,
+      "sport_id": "11111111-1111-4111-8111-111111111111",
+      "venue_id": null,
+      "title": "Late football match",
+      "starts_at": "2026-06-21T20:00:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:25:00Z"
+    },
+    {
+      "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
+      "host_user_id": null,
+      "sport_id": "22222222-2222-4222-8222-222222222222",
+      "venue_id": null,
+      "title": "Lunchtime hoops",
+      "starts_at": "2026-06-19T12:00:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:30:00Z"
+    },
+    {
+      "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb2",
+      "host_user_id": null,
+      "sport_id": "22222222-2222-4222-8222-222222222222",
+      "venue_id": null,
+      "title": "3v3 basketball",
+      "starts_at": "2026-06-20T17:00:00Z",
+      "duration_minutes": 45,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:35:00Z"
+    },
+    {
+      "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb3",
+      "host_user_id": null,
+      "sport_id": "22222222-2222-4222-8222-222222222222",
+      "venue_id": null,
+      "title": "Night basketball run",
+      "starts_at": "2026-06-21T19:30:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:40:00Z"
+    },
+    {
+      "id": "cccccccc-cccc-4ccc-8ccc-ccccccccccc1",
+      "host_user_id": null,
+      "sport_id": "33333333-3333-4333-8333-333333333333",
+      "venue_id": null,
+      "title": "Padel doubles friendly",
+      "starts_at": "2026-06-19T16:00:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:45:00Z"
+    },
+    {
+      "id": "cccccccc-cccc-4ccc-8ccc-ccccccccccc2",
+      "host_user_id": null,
+      "sport_id": "33333333-3333-4333-8333-333333333333",
+      "venue_id": null,
+      "title": "Padel ladder match",
+      "starts_at": "2026-06-20T10:30:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:50:00Z"
+    },
+    {
+      "id": "cccccccc-cccc-4ccc-8ccc-ccccccccccc3",
+      "host_user_id": null,
+      "sport_id": "33333333-3333-4333-8333-333333333333",
+      "venue_id": null,
+      "title": "Padel evening game",
+      "starts_at": "2026-06-21T18:00:00Z",
+      "duration_minutes": 60,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:55:00Z"
+    },
+    {
+      "id": "dddddddd-dddd-4ddd-8ddd-ddddddddddd1",
+      "host_user_id": null,
+      "sport_id": "44444444-4444-4444-8444-444444444444",
+      "venue_id": null,
+      "title": "Tennis singles",
+      "starts_at": "2026-06-19T07:30:00Z",
+      "duration_minutes": 90,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T13:00:00Z"
+    },
+    {
+      "id": "dddddddd-dddd-4ddd-8ddd-ddddddddddd2",
+      "host_user_id": null,
+      "sport_id": "44444444-4444-4444-8444-444444444444",
+      "venue_id": null,
+      "title": "Tennis doubles",
+      "starts_at": "2026-06-21T09:00:00Z",
+      "duration_minutes": 90,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T13:05:00Z"
+    }
+  ]
+}

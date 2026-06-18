@@ -1,26 +1,19 @@
-import { useState } from "react";
-import { Text, View } from "react-native";
+import { useMemo, useState } from "react";
+import { ScrollView, Text, View } from "react-native";
 import { PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
+import PageSection from "../components/layout/PageSection";
 import LocationSearchBar from "../components/LocationSearch";
 import SportSearch from "../components/SportSearch";
+import MatchCard from "../components/common/MatchCard";
+import mockFindSportData from "../mockdata/find-sport-data.json";
+import {
+  mapOpenMatchesForSelectedSports,
+  mapSportsWithOpenGameCounts,
+} from "../mockdata/mapFindSports";
+import type { SportOption } from "../components/types/findGame";
 
-type SportOption = {
-  id: string;
-  name: string;
-  availableGames: number;
-};
-
-// MOCK DATA
-
-const availableSports: SportOption[] = [
-  { id: "football", name: "football", availableGames: 4 },
-  { id: "basketball", name: "basketball", availableGames: 3 },
-  { id: "padel", name: "padel", availableGames: 3 },
-  { id: "tennis", name: "tennis", availableGames: 2 },
-];
-
-// SPLIT INTO COMPONENT
+const availableSports = mapSportsWithOpenGameCounts(mockFindSportData);
 
 export default function FindGame() {
   const [location, setLocation] = useState("");
@@ -32,39 +25,54 @@ export default function FindGame() {
     setShowGames(true);
   };
 
+  const openMatches = useMemo(
+    () => mapOpenMatchesForSelectedSports(mockFindSportData, selectedSports),
+    [selectedSports],
+  );
+
   return (
-    <PageContent className="w-full justify-start gap-4 px-4 pt-6">
-      <View className="w-full flex flex-col items-center justify-center">
-        <PageHeader>find a game</PageHeader>
-      </View>
+    <PageContent className="w-full px-4 pt-6">
+      <ScrollView
+        className="w-full"
+        contentContainerStyle={{ paddingBottom: 24 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="w-full gap-4">
+          <PageSection>
+            <PageHeader>find a game</PageHeader>
+          </PageSection>
 
-      <View className="w-full flex flex-col items-center justify-center">
-        <LocationSearchBar value={location} onChangeText={setLocation} />
-      </View>
+          <PageSection>
+            <LocationSearchBar value={location} onChangeText={setLocation} />
+          </PageSection>
 
-      <View className="w-full flex flex-col items-center justify-center gap-4 px-4">
-        <SportSearch
-          location={location}
-          sports={availableSports}
-          onShowGames={handleShowGames}
-        />
+          <PageSection className="gap-4 px-4">
+            <SportSearch
+              location={location}
+              sports={availableSports}
+              onShowGames={handleShowGames}
+            />
 
-        {showGames ? (
-          <View className="w-full max-w-xl rounded-xl border border-border bg-white p-4">
-            <Text className="text-base font-semibold text-defaulttext">
-              selected sports
-            </Text>
-            <Text className="mt-2 text-sm text-defaulttext">
-              {selectedSports.map((sport) => sport.name).join(", ") ||
-                "No sports selected."}
-            </Text>
-            <Text className="mt-2 text-xs text-defaulttext">
-              backend hook: replace this section with your game list query
-              filtered by selected sports and location.
-            </Text>
-          </View>
-        ) : null}
-      </View>
+            {showGames ? (
+              <>
+                {openMatches.length > 0 ? (
+                  openMatches.map((match) => (
+                    <MatchCard
+                      key={match.id}
+                      match={match}
+                      location={location}
+                    />
+                  ))
+                ) : (
+                  <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
+                    no open games found for your selected sports.
+                  </Text>
+                )}
+              </>
+            ) : null}
+          </PageSection>
+        </View>
+      </ScrollView>
     </PageContent>
   );
 }
