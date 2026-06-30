@@ -11,11 +11,6 @@ export default function StartGame() {
         contentContainerStyle={{ paddingBottom: 24 }}
         showsVerticalScrollIndicator={false}
       >
-        <PageHeader>Start a Game</PageHeader>
-        <PageBody className="mt-3 max-w-xl">
-          Create a new pickup game and invite players nearby.
-        </PageBody>
-
         <StartGameCard />
       </ScrollView>
     </PageContent>
