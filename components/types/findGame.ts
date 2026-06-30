@@ -13,6 +13,7 @@ export type VenueRow = {
   id: string;
   city: string;
   venuename?: string | null;
+  sport_ids?: string[];
 };
 
 export type MatchRow = {

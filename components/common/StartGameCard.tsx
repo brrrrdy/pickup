@@ -145,11 +145,30 @@ export default function StartGameCard() {
 
   const selectedSportId = sportIdByName.get(sport) ?? "";
 
+  const venueSportIdsByVenueId = new Map(
+    (mockFindSportData.venues ?? []).map((venueRow) => [
+      venueRow.id,
+      (venueRow.sport_ids ?? []).filter((sportId) => sportId.length > 0),
+    ]),
+  );
+
   const venueIdsForSelectedSport = new Set(
-    (mockFindSportData.matches ?? [])
-      .filter((matchRow) => matchRow.sport_id === selectedSportId)
-      .map((matchRow) => matchRow.venue_id)
-      .filter((venueId): venueId is string => Boolean(venueId)),
+    (mockFindSportData.venues ?? [])
+      .filter((venueRow) => {
+        const configuredSportIds =
+          venueSportIdsByVenueId.get(venueRow.id) ?? [];
+
+        if (configuredSportIds.length > 0) {
+          return configuredSportIds.includes(selectedSportId);
+        }
+
+        return (mockFindSportData.matches ?? []).some(
+          (matchRow) =>
+            matchRow.venue_id === venueRow.id &&
+            matchRow.sport_id === selectedSportId,
+        );
+      })
+      .map((venueRow) => venueRow.id),
   );
 
   const validVenues = (mockFindSportData.venues ?? [])
