@@ -9,9 +9,16 @@ export type SportRow = {
   sportname: string | null;
 };
 
+export type VenueRow = {
+  id: string;
+  city: string;
+  venuename?: string | null;
+};
+
 export type MatchRow = {
   id: string;
   sport_id: string | null;
+  venue_id?: string | null;
   title?: string | null;
   starts_at?: string | null;
   duration_minutes?: number | null;
@@ -28,5 +35,6 @@ export type MatchCardData = {
 
 export type FindSportMockData = {
   sports?: SportRow[];
+  venues?: VenueRow[];
   matches?: MatchRow[];
 };

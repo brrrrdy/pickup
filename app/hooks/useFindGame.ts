@@ -9,14 +9,24 @@ import {
   mapSportsWithOpenGameCounts,
 } from "../../mockdata/mapFindSports";
 
+function isValidLocation(value: string) {
+  return value.trim().length >= 2;
+}
+
 export default function useFindGame() {
   const [location, setLocation] = useState("");
+  const [locationInput, setLocationInput] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [showGames, setShowGames] = useState(false);
 
+  const hasLocation = isValidLocation(location);
+
   const availableSports = useMemo(
-    () => mapSportsWithOpenGameCounts(mockFindSportData),
-    [],
+    () =>
+      hasLocation
+        ? mapSportsWithOpenGameCounts(mockFindSportData, location)
+        : [],
+    [hasLocation, location],
   );
 
   const selectedSports = useMemo(
@@ -33,17 +43,59 @@ export default function useFindGame() {
   }, []);
 
   const handleShowGames = useCallback(() => {
+    if (!hasLocation) {
+      return;
+    }
+
     setShowGames(true);
+  }, [hasLocation]);
+
+  const clearActiveSearch = useCallback(() => {
+    setLocation("");
+    setSelectedIds([]);
+    setShowGames(false);
   }, []);
 
+  const handleLocationInputChange = useCallback(
+    (nextLocation: string) => {
+      setLocationInput(nextLocation);
+
+      if (nextLocation.trim() !== location) {
+        clearActiveSearch();
+      }
+    },
+    [clearActiveSearch, location],
+  );
+
+  const commitLocation = useCallback(() => {
+    const normalizedLocation = locationInput.trim();
+
+    if (!isValidLocation(normalizedLocation)) {
+      clearActiveSearch();
+      return;
+    }
+
+    setLocation(normalizedLocation);
+  }, [clearActiveSearch, locationInput]);
+
   const openMatches: MatchCardData[] = useMemo(
-    () => mapOpenMatchesForSelectedSports(mockFindSportData, selectedSports),
-    [selectedSports],
+    () =>
+      hasLocation
+        ? mapOpenMatchesForSelectedSports(
+            mockFindSportData,
+            selectedSports,
+            location,
+          )
+        : [],
+    [hasLocation, location, selectedSports],
   );
 
   return {
+    hasLocation,
     location,
-    setLocation,
+    locationInput,
+    setLocationInput: handleLocationInputChange,
+    commitLocation,
     availableSports,
     selectedIds,
     toggleSport,

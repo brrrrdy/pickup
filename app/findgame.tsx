@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageSection from "../components/layout/PageSection";
@@ -9,8 +9,11 @@ import useFindGame from "./hooks/useFindGame";
 
 export default function FindGame() {
   const {
+    hasLocation,
     location,
-    setLocation,
+    locationInput,
+    setLocationInput,
+    commitLocation,
     availableSports,
     selectedIds,
     toggleSport,
@@ -32,24 +35,39 @@ export default function FindGame() {
           </PageSection>
 
           <PageSection>
-            <LocationSearchBar value={location} onChangeText={setLocation} />
-          </PageSection>
-
-          <PageSection className="gap-4 px-4">
-            <SportSearch
-              location={location}
-              sports={availableSports}
-              selectedIds={selectedIds}
-              onToggleSport={toggleSport}
-              onShowGames={handleShowGames}
-            />
-
-            <MatchList
-              matches={openMatches}
-              location={location}
-              hasSearched={showGames}
+            <LocationSearchBar
+              value={locationInput}
+              onChangeText={setLocationInput}
+              onSubmitEditing={commitLocation}
+              onBlur={commitLocation}
             />
           </PageSection>
+
+          {hasLocation ? (
+            <PageSection className="gap-4 px-4">
+              {availableSports.length > 0 ? (
+                <>
+                  <SportSearch
+                    location={location}
+                    sports={availableSports}
+                    selectedIds={selectedIds}
+                    onToggleSport={toggleSport}
+                    onShowGames={handleShowGames}
+                  />
+
+                  <MatchList
+                    matches={openMatches}
+                    location={location}
+                    hasSearched={showGames}
+                  />
+                </>
+              ) : (
+                <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
+                  no open games found in {location}.
+                </Text>
+              )}
+            </PageSection>
+          ) : null}
         </View>
       </ScrollView>
     </PageContent>

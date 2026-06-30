@@ -3,11 +3,15 @@ import { TextInput, View } from "react-native";
 type LocationSearchBarProps = {
   value: string;
   onChangeText: (text: string) => void;
+  onSubmitEditing?: () => void;
+  onBlur?: () => void;
 };
 
 export default function LocationSearchBar({
   value,
   onChangeText,
+  onSubmitEditing,
+  onBlur,
 }: LocationSearchBarProps) {
   return (
     <View className="w-full max-w-xl px-4">
@@ -17,6 +21,9 @@ export default function LocationSearchBar({
         placeholderTextColor="#35513f"
         value={value}
         onChangeText={onChangeText}
+        onSubmitEditing={onSubmitEditing}
+        onBlur={onBlur}
+        returnKeyType="search"
       />
     </View>
   );
