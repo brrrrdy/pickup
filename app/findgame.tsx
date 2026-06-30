@@ -13,7 +13,10 @@ export default function FindGame() {
     location,
     locationInput,
     setLocationInput,
+    locationSuggestions,
+    showLocationSuggestions,
     commitLocation,
+    selectLocationSuggestion,
     availableSports,
     selectedIds,
     toggleSport,
@@ -38,6 +41,9 @@ export default function FindGame() {
             <LocationSearchBar
               value={locationInput}
               onChangeText={setLocationInput}
+              suggestions={locationSuggestions}
+              showSuggestions={showLocationSuggestions}
+              onSelectSuggestion={selectLocationSuggestion}
               onSubmitEditing={commitLocation}
               onBlur={commitLocation}
             />

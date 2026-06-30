@@ -29,6 +29,11 @@
       "city": "London"
     },
     {
+      "id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeee6",
+      "venuename": "Estacion",
+      "city": "Monforte de Lemos"
+    },
+    {
       "id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeee3",
       "venuename": "Castle Park Arena",
       "city": "Bristol"
@@ -183,6 +188,18 @@
       "max_players": "open",
       "status": "open",
       "created_at": "2026-06-10T13:05:00Z"
+    },
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaad1",
+      "host_user_id": null,
+      "sport_id": "11111111-1111-4111-8111-111111111111",
+      "venue_id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeee6",
+      "title": "Evening football 7v7",
+      "starts_at": "2026-07-19T18:30:00Z",
+      "duration_minutes": 90,
+      "max_players": "open",
+      "status": "open",
+      "created_at": "2026-06-10T12:15:00Z"
     }
   ]
 }

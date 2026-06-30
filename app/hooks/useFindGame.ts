@@ -18,8 +18,44 @@ export default function useFindGame() {
   const [locationInput, setLocationInput] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [showGames, setShowGames] = useState(false);
+  const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
+
+  const validLocations = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          (mockFindSportData.venues ?? [])
+            .map((venue) => venue.city.trim())
+            .filter((cityName) => cityName.length > 0),
+        ),
+      ),
+    [],
+  );
 
   const hasLocation = isValidLocation(location);
+
+  const locationSuggestions = useMemo(() => {
+    const normalizedInput = locationInput.trim().toLowerCase();
+    const normalizedLocation = location.trim().toLowerCase();
+
+    if (!showLocationSuggestions || normalizedInput.length <= 2) {
+      return [];
+    }
+
+    if (hasLocation && normalizedInput === normalizedLocation) {
+      return [];
+    }
+
+    return validLocations.filter((cityName) =>
+      cityName.toLowerCase().includes(normalizedInput),
+    );
+  }, [
+    hasLocation,
+    location,
+    locationInput,
+    showLocationSuggestions,
+    validLocations,
+  ]);
 
   const availableSports = useMemo(
     () =>
@@ -40,6 +76,8 @@ export default function useFindGame() {
         ? prev.filter((id) => id !== sportId)
         : [...prev, sportId],
     );
+
+    setShowGames(false);
   }, []);
 
   const handleShowGames = useCallback(() => {
@@ -59,6 +97,7 @@ export default function useFindGame() {
   const handleLocationInputChange = useCallback(
     (nextLocation: string) => {
       setLocationInput(nextLocation);
+      setShowLocationSuggestions(nextLocation.trim().length > 2);
 
       if (nextLocation.trim() !== location) {
         clearActiveSearch();
@@ -71,12 +110,25 @@ export default function useFindGame() {
     const normalizedLocation = locationInput.trim();
 
     if (!isValidLocation(normalizedLocation)) {
+      setShowLocationSuggestions(false);
       clearActiveSearch();
       return;
     }
 
     setLocation(normalizedLocation);
+    setShowLocationSuggestions(false);
   }, [clearActiveSearch, locationInput]);
+
+  const handleSelectLocationSuggestion = useCallback(
+    (selectedLocation: string) => {
+      setLocationInput(selectedLocation);
+      setLocation(selectedLocation);
+      setSelectedIds([]);
+      setShowGames(false);
+      setShowLocationSuggestions(false);
+    },
+    [],
+  );
 
   const openMatches: MatchCardData[] = useMemo(
     () =>
@@ -95,7 +147,10 @@ export default function useFindGame() {
     location,
     locationInput,
     setLocationInput: handleLocationInputChange,
+    locationSuggestions,
+    showLocationSuggestions,
     commitLocation,
+    selectLocationSuggestion: handleSelectLocationSuggestion,
     availableSports,
     selectedIds,
     toggleSport,
