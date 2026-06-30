@@ -1,4 +1,5 @@
-import { Pressable, Text } from "react-native";
+import ActionButton from "./ActionButton";
+import actionButtonsContent from "../../content/actionbuttons.json";
 
 type FindGameButtonProps = {
   onPress?: () => void;
@@ -7,16 +8,14 @@ type FindGameButtonProps = {
 
 export default function FindGameButton({
   onPress,
-  label = "find a game",
+  label = actionButtonsContent.en.findGame,
 }: FindGameButtonProps) {
   return (
-    <Pressable
+    <ActionButton
+      label={label}
       onPress={onPress}
-      className="mt-6 rounded-xl bg-greenaccent px-6 py-3 active:opacity-80"
-      accessibilityRole="button"
-      accessibilityLabel={label}
-    >
-      <Text className="text-lg font-semibold text-defaulttext">{label}</Text>
-    </Pressable>
+      className="mt-6 bg-greenaccent"
+      textClassName="text-lg font-semibold text-defaulttext"
+    />
   );
 }

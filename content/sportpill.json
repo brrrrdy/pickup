@@ -1,0 +1,14 @@
+{
+  "en": {
+    "labelTemplate": "{sport} ({count})",
+    "selectPrefix": "select"
+  },
+  "es": {
+    "labelTemplate": "",
+    "selectPrefix": ""
+  },
+  "gz": {
+    "labelTemplate": "",
+    "selectPrefix": ""
+  }
+}

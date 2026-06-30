@@ -1,0 +1,26 @@
+{
+  "en": {
+    "sportLabel": "sport",
+    "startsLabel": "starts",
+    "durationLabel": "duration",
+    "locationLabel": "location",
+    "durationTbd": "tbd",
+    "fallbackLocation": "your area"
+  },
+  "es": {
+    "sportLabel": "",
+    "startsLabel": "",
+    "durationLabel": "",
+    "locationLabel": "",
+    "durationTbd": "",
+    "fallbackLocation": ""
+  },
+  "gz": {
+    "sportLabel": "",
+    "startsLabel": "",
+    "durationLabel": "",
+    "locationLabel": "",
+    "durationTbd": "",
+    "fallbackLocation": ""
+  }
+}

@@ -6,6 +6,8 @@ type LocationSearchBarProps = {
   suggestions: string[];
   showSuggestions: boolean;
   onSelectSuggestion: (value: string) => void;
+  placeholder: string;
+  suggestionA11yPrefix: string;
   onSubmitEditing?: () => void;
   onBlur?: () => void;
 };
@@ -16,6 +18,8 @@ export default function LocationSearchBar({
   suggestions,
   showSuggestions,
   onSelectSuggestion,
+  placeholder,
+  suggestionA11yPrefix,
   onSubmitEditing,
   onBlur,
 }: LocationSearchBarProps) {
@@ -23,7 +27,7 @@ export default function LocationSearchBar({
     <View className="w-full max-w-xl gap-2 px-4">
       <TextInput
         className="w-full rounded-xl border border-transparent bg-secondary px-4 py-3 text-foreground"
-        placeholder="enter your location..."
+        placeholder={placeholder}
         placeholderTextColor="#35513f"
         value={value}
         onChangeText={onChangeText}
@@ -40,7 +44,7 @@ export default function LocationSearchBar({
               onPressIn={() => onSelectSuggestion(suggestion)}
               className="border-b border-border px-4 py-3 last:border-b-0"
               accessibilityRole="button"
-              accessibilityLabel={`select location ${suggestion}`}
+              accessibilityLabel={`${suggestionA11yPrefix} ${suggestion}`}
             >
               <Text className="text-defaulttext">{suggestion}</Text>
             </Pressable>

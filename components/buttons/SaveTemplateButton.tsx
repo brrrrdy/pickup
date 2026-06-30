@@ -1,24 +1,24 @@
 import ActionButton from "./ActionButton";
 import actionButtonsContent from "../../content/actionbuttons.json";
 
-type StartGameButtonProps = {
+type SaveTemplateButtonProps = {
   onPress?: () => void;
   label?: string;
   disabled?: boolean;
 };
 
-export default function StartGameButton({
+export default function SaveTemplateButton({
   onPress,
-  label = actionButtonsContent.en.startGame,
+  label = actionButtonsContent.en.saveTemplateToProfile,
   disabled = false,
-}: StartGameButtonProps) {
+}: SaveTemplateButtonProps) {
   return (
     <ActionButton
       label={label}
       onPress={onPress}
       disabled={disabled}
-      className="mt-6 bg-purpleaccent"
-      textClassName="text-lg font-semibold text-primary"
+      className="mt-3 border border-defaulttext/20 bg-orangeaccent"
+      textClassName="text-base font-semibold text-defaulttext"
     />
   );
 }

@@ -2,12 +2,15 @@ import { ScrollView, Text, View } from "react-native";
 import { PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageSection from "../components/layout/PageSection";
+import findAGameContent from "../content/findagame.json";
 import LocationSearchBar from "../components/LocationSearch";
 import SportSearch from "../components/SportSearch";
 import MatchList from "../components/common/MatchList";
 import useFindGame from "./hooks/useFindGame";
 
 export default function FindGame() {
+  const content = findAGameContent.en;
+
   const {
     hasLocation,
     location,
@@ -34,7 +37,7 @@ export default function FindGame() {
       >
         <View className="w-full gap-4">
           <PageSection>
-            <PageHeader>find a game</PageHeader>
+            <PageHeader>{content.header}</PageHeader>
           </PageSection>
 
           <PageSection>
@@ -44,6 +47,8 @@ export default function FindGame() {
               suggestions={locationSuggestions}
               showSuggestions={showLocationSuggestions}
               onSelectSuggestion={selectLocationSuggestion}
+              placeholder={content.locationPlaceholder}
+              suggestionA11yPrefix={content.locationSuggestionA11yPrefix}
               onSubmitEditing={commitLocation}
               onBlur={commitLocation}
             />
@@ -59,17 +64,21 @@ export default function FindGame() {
                     selectedIds={selectedIds}
                     onToggleSport={toggleSport}
                     onShowGames={handleShowGames}
+                    availableGamesInPrefix={content.availableGamesInPrefix}
+                    availableGamesInFallback={content.availableGamesInFallback}
+                    showGamesButtonLabel={content.showGamesButton}
                   />
 
                   <MatchList
                     matches={openMatches}
                     location={location}
                     hasSearched={showGames}
+                    emptyMessage={content.noOpenGamesForSelectedSports}
                   />
                 </>
               ) : (
                 <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
-                  no open games found in {location}.
+                  {content.noOpenGamesInLocationPrefix} {location}.
                 </Text>
               )}
             </PageSection>

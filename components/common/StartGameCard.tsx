@@ -3,6 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import startGameCardContent from "../../content/startgamecard.json";
 import profile from "../../mockdata/profile.json";
 import mockFindSportData from "../../mockdata/find-sport-data.json";
+import SaveTemplateButton from "../buttons/SaveTemplateButton";
 import StartGameButton from "../buttons/StartGameButton";
 import CalendarField from "./CalendarField";
 import SportDropdown from "./SportDropdown";
@@ -15,6 +16,7 @@ type FieldProps = {
   onChangeText: (text: string) => void;
   multiline?: boolean;
   keyboardType?: "default" | "number-pad";
+  inputClassName?: string;
 };
 
 function Field({
@@ -24,6 +26,7 @@ function Field({
   onChangeText,
   multiline = false,
   keyboardType = "default",
+  inputClassName = "",
 }: FieldProps) {
   return (
     <View className="w-full gap-2">
@@ -32,8 +35,8 @@ function Field({
       </Text>
       <TextInput
         className={`w-full rounded-xl border border-border bg-white px-4 py-3 text-defaulttext ${
-          multiline ? "min-h-28" : ""
-        }`.trim()}
+          inputClassName
+        } ${multiline ? "min-h-28" : ""}`.trim()}
         placeholder={placeholder}
         placeholderTextColor="#35513f"
         value={value}
@@ -351,6 +354,7 @@ export default function StartGameCard() {
           value={players}
           onChangeText={setPlayers}
           keyboardType="number-pad"
+          inputClassName="text-sm"
         />
         <CalendarField
           label={copy.dateheader}
@@ -385,6 +389,7 @@ export default function StartGameCard() {
       ) : null}
 
       <StartGameButton label={copy.submitbutton} disabled={!isFormValid} />
+      <SaveTemplateButton />
     </View>
   );
 }

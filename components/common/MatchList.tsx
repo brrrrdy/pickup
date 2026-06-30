@@ -6,12 +6,14 @@ type MatchListProps = {
   matches: MatchCardData[];
   location: string;
   hasSearched: boolean;
+  emptyMessage: string;
 };
 
 export default function MatchList({
   matches,
   location,
   hasSearched,
+  emptyMessage,
 }: MatchListProps) {
   if (!hasSearched) {
     return null;
@@ -20,7 +22,7 @@ export default function MatchList({
   if (matches.length === 0) {
     return (
       <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
-        no open games found for your selected sports.
+        {emptyMessage}
       </Text>
     );
   }

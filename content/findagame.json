@@ -1,7 +1,14 @@
 {
   "en": {
     "header": "find a game",
-    "body": "search for pickup games near you!"
+    "body": "search for pickup games near you!",
+    "locationPlaceholder": "enter your location...",
+    "locationSuggestionA11yPrefix": "select location",
+    "availableGamesInPrefix": "available games in",
+    "availableGamesInFallback": "your area",
+    "showGamesButton": "show games for selected sports",
+    "noOpenGamesInLocationPrefix": "no open games found in",
+    "noOpenGamesForSelectedSports": "no open games found for your selected sports."
   },
   "es": {
     "header": "find a game",

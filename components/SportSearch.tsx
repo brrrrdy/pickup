@@ -1,5 +1,14 @@
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
+import sportPillContent from "../content/sportpill.json";
+import ActionButton from "./common/ActionButton";
+import SportOptionPill from "./common/SportOptionPill";
 import type { SportOption } from "./types/findGame";
+
+function formatSportPillLabel(sportName: string, count: number) {
+  return sportPillContent.en.labelTemplate
+    .replace("{sport}", sportName)
+    .replace("{count}", String(count));
+}
 
 type SportSearchProps = {
   location: string;
@@ -7,6 +16,9 @@ type SportSearchProps = {
   selectedIds: string[];
   onToggleSport: (sportId: string) => void;
   onShowGames: () => void;
+  availableGamesInPrefix: string;
+  availableGamesInFallback: string;
+  showGamesButtonLabel: string;
 };
 
 export default function SportSearch({
@@ -15,13 +27,16 @@ export default function SportSearch({
   selectedIds,
   onToggleSport,
   onShowGames,
+  availableGamesInPrefix,
+  availableGamesInFallback,
+  showGamesButtonLabel,
 }: SportSearchProps) {
   const canShowGames = selectedIds.length > 0;
 
   return (
     <View className="w-full max-w-xl rounded-2xl bg-secondary p-4">
       <Text className="text-lg font-semibold text-defaulttext">
-        available games in {location || "your area"}
+        {availableGamesInPrefix} {location || availableGamesInFallback}
       </Text>
 
       <View className="mt-4 flex-row flex-wrap gap-2">
@@ -29,39 +44,24 @@ export default function SportSearch({
           const isSelected = selectedIds.includes(sport.id);
 
           return (
-            <Pressable
+            <SportOptionPill
               key={sport.id}
+              label={formatSportPillLabel(sport.name, sport.availableGames)}
+              selected={isSelected}
               onPress={() => onToggleSport(sport.id)}
-              className={`rounded-full border px-3 py-2 ${
-                isSelected
-                  ? "border-greenaccent bg-greenaccent"
-                  : "border-border bg-secondary"
-              }`}
-              accessibilityRole="button"
-              accessibilityState={{ selected: isSelected }}
-              accessibilityLabel={`select ${sport.name}`}
-            >
-              <Text className="text-sm font-medium text-defaulttext">
-                {sport.name} ({sport.availableGames})
-              </Text>
-            </Pressable>
+              accessibilityLabel={`${sportPillContent.en.selectPrefix} ${sport.name}`}
+            />
           );
         })}
       </View>
 
-      <Pressable
+      <ActionButton
+        label={showGamesButtonLabel}
         onPress={onShowGames}
         disabled={!canShowGames}
-        className={`mt-4 rounded-xl px-4 py-3 ${
-          canShowGames ? "bg-greenaccent" : "bg-secondary"
-        }`}
-        accessibilityRole="button"
-        accessibilityLabel="show games for selected sports"
-      >
-        <Text className="text-center text-base font-semibold text-defaulttext">
-          show games for selected sports
-        </Text>
-      </Pressable>
+        className={`mt-4 ${canShowGames ? "bg-greenaccent" : "bg-secondary"}`}
+        textClassName="text-base font-semibold text-defaulttext"
+      />
     </View>
   );
 }
