@@ -1,0 +1,63 @@
+{
+  "en": {
+    "cardheader": "start a game",
+    "carddescrip": "get a pickup game going in your location.",
+    "sportheader": "sport",
+    "sportheaderdesc": "select a sport",
+    "cityheader": "location",
+    "cityheaderdesc": "choose a location",
+    "venueheader": "venue",
+    "venueheaderdesc": "choose a venue",
+    "venueheaderneedsport": "select a sport first",
+    "venueheaderneedscity": "select a city first",
+    "venueheadernoslots": "no venues for this sport in this city",
+    "numplayersheader": "players participating",
+    "numplayersheaderdesc": "how many players are required?",
+    "dateheader": "date",
+    "dateheaderdesc": "choose a date",
+    "timeheader": "time",
+    "timeheaderdesc": "what time do you want to start?",
+    "notesheader": "notes",
+    "notesheaderdesc": "anything else you want other players to know?",
+    "submitbutton": "create game",
+    "invalidformmessage": "Select a sport, city, venue, players, date, and time at least one hour ahead in"
+  },
+
+  "es": {
+    "cardheader": "iniciar partida",
+    "carddescrip": "organiza un partido improvisado en tu zona.",
+    "sportheader": "",
+    "sportheaderdesc": "",
+    "cityheader": "",
+    "cityheaderdesc": "",
+    "venueheader": "",
+    "venueheaderdesc": "",
+    "numplayersheader": "",
+    "numplayersheaderdesc": "",
+    "dateheader": "",
+    "dateheaderdesc": "",
+    "timeheader": "",
+    "timeheaderdesc": "",
+    "notesheader": "",
+    "notesheaderdesc": ""
+  },
+
+  "gz": {
+    "cardheader": "iniciar un xogo",
+    "carddescrip": "organiza un partido improvisado na túa zona.",
+    "sportheader": "",
+    "sportheaderdesc": "",
+    "cityheader": "",
+    "cityheaderdesc": "",
+    "venueheader": "",
+    "venueheaderdesc": "",
+    "numplayersheader": "",
+    "numplayersheaderdesc": "",
+    "dateheader": "",
+    "dateheaderdesc": "",
+    "timeheader": "",
+    "timeheaderdesc": "",
+    "notesheader": "",
+    "notesheaderdesc": ""
+  }
+}

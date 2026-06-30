@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import startGameCardContent from "../../content/startgamecard.json";
 import profile from "../../mockdata/profile.json";
 import mockFindSportData from "../../mockdata/find-sport-data.json";
 import StartGameButton from "../buttons/StartGameButton";
@@ -167,6 +168,8 @@ function getValidTimeOptions(selectedDate: string, minimumSlot: TimeSlot) {
 }
 
 export default function StartGameCard() {
+  const copy = startGameCardContent.en;
+
   const [sport, setSport] = useState("");
   const [city, setCity] = useState("");
   const [venue, setVenue] = useState("");
@@ -296,35 +299,35 @@ export default function StartGameCard() {
   return (
     <View className="w-full max-w-xl rounded-2xl border border-border bg-secondary p-5">
       <Text className="text-xl font-semibold text-defaulttext">
-        start a game
+        {copy.cardheader}
       </Text>
       <Text className="mt-2 text-sm text-defaulttext/80">
-        Add the basics for your game and share the details with nearby players.
+        {copy.carddescrip}
       </Text>
 
       <View className="mt-5 gap-4">
         <SportDropdown
-          label="sport"
+          label={copy.sportheader}
           options={validSports}
           selectedValue={sport}
           isOpen={isSportDropdownOpen}
           onToggle={() => setIsSportDropdownOpen((prev) => !prev)}
           onSelect={handleSelectSport}
-          placeholder="select a sport"
+          placeholder={copy.sportheaderdesc}
           accessibilityLabel="choose a sport"
         />
         <SportDropdown
-          label="city"
+          label={copy.cityheader}
           options={validCities}
           selectedValue={city}
           isOpen={isCityDropdownOpen}
           onToggle={() => setIsCityDropdownOpen((prev) => !prev)}
           onSelect={handleSelectCity}
-          placeholder="select a city"
+          placeholder={copy.cityheaderdesc}
           accessibilityLabel="choose a city"
         />
         <SportDropdown
-          label="venue"
+          label={copy.venueheader}
           options={validVenues}
           selectedValue={venue}
           isOpen={isVenueDropdownOpen}
@@ -332,31 +335,31 @@ export default function StartGameCard() {
           onSelect={handleSelectVenue}
           placeholder={
             !sport
-              ? "select a sport first"
+              ? copy.venueheaderneedsport
               : !city
-                ? "select a city first"
+                ? copy.venueheaderneedscity
                 : validVenues.length > 0
-                  ? "select a venue"
-                  : "no venues for this sport in this city"
+                  ? copy.venueheaderdesc
+                  : copy.venueheadernoslots
           }
           accessibilityLabel="choose a venue"
           disabled={!sport || !city || validVenues.length === 0}
         />
         <Field
-          label="players"
-          placeholder="e.g. 10"
+          label={copy.numplayersheader}
+          placeholder={copy.numplayersheaderdesc}
           value={players}
           onChangeText={setPlayers}
           keyboardType="number-pad"
         />
         <CalendarField
-          label="date"
+          label={copy.dateheader}
           selectedDate={date}
           minSelectableDate={minimumSlot.date}
           onSelectDate={setDate}
         />
         <TimeWheelField
-          label="time"
+          label={copy.timeheader}
           selectedDate={date}
           selectedHour={hour}
           selectedMinute={minute}
@@ -367,8 +370,8 @@ export default function StartGameCard() {
           onSelectMinute={setMinute}
         />
         <Field
-          label="notes"
-          placeholder="Add anything players should know"
+          label={copy.notesheader}
+          placeholder={copy.notesheaderdesc}
           value={notes}
           onChangeText={setNotes}
           multiline
@@ -377,12 +380,11 @@ export default function StartGameCard() {
 
       {!isFormValid ? (
         <Text className="mt-4 text-sm text-defaulttext/70">
-          Select a sport, city, venue, players, date, and time at least one hour
-          ahead in {currentTimezone}.
+          {copy.invalidformmessage} {currentTimezone}.
         </Text>
       ) : null}
 
-      <StartGameButton label="create game" disabled={!isFormValid} />
+      <StartGameButton label={copy.submitbutton} disabled={!isFormValid} />
     </View>
   );
 }
