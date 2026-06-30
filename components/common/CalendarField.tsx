@@ -168,13 +168,13 @@ export default function CalendarField({
                 <Pressable
                   disabled={isPastDate}
                   onPress={() => onSelectDate(dayValue)}
-                  className={`h-10 w-10 items-center justify-center rounded-full ${
+                  className={`h-7 w-7 items-center justify-center rounded-full border border-transparent ${
                     isSelected
                       ? "bg-greenaccent"
                       : isPastDate
                         ? "bg-white/40"
                         : isMinDate
-                          ? "border border-greenaccent bg-white"
+                          ? "border-greenaccent bg-white"
                           : "bg-white"
                   }`}
                   accessibilityRole="button"

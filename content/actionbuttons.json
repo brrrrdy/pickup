@@ -2,16 +2,19 @@
   "en": {
     "startGame": "start a game",
     "findGame": "find a game",
-    "saveTemplateToProfile": "save template to profile"
+    "saveTemplateToProfile": "save template to profile",
+    "reset": "reset"
   },
   "es": {
     "startGame": "",
     "findGame": "",
-    "saveTemplateToProfile": ""
+    "saveTemplateToProfile": "",
+    "reset": ""
   },
   "gz": {
     "startGame": "",
     "findGame": "",
-    "saveTemplateToProfile": ""
+    "saveTemplateToProfile": "",
+    "reset": ""
   }
 }

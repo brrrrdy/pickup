@@ -3,11 +3,16 @@ import { Text, TextInput, View } from "react-native";
 import startGameCardContent from "../../content/startgamecard.json";
 import profile from "../../mockdata/profile.json";
 import mockFindSportData from "../../mockdata/find-sport-data.json";
+import ResetButton from "../buttons/ResetButton";
 import SaveTemplateButton from "../buttons/SaveTemplateButton";
 import StartGameButton from "../buttons/StartGameButton";
 import CalendarField from "./CalendarField";
 import SportDropdown from "./SportDropdown";
 import TimeWheelField from "./TimeWheelField";
+
+type StartGameCardProps = {
+  onResetToTop?: () => void;
+};
 
 type FieldProps = {
   label: string;
@@ -170,7 +175,7 @@ function getValidTimeOptions(selectedDate: string, minimumSlot: TimeSlot) {
   return { hours, minutesByHour };
 }
 
-export default function StartGameCard() {
+export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
   const copy = startGameCardContent.en;
 
   const [sport, setSport] = useState("");
@@ -299,6 +304,21 @@ export default function StartGameCard() {
     setIsVenueDropdownOpen(false);
   };
 
+  const handleReset = () => {
+    setSport("");
+    setCity("");
+    setVenue("");
+    setPlayers("");
+    setDate("");
+    setHour("");
+    setMinute("");
+    setNotes("");
+    setIsSportDropdownOpen(false);
+    setIsCityDropdownOpen(false);
+    setIsVenueDropdownOpen(false);
+    onResetToTop?.();
+  };
+
   return (
     <View className="w-full max-w-xl rounded-2xl border border-border bg-secondary p-5">
       <Text className="text-xl font-semibold text-defaulttext">
@@ -390,6 +410,7 @@ export default function StartGameCard() {
 
       <StartGameButton label={copy.submitbutton} disabled={!isFormValid} />
       <SaveTemplateButton />
+      <ResetButton onPress={handleReset} />
     </View>
   );
 }
