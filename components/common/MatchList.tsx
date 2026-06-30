@@ -21,7 +21,7 @@ export default function MatchList({
 
   if (matches.length === 0) {
     return (
-      <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
+      <Text className="w-full max-w-xl text-left text-base text-defaulttext">
         {emptyMessage}
       </Text>
     );

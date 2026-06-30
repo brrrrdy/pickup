@@ -1,11 +1,14 @@
 import { useRef } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import StartGameCard from "../components/common/StartGameCard";
 import { PageBody, PageHeader } from "../components/typography/Typography";
+import PageSection from "../components/layout/PageSection";
 import PageContent from "../components/layout/PageContent";
+import startGameCardContent from "../content/startgamecard.json";
 
 export default function StartGame() {
   const scrollRef = useRef<ScrollView>(null);
+  const content = startGameCardContent.en;
 
   const handleResetToTop = () => {
     scrollRef.current?.scrollTo({ y: 0, animated: true });
@@ -19,7 +22,18 @@ export default function StartGame() {
         contentContainerStyle={{ paddingBottom: 24 }}
         showsVerticalScrollIndicator={false}
       >
-        <StartGameCard onResetToTop={handleResetToTop} />
+        <View className="w-full gap-4">
+          <PageSection>
+            <PageHeader>{content.cardheader}</PageHeader>
+            <PageBody className="mt-2 text-defaulttext/80">
+              {content.carddescrip}
+            </PageBody>
+          </PageSection>
+
+          <PageSection>
+            <StartGameCard onResetToTop={handleResetToTop} />
+          </PageSection>
+        </View>
       </ScrollView>
     </PageContent>
   );

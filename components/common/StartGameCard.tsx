@@ -35,7 +35,7 @@ function Field({
 }: FieldProps) {
   return (
     <View className="w-full gap-2">
-      <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/80">
+      <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext/80">
         {label}
       </Text>
       <TextInput
@@ -320,15 +320,8 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
   };
 
   return (
-    <View className="w-full max-w-xl rounded-2xl border border-border bg-secondary p-5">
-      <Text className="text-xl font-semibold text-defaulttext">
-        {copy.cardheader}
-      </Text>
-      <Text className="mt-2 text-sm text-defaulttext/80">
-        {copy.carddescrip}
-      </Text>
-
-      <View className="mt-5 gap-4">
+    <View className="w-full max-w-xl rounded-2xl border border-transparent bg-secondary p-5">
+      <View className="gap-4">
         <SportDropdown
           label={copy.sportheader}
           options={validSports}
@@ -374,7 +367,7 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
           value={players}
           onChangeText={setPlayers}
           keyboardType="number-pad"
-          inputClassName="text-sm"
+          inputClassName="text-base"
         />
         <CalendarField
           label={copy.dateheader}

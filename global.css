@@ -2,8 +2,11 @@
 @import "uniwind";
 
 @theme {
+  /* Central text scale */
+  --text-sm: 10px;
   /* Customize base font size */
   --text-base: 15px;
+  --text-4xl: 36px;
 
   /* Customize spacing scale */
   --spacing-1: 4px;
@@ -27,8 +30,12 @@
   --color-defaulttext: #3d3c3c;
 }
 
+* {
+  border-color: transparent !important;
+}
+
 /* DEBUG */
-*[class*="flex"],
+/* *[class*="flex"],
 *[class*="grid"] {
   outline: 1px solid red;
-}
+} */

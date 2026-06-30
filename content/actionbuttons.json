@@ -3,18 +3,24 @@
     "startGame": "start a game",
     "findGame": "find a game",
     "saveTemplateToProfile": "save template to profile",
-    "reset": "reset"
+    "reset": "reset",
+    "viewGame": "view game",
+    "joinGame": "join game"
   },
   "es": {
     "startGame": "",
     "findGame": "",
     "saveTemplateToProfile": "",
-    "reset": ""
+    "reset": "",
+    "viewGame": "",
+    "joinGame": ""
   },
   "gz": {
     "startGame": "",
     "findGame": "",
     "saveTemplateToProfile": "",
-    "reset": ""
+    "reset": "",
+    "viewGame": "",
+    "joinGame": ""
   }
 }

@@ -1,5 +1,7 @@
 import { Text, View } from "react-native";
 import matchCardContent from "../../content/matchcard.json";
+import JoinGameButton from "../buttons/JoinGameButton";
+import ViewGameButton from "../buttons/ViewGameButton";
 import type { MatchCardData } from "../types/findGame";
 
 type MatchCardProps = {
@@ -27,25 +29,30 @@ export default function MatchCard({ match, location }: MatchCardProps) {
   const copy = matchCardContent.en;
 
   return (
-    <View className="w-full max-w-xl rounded-xl border border-border bg-white p-4">
+    <View className="w-full max-w-xl rounded-xl border border-transparent bg-white p-4">
       <Text className="text-base font-semibold text-defaulttext">
         {match.title}
       </Text>
-      <Text className="mt-1 text-sm text-defaulttext">
+      <Text className="mt-1 text-base text-defaulttext">
         {copy.sportLabel}: {match.sportName}
       </Text>
-      <Text className="mt-1 text-sm text-defaulttext">
+      <Text className="mt-1 text-base text-defaulttext">
         {copy.startsLabel}: {formatStartTime(match.startsAt)}
       </Text>
-      <Text className="mt-1 text-sm text-defaulttext">
+      <Text className="mt-1 text-base text-defaulttext">
         {copy.durationLabel}:{" "}
         {match.durationMinutes > 0
           ? `${match.durationMinutes} min`
           : copy.durationTbd}
       </Text>
-      <Text className="mt-1 text-sm text-defaulttext">
+      <Text className="mt-1 text-base text-defaulttext">
         {copy.locationLabel}: {location || copy.fallbackLocation}
       </Text>
+
+      <View className="mt-4 flex-row gap-3">
+        <ViewGameButton />
+        <JoinGameButton />
+      </View>
     </View>
   );
 }

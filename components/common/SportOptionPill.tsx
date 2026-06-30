@@ -25,7 +25,7 @@ export default function SportOptionPill({
       accessibilityState={{ selected }}
       accessibilityLabel={accessibilityLabel ?? label}
     >
-      <Text className="text-sm font-medium text-defaulttext">{label}</Text>
+      <Text className="text-base font-medium text-defaulttext">{label}</Text>
     </Pressable>
   );
 }

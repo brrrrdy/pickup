@@ -25,7 +25,7 @@ export default function SportDropdown({
 }: SportDropdownProps) {
   return (
     <View className="w-full gap-2">
-      <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/80">
+      <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext/80">
         {label}
       </Text>
 

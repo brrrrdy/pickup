@@ -1,5 +1,5 @@
 import { ScrollView, Text, View } from "react-native";
-import { PageHeader } from "../components/typography/Typography";
+import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageSection from "../components/layout/PageSection";
 import findAGameContent from "../content/findagame.json";
@@ -38,6 +38,9 @@ export default function FindGame() {
         <View className="w-full gap-4">
           <PageSection>
             <PageHeader>{content.header}</PageHeader>
+            <PageBody className="mt-2 text-defaulttext/80">
+              {content.body}
+            </PageBody>
           </PageSection>
 
           <PageSection>
