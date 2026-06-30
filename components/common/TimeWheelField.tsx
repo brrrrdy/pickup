@@ -5,6 +5,9 @@ type TimeWheelFieldProps = {
   selectedDate: string;
   selectedHour: string;
   selectedMinute: string;
+  minimumDate: string;
+  minimumHour: string;
+  minimumMinute: string;
   onSelectHour: (value: string) => void;
   onSelectMinute: (value: string) => void;
 };
@@ -14,73 +17,57 @@ const HOURS = Array.from({ length: 24 }, (_, index) =>
 );
 const MINUTES = ["00", "15", "30", "45"];
 
-function toLocalDateString(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
-}
-
-function getNextQuarterTime() {
-  const next = new Date();
-
-  next.setSeconds(0, 0);
-
-  const remainder = next.getMinutes() % 15;
-
-  if (remainder !== 0) {
-    next.setMinutes(next.getMinutes() + (15 - remainder));
-  }
-
-  return next;
-}
-
-function getAvailableHours(selectedDate: string) {
+function getAvailableHours(
+  selectedDate: string,
+  minimumDate: string,
+  minimumHour: string,
+) {
   if (!selectedDate) {
     return HOURS;
   }
 
-  const today = toLocalDateString(new Date());
-
-  if (selectedDate !== today) {
+  if (selectedDate > minimumDate) {
     return HOURS;
   }
 
-  const nextQuarterTime = getNextQuarterTime();
-
-  if (toLocalDateString(nextQuarterTime) !== today) {
+  if (selectedDate < minimumDate) {
     return [];
   }
 
-  return HOURS.filter((hour) => Number(hour) >= nextQuarterTime.getHours());
+  return HOURS.filter((hour) => Number(hour) >= Number(minimumHour));
 }
 
-function getAvailableMinutes(selectedDate: string, selectedHour: string) {
+function getAvailableMinutes(
+  selectedDate: string,
+  selectedHour: string,
+  minimumDate: string,
+  minimumHour: string,
+  minimumMinute: string,
+) {
   if (!selectedDate || !selectedHour) {
     return MINUTES;
   }
 
-  const today = toLocalDateString(new Date());
-
-  if (selectedDate !== today) {
+  if (selectedDate > minimumDate) {
     return MINUTES;
   }
 
-  const nextQuarterTime = getNextQuarterTime();
-  const selectedHourNumber = Number(selectedHour);
-
-  if (selectedHourNumber > nextQuarterTime.getHours()) {
-    return MINUTES;
-  }
-
-  if (selectedHourNumber < nextQuarterTime.getHours()) {
+  if (selectedDate < minimumDate) {
     return [];
   }
 
-  return MINUTES.filter(
-    (minute) => Number(minute) >= nextQuarterTime.getMinutes(),
-  );
+  const selectedHourNumber = Number(selectedHour);
+  const minimumHourNumber = Number(minimumHour);
+
+  if (selectedHourNumber > minimumHourNumber) {
+    return MINUTES;
+  }
+
+  if (selectedHourNumber < minimumHourNumber) {
+    return [];
+  }
+
+  return MINUTES.filter((minute) => Number(minute) >= Number(minimumMinute));
 }
 
 type WheelColumnProps = {
@@ -139,11 +126,24 @@ export default function TimeWheelField({
   selectedDate,
   selectedHour,
   selectedMinute,
+  minimumDate,
+  minimumHour,
+  minimumMinute,
   onSelectHour,
   onSelectMinute,
 }: TimeWheelFieldProps) {
-  const availableHours = getAvailableHours(selectedDate);
-  const availableMinutes = getAvailableMinutes(selectedDate, selectedHour);
+  const availableHours = getAvailableHours(
+    selectedDate,
+    minimumDate,
+    minimumHour,
+  );
+  const availableMinutes = getAvailableMinutes(
+    selectedDate,
+    selectedHour,
+    minimumDate,
+    minimumHour,
+    minimumMinute,
+  );
 
   return (
     <View className="w-full gap-2">

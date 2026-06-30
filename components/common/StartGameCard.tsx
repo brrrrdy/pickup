@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import profile from "../../mockdata/profile.json";
 import mockFindSportData from "../../mockdata/find-sport-data.json";
 import StartGameButton from "../buttons/StartGameButton";
 import CalendarField from "./CalendarField";
@@ -52,21 +53,78 @@ function toLocalDateString(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
-function getNextQuarterTime() {
-  const next = new Date();
+type TimeSlot = {
+  date: string;
+  hour: string;
+  minute: string;
+};
 
-  next.setSeconds(0, 0);
+function addOneDay(dateString: string) {
+  const date = new Date(`${dateString}T00:00:00Z`);
 
-  const remainder = next.getMinutes() % 15;
+  date.setUTCDate(date.getUTCDate() + 1);
 
-  if (remainder !== 0) {
-    next.setMinutes(next.getMinutes() + (15 - remainder));
-  }
-
-  return next;
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}-${String(
+    date.getUTCDate(),
+  ).padStart(2, "0")}`;
 }
 
-function getValidTimeOptions(selectedDate: string) {
+function getZonedDateParts(date: Date, timeZone: string) {
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  const parts = formatter.formatToParts(date);
+
+  const partValue = (type: Intl.DateTimeFormatPartTypes) =>
+    parts.find((part) => part.type === type)?.value ?? "00";
+
+  return {
+    year: partValue("year"),
+    month: partValue("month"),
+    day: partValue("day"),
+    hour: partValue("hour"),
+    minute: partValue("minute"),
+  };
+}
+
+function getMinimumTimeSlot(timeZone: string): TimeSlot {
+  const oneHourFromNow = new Date(Date.now() + 60 * 60 * 1000);
+  const parts = getZonedDateParts(oneHourFromNow, timeZone);
+
+  const date = `${parts.year}-${parts.month}-${parts.day}`;
+  let hour = Number(parts.hour);
+  let minute = Number(parts.minute);
+  let finalDate = date;
+
+  const roundedMinute = Math.ceil(minute / 15) * 15;
+
+  if (roundedMinute === 60) {
+    minute = 0;
+    hour += 1;
+
+    if (hour === 24) {
+      hour = 0;
+      finalDate = addOneDay(finalDate);
+    }
+  } else {
+    minute = roundedMinute;
+  }
+
+  return {
+    date: finalDate,
+    hour: String(hour).padStart(2, "0"),
+    minute: String(minute).padStart(2, "0"),
+  };
+}
+
+function getValidTimeOptions(selectedDate: string, minimumSlot: TimeSlot) {
   const allHours = Array.from({ length: 24 }, (_, index) =>
     String(index).padStart(2, "0"),
   );
@@ -79,32 +137,28 @@ function getValidTimeOptions(selectedDate: string) {
     };
   }
 
-  const today = toLocalDateString(new Date());
-
-  if (selectedDate !== today) {
+  if (selectedDate > minimumSlot.date) {
     return {
       hours: allHours,
       minutesByHour: new Map(allHours.map((hour) => [hour, allMinutes])),
     };
   }
 
-  const nextQuarterTime = getNextQuarterTime();
-
-  if (toLocalDateString(nextQuarterTime) !== today) {
+  if (selectedDate < minimumSlot.date) {
     return {
       hours: [],
       minutesByHour: new Map<string, string[]>(),
     };
   }
 
-  const startHour = nextQuarterTime.getHours();
-  const startMinute = nextQuarterTime.getMinutes();
-  const hours = allHours.filter((hour) => Number(hour) >= startHour);
+  const minimumHour = Number(minimumSlot.hour);
+  const minimumMinute = Number(minimumSlot.minute);
+  const hours = allHours.filter((hour) => Number(hour) >= minimumHour);
   const minutesByHour = new Map(
     hours.map((hour) => [
       hour,
-      Number(hour) === startHour
-        ? allMinutes.filter((minute) => Number(minute) >= startMinute)
+      Number(hour) === minimumHour
+        ? allMinutes.filter((minute) => Number(minute) >= minimumMinute)
         : allMinutes,
     ]),
   );
@@ -124,6 +178,9 @@ export default function StartGameCard() {
   const [isSportDropdownOpen, setIsSportDropdownOpen] = useState(false);
   const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
   const [isVenueDropdownOpen, setIsVenueDropdownOpen] = useState(false);
+
+  const currentTimezone = profile.currentTimezone;
+  const minimumSlot = getMinimumTimeSlot(currentTimezone);
 
   const validSports = (mockFindSportData.sports ?? [])
     .map((sportRow) => sportRow.sportname?.trim() ?? "")
@@ -179,7 +236,7 @@ export default function StartGameCard() {
     .map((venueRow) => venueRow.venuename?.trim() ?? "")
     .filter((venueName) => venueName.length > 0);
 
-  const validTimeOptions = getValidTimeOptions(date);
+  const validTimeOptions = getValidTimeOptions(date, minimumSlot);
   const availableMinutesForHour = hour
     ? (validTimeOptions.minutesByHour.get(hour) ?? [])
     : [];
@@ -204,13 +261,18 @@ export default function StartGameCard() {
     Number.isInteger(Number(players)) && Number(players) > 0;
   const hasDate = date.length > 0;
   const hasTime = hour.length > 0 && minute.length > 0;
+  const selectedSlot = hasDate && hasTime ? `${date}T${hour}:${minute}` : "";
+  const minimumSlotString = `${minimumSlot.date}T${minimumSlot.hour}:${minimumSlot.minute}`;
+  const isAtLeastOneHourInFuture =
+    hasDate && hasTime ? selectedSlot >= minimumSlotString : false;
   const isFormValid =
     sport.length > 0 &&
     city.length > 0 &&
     venue.length > 0 &&
     hasValidPlayers &&
     hasDate &&
-    hasTime;
+    hasTime &&
+    isAtLeastOneHourInFuture;
 
   const handleSelectSport = (selectedSport: string) => {
     setSport(selectedSport);
@@ -290,6 +352,7 @@ export default function StartGameCard() {
         <CalendarField
           label="date"
           selectedDate={date}
+          minSelectableDate={minimumSlot.date}
           onSelectDate={setDate}
         />
         <TimeWheelField
@@ -297,6 +360,9 @@ export default function StartGameCard() {
           selectedDate={date}
           selectedHour={hour}
           selectedMinute={minute}
+          minimumDate={minimumSlot.date}
+          minimumHour={minimumSlot.hour}
+          minimumMinute={minimumSlot.minute}
           onSelectHour={setHour}
           onSelectMinute={setMinute}
         />
@@ -311,7 +377,8 @@ export default function StartGameCard() {
 
       {!isFormValid ? (
         <Text className="mt-4 text-sm text-defaulttext/70">
-          Select a sport, city, venue, players, date, and time to create a game.
+          Select a sport, city, venue, players, date, and time at least one hour
+          ahead in {currentTimezone}.
         </Text>
       ) : null}
 

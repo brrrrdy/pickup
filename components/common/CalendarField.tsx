@@ -4,6 +4,7 @@ import { Pressable, Text, View } from "react-native";
 type CalendarFieldProps = {
   label: string;
   selectedDate: string;
+  minSelectableDate: string;
   onSelectDate: (value: string) => void;
 };
 
@@ -62,6 +63,7 @@ function buildCalendarDays(monthDate: Date) {
 export default function CalendarField({
   label,
   selectedDate,
+  minSelectableDate,
   onSelectDate,
 }: CalendarFieldProps) {
   const [visibleMonth, setVisibleMonth] = useState(() => {
@@ -85,8 +87,8 @@ export default function CalendarField({
     [visibleMonth],
   );
 
-  const today = toLocalDateString(new Date());
-  const currentMonth = getMonthStart(new Date());
+  const minDate = minSelectableDate;
+  const currentMonth = getMonthStart(new Date(`${minDate}T00:00:00`));
   const canShowPreviousMonth = !isBeforeMonth(
     new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() - 1, 1),
     currentMonth,
@@ -157,9 +159,9 @@ export default function CalendarField({
           {calendarDays.map((day) => {
             const dayValue = toLocalDateString(day);
             const isSelected = dayValue === selectedDate;
-            const isToday = dayValue === today;
+            const isMinDate = dayValue === minDate;
             const isOutsideMonth = day.getMonth() !== visibleMonth.getMonth();
-            const isPastDate = dayValue < today;
+            const isPastDate = dayValue < minDate;
 
             return (
               <View key={dayValue} className="mb-2 w-1/7 items-center">
@@ -171,7 +173,7 @@ export default function CalendarField({
                       ? "bg-greenaccent"
                       : isPastDate
                         ? "bg-white/40"
-                        : isToday
+                        : isMinDate
                           ? "border border-greenaccent bg-white"
                           : "bg-white"
                   }`}

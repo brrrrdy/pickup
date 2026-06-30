@@ -13,6 +13,40 @@ function isValidLocation(value: string) {
   return value.trim().length >= 2;
 }
 
+function resolveLocationInput(validLocations: string[], input: string) {
+  const normalizedInput = input.trim().toLowerCase();
+
+  if (!isValidLocation(normalizedInput)) {
+    return null;
+  }
+
+  const exactMatch = validLocations.find(
+    (cityName) => cityName.toLowerCase() === normalizedInput,
+  );
+
+  if (exactMatch) {
+    return exactMatch;
+  }
+
+  const prefixMatches = validLocations.filter((cityName) =>
+    cityName.toLowerCase().startsWith(normalizedInput),
+  );
+
+  if (prefixMatches.length === 1) {
+    return prefixMatches[0];
+  }
+
+  const containsMatches = validLocations.filter((cityName) =>
+    cityName.toLowerCase().includes(normalizedInput),
+  );
+
+  if (containsMatches.length === 1) {
+    return containsMatches[0];
+  }
+
+  return null;
+}
+
 export default function useFindGame() {
   const [location, setLocation] = useState("");
   const [locationInput, setLocationInput] = useState("");
@@ -107,17 +141,21 @@ export default function useFindGame() {
   );
 
   const commitLocation = useCallback(() => {
-    const normalizedLocation = locationInput.trim();
+    const resolvedLocation = resolveLocationInput(
+      validLocations,
+      locationInput,
+    );
 
-    if (!isValidLocation(normalizedLocation)) {
+    if (!resolvedLocation) {
       setShowLocationSuggestions(false);
       clearActiveSearch();
       return;
     }
 
-    setLocation(normalizedLocation);
+    setLocationInput(resolvedLocation);
+    setLocation(resolvedLocation);
     setShowLocationSuggestions(false);
-  }, [clearActiveSearch, locationInput]);
+  }, [clearActiveSearch, locationInput, validLocations]);
 
   const handleSelectLocationSuggestion = useCallback(
     (selectedLocation: string) => {

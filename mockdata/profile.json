@@ -3,6 +3,7 @@
   "username": "mariaplay",
   "websiteLanguage": "English",
   "appearance": "System",
+  "currentTimezone": "Europe/Madrid",
   "locationCountry": "Spain",
   "favouriteSports": ["football", "padel", "basketball"]
 }

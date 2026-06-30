@@ -1,5 +1,5 @@
 import { ScrollView, Text, View } from "react-native";
-import profile from "../content/profile.json";
+import profile from "../mockdata/profile.json";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 
@@ -11,6 +11,7 @@ export default function Profile() {
     { label: "username", value: content.username },
     { label: "website language", value: content.websiteLanguage },
     { label: "appearance", value: content.appearance },
+    { label: "current timezone", value: content.currentTimezone },
     { label: "location (country)", value: content.locationCountry },
   ];
 
