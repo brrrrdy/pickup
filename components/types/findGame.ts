@@ -24,6 +24,7 @@ export type MatchRow = {
   starts_at?: string | null;
   duration_minutes?: number | null;
   status: string | null;
+  Attend?: string | null;
 };
 
 export type MatchCardData = {
@@ -32,6 +33,15 @@ export type MatchCardData = {
   title: string;
   startsAt: string;
   durationMinutes: number;
+};
+
+export type AttendingMatchDisplay = {
+  id: string;
+  sportName: string;
+  title: string;
+  startsAt: string;
+  displayDateTime: string;
+  location: string;
 };
 
 export type FindSportMockData = {
