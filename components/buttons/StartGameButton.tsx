@@ -5,19 +5,21 @@ type StartGameButtonProps = {
   onPress?: () => void;
   label?: string;
   disabled?: boolean;
+  className?: string;
 };
 
 export default function StartGameButton({
   onPress,
   label = actionButtonsContent.en.startGame,
   disabled = false,
+  className = "mt-6 bg-purpleaccent",
 }: StartGameButtonProps) {
   return (
     <ActionButton
       label={label}
       onPress={onPress}
       disabled={disabled}
-      className="mt-6 bg-purpleaccent"
+      className={className}
       textClassName="text-lg font-semibold text-primary"
     />
   );

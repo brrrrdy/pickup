@@ -58,7 +58,7 @@ export default function FindGame() {
           </PageSection>
 
           {hasLocation ? (
-            <PageSection className="gap-4 px-4">
+            <PageSection className="gap-4">
               {availableSports.length > 0 ? (
                 <>
                   <SportSearch

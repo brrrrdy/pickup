@@ -24,7 +24,7 @@ export default function LocationSearchBar({
   onBlur,
 }: LocationSearchBarProps) {
   return (
-    <View className="w-full max-w-xl gap-2 px-4">
+    <View className="w-full max-w-xl gap-2">
       <TextInput
         className="w-full rounded-xl border border-transparent bg-secondary px-4 py-3 text-foreground"
         placeholder={placeholder}
