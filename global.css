@@ -35,7 +35,7 @@
 }
 
 /* DEBUG */
-/* *[class*="flex"],
+*[class*="flex"],
 *[class*="grid"] {
   outline: 1px solid red;
-} */
+}

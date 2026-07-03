@@ -15,10 +15,12 @@ const PageLayout = forwardRef<ScrollView, PageLayoutProps>(function PageLayout(
     <ScrollView
       ref={ref}
       className="w-full flex-1"
-      contentContainerStyle={{ paddingBottom: 24 }}
+      contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 }}
       showsVerticalScrollIndicator={false}
     >
-      <View className={`w-full gap-10 ${className}`.trim()}>
+      <View
+        className={`w-full flex-1 justify-between gap-10 ${className}`.trim()}
+      >
         {children}
 
         <View className="border-t border-transparent px-4 pt-6 pb-4">
