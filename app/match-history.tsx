@@ -1,5 +1,6 @@
-import { ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import PageContent from "../components/layout/PageContent";
+import PageLayout from "../components/layout/PageLayout";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
@@ -12,12 +13,8 @@ const pastMatches = mapAttendingMatchesByTime(
 
 export default function MatchHistory() {
   return (
-    <PageContent className="w-full px-4 pt-6">
-      <ScrollView
-        className="w-full"
-        contentContainerStyle={{ paddingBottom: 24 }}
-        showsVerticalScrollIndicator={false}
-      >
+    <PageLayout>
+      <PageContent className="w-full px-4 pt-6">
         <View className="w-full gap-6">
           <PageHeader>match history</PageHeader>
           <PageBody>Your previous matches and results.</PageBody>
@@ -47,7 +44,7 @@ export default function MatchHistory() {
             )}
           </View>
         </View>
-      </ScrollView>
-    </PageContent>
+      </PageContent>
+    </PageLayout>
   );
 }

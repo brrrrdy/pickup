@@ -11,7 +11,7 @@ export default function PageContent({
   className = "",
 }: PageContentProps) {
   return (
-    <View className={`w-full flex-1 self-center max-w-3xl ${className}`.trim()}>
+    <View className={`w-full self-center max-w-3xl ${className}`.trim()}>
       {children}
     </View>
   );

@@ -4,6 +4,7 @@ import StartGameCard from "../components/common/StartGameCard";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageSection from "../components/layout/PageSection";
 import PageContent from "../components/layout/PageContent";
+import PageLayout from "../components/layout/PageLayout";
 import startGameCardContent from "../content/startgamecard.json";
 
 export default function StartGame() {
@@ -15,13 +16,8 @@ export default function StartGame() {
   };
 
   return (
-    <PageContent className="px-4 pt-6">
-      <ScrollView
-        ref={scrollRef}
-        className="w-full"
-        contentContainerStyle={{ paddingBottom: 24 }}
-        showsVerticalScrollIndicator={false}
-      >
+    <PageLayout ref={scrollRef}>
+      <PageContent className="px-4 pt-6">
         <View className="w-full gap-4">
           <PageSection>
             <PageHeader>{content.cardheader}</PageHeader>
@@ -34,7 +30,7 @@ export default function StartGame() {
             <StartGameCard onResetToTop={handleResetToTop} />
           </PageSection>
         </View>
-      </ScrollView>
-    </PageContent>
+      </PageContent>
+    </PageLayout>
   );
 }

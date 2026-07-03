@@ -1,6 +1,5 @@
 import { type ReactNode } from "react";
 import { View } from "react-native";
-import AppFooter from "./AppFooter";
 import TopNav from "./TopNav";
 
 type AppShellProps = {
@@ -17,11 +16,6 @@ export default function AppShell({ children }: AppShellProps) {
 
       {/* Main content */}
       <View className="z-0 flex-1 px-4 py-6">{children}</View>
-
-      {/* Footer */}
-      <View className="border-t border-b border-transparent px-4 py-4">
-        <AppFooter />
-      </View>
     </View>
   );
 }

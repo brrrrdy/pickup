@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Platform, ScrollView, UIManager, View } from "react-native";
+import { Platform, UIManager, View } from "react-native";
 import profile from "../mockdata/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
@@ -8,6 +8,7 @@ import { mapGameTemplatesForProfile } from "../lib/mappers/mapGameTemplates";
 import AccountDetailsSection from "../components/profile/AccountDetailsSection";
 import CalendarSection from "../components/profile/CalendarSection";
 import GameTemplatesSection from "../components/profile/GameTemplatesSection";
+import PageLayout from "../components/layout/PageLayout";
 import type {
   FindSportMockData,
   GameTemplateMockData,
@@ -50,12 +51,8 @@ export default function Profile() {
   );
 
   return (
-    <PageContent className="w-full px-4 pt-6">
-      <ScrollView
-        className="w-full"
-        contentContainerStyle={{ paddingBottom: 24 }}
-        showsVerticalScrollIndicator={false}
-      >
+    <PageLayout>
+      <PageContent className="w-full px-4 pt-6">
         <View className="w-full gap-8">
           <PageHeader>account details and preferences</PageHeader>
 
@@ -82,7 +79,7 @@ export default function Profile() {
             templates={profileTemplates}
           />
         </View>
-      </ScrollView>
-    </PageContent>
+      </PageContent>
+    </PageLayout>
   );
 }

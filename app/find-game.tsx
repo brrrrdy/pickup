@@ -1,6 +1,7 @@
-import { ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
+import PageLayout from "../components/layout/PageLayout";
 import PageSection from "../components/layout/PageSection";
 import findAGameContent from "../content/findagame.json";
 import LocationSearchBar from "../components/LocationSearchBar";
@@ -29,12 +30,8 @@ export default function FindGame() {
   } = useFindGame();
 
   return (
-    <PageContent className="w-full px-4 pt-6">
-      <ScrollView
-        className="w-full"
-        contentContainerStyle={{ paddingBottom: 24 }}
-        showsVerticalScrollIndicator={false}
-      >
+    <PageLayout>
+      <PageContent className="w-full px-4 pt-6">
         <View className="w-full gap-4">
           <PageSection>
             <PageHeader>{content.header}</PageHeader>
@@ -87,7 +84,7 @@ export default function FindGame() {
             </PageSection>
           ) : null}
         </View>
-      </ScrollView>
-    </PageContent>
+      </PageContent>
+    </PageLayout>
   );
 }
