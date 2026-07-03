@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import type { MatchCardData } from "../types/findGame";
+import type { MatchCardData } from "../types/find-game";
 import MatchCard from "./MatchCard";
 
 type MatchListProps = {

@@ -12,7 +12,7 @@ import FindGameButton from "../buttons/FindGameButton";
 import StartGameButton from "../buttons/StartGameButton";
 
 type NavLink = {
-  href: "/" | "/about" | "/contact" | "/profile" | "/findgame";
+  href: "/" | "/about" | "/contact" | "/profile" | "/find-game";
   label: string;
 };
 
@@ -149,14 +149,14 @@ export default function NavMenuDrawer({
                 className="mt-0 bg-purpleaccent"
                 onPress={() => {
                   onClose();
-                  router.push("/startgame");
+                  router.push("/start-game");
                 }}
               />
               <FindGameButton
                 className="mt-0 bg-greenaccent"
                 onPress={() => {
                   onClose();
-                  router.push("/findgame");
+                  router.push("/find-game");
                 }}
               />
             </View>

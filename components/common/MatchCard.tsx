@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import matchCardContent from "../../content/matchcard.json";
 import JoinGameButton from "../buttons/JoinGameButton";
 import ViewGameButton from "../buttons/ViewGameButton";
-import type { MatchCardData } from "../types/findGame";
+import type { MatchCardData } from "../types/find-game";
 
 type MatchCardProps = {
   match: MatchCardData;

@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Pressable, Text, View } from "react-native";
-import type { AttendingMatchDisplay } from "../types/findGame";
+import type { AttendingMatchDisplay } from "../types/find-game";
 import ProfileAccordionSection from "../common/ProfileAccordionSection";
 
 type CalendarSectionProps = {

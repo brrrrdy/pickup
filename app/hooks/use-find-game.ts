@@ -2,12 +2,12 @@ import { useCallback, useMemo, useState } from "react";
 import type {
   MatchCardData,
   SportOption,
-} from "../../components/types/findGame";
+} from "../../components/types/find-game";
 import mockFindSportData from "../../mockdata/find-sport-data.json";
 import {
   mapOpenMatchesForSelectedSports,
   mapSportsWithOpenGameCounts,
-} from "../../mockdata/mapFindSports";
+} from "../../lib/mappers/mapFindSports";
 
 function isValidLocation(value: string) {
   return value.trim().length >= 2;

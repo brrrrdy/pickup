@@ -3,10 +3,10 @@ import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageSection from "../components/layout/PageSection";
 import findAGameContent from "../content/findagame.json";
-import LocationSearchBar from "../components/LocationSearch";
+import LocationSearchBar from "../components/LocationSearchBar";
 import SportSearch from "../components/SportSearch";
 import MatchList from "../components/common/MatchList";
-import useFindGame from "./hooks/useFindGame";
+import useFindGame from "./hooks/use-find-game";
 
 export default function FindGame() {
   const content = findAGameContent.en;

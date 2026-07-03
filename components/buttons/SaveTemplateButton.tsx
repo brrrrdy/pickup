@@ -1,4 +1,4 @@
-import ActionButton from "./ActionButton";
+import ActionButton from "../common/ActionButton";
 import actionButtonsContent from "../../content/actionbuttons.json";
 
 type SaveTemplateButtonProps = {

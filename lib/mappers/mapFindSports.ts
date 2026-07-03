@@ -6,7 +6,7 @@ import type {
   SportOption,
   SportRow,
   VenueRow,
-} from "../components/types/findGame";
+} from "../../components/types/find-game";
 
 function normalizeLocation(value: string) {
   return value.trim().split(",")[0]?.trim().toLowerCase() ?? "";

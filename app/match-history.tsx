@@ -2,8 +2,8 @@ import { ScrollView, Text, View } from "react-native";
 import PageContent from "../components/layout/PageContent";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import findSportData from "../mockdata/find-sport-data.json";
-import { mapAttendingMatchesByTime } from "../mockdata/mapFindSports";
-import type { FindSportMockData } from "../components/types/findGame";
+import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
+import type { FindSportMockData } from "../components/types/find-game";
 
 const pastMatches = mapAttendingMatchesByTime(
   findSportData as FindSportMockData,

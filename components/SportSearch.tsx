@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import sportPillContent from "../content/sportpill.json";
 import ActionButton from "./common/ActionButton";
 import SportOptionPill from "./common/SportOptionPill";
-import type { SportOption } from "./types/findGame";
+import type { SportOption } from "./types/find-game";
 
 function formatSportPillLabel(sportName: string, count: number) {
   return sportPillContent.en.labelTemplate

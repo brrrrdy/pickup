@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { Platform, ScrollView, UIManager, View } from "react-native";
 import profile from "../mockdata/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";
-import { mapAttendingMatchesByTime } from "../mockdata/mapFindSports";
+import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
 import gameTemplateData from "../mockdata/game-templates.json";
-import { mapGameTemplatesForProfile } from "../mockdata/mapGameTemplates";
+import { mapGameTemplatesForProfile } from "../lib/mappers/mapGameTemplates";
 import AccountDetailsSection from "../components/profile/AccountDetailsSection";
 import CalendarSection from "../components/profile/CalendarSection";
 import GameTemplatesSection from "../components/profile/GameTemplatesSection";
 import type {
   FindSportMockData,
   GameTemplateMockData,
-} from "../components/types/findGame";
+} from "../components/types/find-game";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 

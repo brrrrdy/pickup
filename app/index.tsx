@@ -14,8 +14,8 @@ export default function Landing() {
       <View className="w-full items-center mt-10">
         <Logo />
         <View className="flex-row gap-4 mt-4">
-          <StartGameButton onPress={() => router.push("/startgame")} />
-          <FindGameButton onPress={() => router.push("/findgame")} />
+          <StartGameButton onPress={() => router.push("/start-game")} />
+          <FindGameButton onPress={() => router.push("/find-game")} />
         </View>
       </View>
       <View className="mt-auto w-full items-center pb-4">

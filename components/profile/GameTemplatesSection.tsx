@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import type { ProfileGameTemplateDisplay } from "../types/findGame";
+import type { ProfileGameTemplateDisplay } from "../types/find-game";
 import ProfileAccordionSection from "../common/ProfileAccordionSection";
 
 type GameTemplatesSectionProps = {
