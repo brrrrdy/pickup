@@ -43,7 +43,11 @@ export default function AppFooter() {
         ))}
       </View>
 
-      <View className="flex-row items-center justify-center gap-4">
+      <View className="flex-row flex-wrap items-center justify-center gap-3">
+        <Text className="text-center text-xs text-defaulttext/50">
+          © {year} tom alvarez. all rights reserved.
+        </Text>
+
         {socialLinks.map(({ href, label, Icon }) => (
           <Pressable
             key={label}
@@ -56,10 +60,6 @@ export default function AppFooter() {
           </Pressable>
         ))}
       </View>
-
-      <Text className="w-full text-center text-xs text-defaulttext/50">
-        © {year} tom alvarez. all rights reserved.
-      </Text>
     </View>
   );
 }

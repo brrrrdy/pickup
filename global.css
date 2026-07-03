@@ -23,6 +23,7 @@
   /* Add custom colors */
   --color-primary: #e29159;
   --color-secondary: #f0e1c9;
+  --color-cream: #f7eed5;
   --color-purpleaccent: #714cdc;
   --color-greenaccent: #00c8b3;
   --color-orangeaccent: #ff9500;
@@ -35,7 +36,7 @@
 }
 
 /* DEBUG */
-*[class*="flex"],
+/* *[class*="flex"],
 *[class*="grid"] {
   outline: 1px solid red;
-}
+} */

@@ -2,6 +2,7 @@
   "en": {
     "startGame": "start a game",
     "findGame": "find a game",
+    "registerPrompt": "register or log-in.",
     "saveTemplateToProfile": "save template to profile",
     "reset": "reset",
     "viewGame": "view game",

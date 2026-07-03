@@ -19,13 +19,13 @@ const PageLayout = forwardRef<ScrollView, PageLayoutProps>(function PageLayout(
       showsVerticalScrollIndicator={false}
     >
       <View
-        className={`w-full flex-1 justify-between gap-10 ${className}`.trim()}
+        className={`w-full flex-1 justify-between gap-10 bg-cream px-4 py-5 ${className}`.trim()}
       >
         {children}
+      </View>
 
-        <View className="border-t border-transparent px-4 pt-6 pb-4">
-          <AppFooter />
-        </View>
+      <View className="w-full border-t border-transparent bg-primary px-4 pt-6 pb-4">
+        <AppFooter />
       </View>
     </ScrollView>
   );
