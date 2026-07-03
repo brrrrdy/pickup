@@ -34,39 +34,6 @@ export default function Contact() {
             </Text>
           </View>
         </Pressable>
-
-        {/* Phone Numbers */}
-        <View>
-          <Text className="text-sm font-semibold text-defaulttext mb-2">
-            {content.phoneLabel}
-          </Text>
-          {content.phoneNumbers.map((phone) => (
-            <Pressable
-              key={phone.telLink}
-              onPress={() => handlePhonePress(phone.telLink)}
-            >
-              <View className="gap-1 mb-2">
-                <Text className="text-xs text-defaulttext/70">
-                  {phone.country}
-                </Text>
-                <Text className="text-sm text-purpleaccent underline">
-                  {phone.number}
-                </Text>
-              </View>
-            </Pressable>
-          ))}
-        </View>
-
-        {/* Location */}
-
-        <View className="gap-2">
-          <Text className="text-sm font-semibold text-defaulttext">
-            {content.locationLabel}
-          </Text>
-          <Text className="text-sm text-defaulttext/80">
-            {content.location}
-          </Text>
-        </View>
       </PageContent>
     </PageLayout>
   );

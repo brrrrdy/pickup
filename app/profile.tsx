@@ -52,33 +52,31 @@ export default function Profile() {
 
   return (
     <PageLayout>
-      <PageContent className="w-full px-4 pt-6">
-        <View className="w-full gap-8">
-          <PageHeader>account details and preferences</PageHeader>
+      <PageContent className="items-start justify-start gap-10">
+        <PageHeader>account details and preferences</PageHeader>
 
-          <PageBody>
-            Manage your account preferences and favorite sports.
-          </PageBody>
+        <PageBody>
+          Manage your account preferences and favorite sports.
+        </PageBody>
 
-          <AccountDetailsSection
-            isOpen={isAccountSectionOpen}
-            onToggle={() => setIsAccountSectionOpen((prev) => !prev)}
-            profileItems={profileItems}
-            favouriteSports={content.favouriteSports}
-          />
+        <AccountDetailsSection
+          isOpen={isAccountSectionOpen}
+          onToggle={() => setIsAccountSectionOpen((prev) => !prev)}
+          profileItems={profileItems}
+          favouriteSports={content.favouriteSports}
+        />
 
-          <CalendarSection
-            isOpen={isCalendarSectionOpen}
-            onToggle={() => setIsCalendarSectionOpen((prev) => !prev)}
-            upcomingMatches={upcomingMatches}
-          />
+        <CalendarSection
+          isOpen={isCalendarSectionOpen}
+          onToggle={() => setIsCalendarSectionOpen((prev) => !prev)}
+          upcomingMatches={upcomingMatches}
+        />
 
-          <GameTemplatesSection
-            isOpen={isTemplatesSectionOpen}
-            onToggle={() => setIsTemplatesSectionOpen((prev) => !prev)}
-            templates={profileTemplates}
-          />
-        </View>
+        <GameTemplatesSection
+          isOpen={isTemplatesSectionOpen}
+          onToggle={() => setIsTemplatesSectionOpen((prev) => !prev)}
+          templates={profileTemplates}
+        />
       </PageContent>
     </PageLayout>
   );
