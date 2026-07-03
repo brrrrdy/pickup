@@ -2,7 +2,7 @@
   "en": {
     "startGame": "start a game",
     "findGame": "find a game",
-    "registerPrompt": "register or log-in.",
+    "loginOrRegister": "log in or register",
     "saveTemplateToProfile": "save template to profile",
     "reset": "reset",
     "viewGame": "view game",
@@ -11,6 +11,7 @@
   "es": {
     "startGame": "",
     "findGame": "",
+    "loginOrRegister": "",
     "saveTemplateToProfile": "",
     "reset": "",
     "viewGame": "",
@@ -19,6 +20,7 @@
   "gz": {
     "startGame": "",
     "findGame": "",
+    "loginOrRegister": "",
     "saveTemplateToProfile": "",
     "reset": "",
     "viewGame": "",

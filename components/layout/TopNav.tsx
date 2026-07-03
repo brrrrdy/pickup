@@ -1,7 +1,8 @@
-import { usePathname } from "expo-router";
+import { Link, usePathname } from "expo-router";
 import { useEffect, useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
+import LoginOrRegisterButton from "../buttons/LoginOrRegisterButton";
 import Logo from "../common/Logo";
 import NavMenuDrawer from "./NavMenuDrawer";
 
@@ -24,18 +25,24 @@ export default function TopNav() {
   return (
     <View className="relative z-50 w-full py-4" style={{ elevation: 20 }}>
       <View className="relative flex-row min-h-9 items-center justify-between">
-        <View className="h-7 w-7" />
+        <View className="flex-1 items-start">
+          {showNavLogo ? (
+            <Link href="/" asChild>
+              <Pressable
+                accessibilityRole="link"
+                accessibilityLabel="go to homepage"
+              >
+                <Logo width={120} height={36} />
+              </Pressable>
+            </Link>
+          ) : (
+            <View className="h-7 w-7" />
+          )}
+        </View>
 
-        {showNavLogo ? (
-          <View
-            pointerEvents="none"
-            className="absolute inset-0 items-center justify-center"
-          >
-            <Logo width={120} height={36} />
-          </View>
-        ) : null}
+        <View className="relative flex-row items-center gap-2">
+          <LoginOrRegisterButton />
 
-        <View className="relative items-center justify-center">
           <Pressable
             onPress={() => setIsMenuOpen((prev) => !prev)}
             accessibilityRole="button"

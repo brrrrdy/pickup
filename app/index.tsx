@@ -1,11 +1,11 @@
 import { View } from "react-native";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import Logo from "../components/common/Logo";
 import StartGameButton from "../components/buttons/StartGameButton";
 import FindGameButton from "../components/buttons/FindGameButton";
-import RegisterButton from "../components/buttons/RegisterButton";
 import PageContent from "../components/layout/PageContent";
 import PageLayout from "../components/layout/PageLayout";
+import { PageBody } from "../components/typography/Typography";
 
 export default function Landing() {
   const router = useRouter();
@@ -19,9 +19,6 @@ export default function Landing() {
             <StartGameButton onPress={() => router.push("/start-game")} />
             <FindGameButton onPress={() => router.push("/find-game")} />
           </View>
-        </View>
-        <View className="mt-auto w-full items-center pt-4">
-          <RegisterButton />
         </View>
       </PageContent>
     </PageLayout>
