@@ -3,11 +3,11 @@
     "linkGroups": [
       {
         "heading": "legal",
-        "links": ["Cookies", "Privacy", "Terms and Conditions"]
+        "links": ["cookies", "privacy", "ts and cs"]
       },
       {
         "heading": "pickup",
-        "links": ["Manifesto", "Under The Hood", "Feedback"]
+        "links": ["manifesto", "under the hood", "feedback"]
       }
     ],
     "followHeading": "Follow me",
