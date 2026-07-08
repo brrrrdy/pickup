@@ -9,6 +9,7 @@ import NavMenuDrawer from "./NavMenuDrawer";
 const navLinks = [
   { href: "/", label: "home" },
   { href: "/about", label: "about" },
+  { href: "/manifesto", label: "manifesto" },
   { href: "/contact", label: "contact" },
   { href: "/profile", label: "profile" },
 ] as const;

@@ -1,5 +1,4 @@
 import { Text, View } from "react-native";
-import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageLayout from "../components/layout/PageLayout";
 import PageSection from "../components/layout/PageSection";
@@ -33,13 +32,6 @@ export default function FindGame() {
     <PageLayout>
       <PageContent className="w-full px-4 pt-6">
         <View className="w-full gap-4">
-          <PageSection>
-            <PageHeader>{content.header}</PageHeader>
-            <PageBody className="mt-2 text-defaulttext/80">
-              {content.body}
-            </PageBody>
-          </PageSection>
-
           <PageSection>
             <LocationSearchBar
               value={locationInput}

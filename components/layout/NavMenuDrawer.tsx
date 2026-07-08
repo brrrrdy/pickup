@@ -12,7 +12,7 @@ import FindGameButton from "../buttons/FindGameButton";
 import StartGameButton from "../buttons/StartGameButton";
 
 type NavLink = {
-  href: "/" | "/about" | "/contact" | "/profile" | "/find-game";
+  href: "/" | "/about" | "/contact" | "/profile" | "/find-game" | "/manifesto";
   label: string;
 };
 

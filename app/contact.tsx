@@ -1,6 +1,6 @@
 import { View, Text, Linking, Pressable } from "react-native";
 import contact from "../content/contact.json";
-import { PageHeader, PageBody } from "../components/typography/Typography";
+import { PageBody } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 import PageLayout from "../components/layout/PageLayout";
 
@@ -18,8 +18,6 @@ export default function Contact() {
   return (
     <PageLayout>
       <PageContent className="items-start justify-start gap-10">
-        <PageHeader>{content.title}</PageHeader>
-
         <PageBody>{content.intro}</PageBody>
 
         {/* Email */}

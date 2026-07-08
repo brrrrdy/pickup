@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { Linking, Pressable, Text, View } from "react-native";
 import appFooterContent from "../../content/appfooter.json";
 import GitHubIcon from "../../assets/github-original.svg";
@@ -31,6 +32,12 @@ export default function AppFooter() {
     Linking.openURL(url);
   };
 
+  const isManifestoLabel = (label: string) => {
+    const normalized = label.toLowerCase();
+
+    return normalized === "manifesto" || normalized === "manifiesto";
+  };
+
   const noop = () => {};
 
   return (
@@ -43,17 +50,31 @@ export default function AppFooter() {
             </Text>
 
             <View className="gap-2">
-              {group.links.map((label) => (
-                <Pressable
-                  key={label}
-                  onPress={noop}
-                  accessibilityRole="link"
-                  accessibilityLabel={label}
-                  hitSlop={8}
-                >
-                  <Text className="text-sm text-defaulttext/75">{label}</Text>
-                </Pressable>
-              ))}
+              {group.links.map((label) =>
+                isManifestoLabel(label) ? (
+                  <Link key={label} href="/manifesto" asChild>
+                    <Pressable
+                      accessibilityRole="link"
+                      accessibilityLabel={label}
+                      hitSlop={8}
+                    >
+                      <Text className="text-sm text-defaulttext/75">
+                        {label}
+                      </Text>
+                    </Pressable>
+                  </Link>
+                ) : (
+                  <Pressable
+                    key={label}
+                    onPress={noop}
+                    accessibilityRole="link"
+                    accessibilityLabel={label}
+                    hitSlop={8}
+                  >
+                    <Text className="text-sm text-defaulttext/75">{label}</Text>
+                  </Pressable>
+                ),
+              )}
             </View>
           </View>
         ))}
