@@ -3,9 +3,10 @@
 
 @theme {
   /* Central text scale */
-  --text-sm: 12px;
+  --text-xs: 12px;
+  --text-sm: 15px;
   /* Customize base font size */
-  --text-base: 15px;
+  --text-base: 18px;
   --text-4xl: 36px;
 
   /* Customize spacing scale */

@@ -85,7 +85,7 @@ function WheelColumn({
 }: WheelColumnProps) {
   return (
     <View className="flex-1 gap-2">
-      <Text className="text-xs font-semibold uppercase tracking-wide text-defaulttext/60">
+      <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/60">
         {title}
       </Text>
 

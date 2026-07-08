@@ -6,3 +6,8 @@ declare module "*.svg" {
   const content: FC<SvgProps>;
   export default content;
 }
+
+declare module "*.webp" {
+  const content: number;
+  export default content;
+}

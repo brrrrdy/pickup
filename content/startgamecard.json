@@ -12,7 +12,7 @@
     "venueheaderneedscity": "select a city first",
     "venueheadernoslots": "no venues for this sport in this city",
     "numplayersheader": "players participating",
-    "numplayersheaderdesc": "how many players are required?",
+    "numplayersheaderdesc": "number of players?",
     "dateheader": "date",
     "dateheaderdesc": "choose a date",
     "timeheader": "time",

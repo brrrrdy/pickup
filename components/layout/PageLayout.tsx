@@ -5,10 +5,11 @@ import AppFooter from "./AppFooter";
 type PageLayoutProps = {
   children: ReactNode;
   className?: string;
+  fillViewport?: boolean;
 };
 
 const PageLayout = forwardRef<ScrollView, PageLayoutProps>(function PageLayout(
-  { children, className = "" },
+  { children, className = "", fillViewport = false },
   ref,
 ) {
   return (
@@ -19,7 +20,8 @@ const PageLayout = forwardRef<ScrollView, PageLayoutProps>(function PageLayout(
       showsVerticalScrollIndicator={false}
     >
       <View
-        className={`w-full flex-1 justify-between gap-10 bg-cream px-4 py-5 ${className}`.trim()}
+        className={`w-full gap-10 bg-cream px-4 py-5 ${fillViewport ? "" : "flex-1 justify-between"} ${className}`.trim()}
+        style={fillViewport ? { minHeight: "100%" } : undefined}
       >
         {children}
       </View>

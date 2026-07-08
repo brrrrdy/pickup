@@ -1,0 +1,77 @@
+{
+  "en": {
+    "linkGroups": [
+      {
+        "heading": "legal",
+        "links": ["Cookies", "Privacy", "Terms and Conditions"]
+      },
+      {
+        "heading": "pickup",
+        "links": ["Manifesto", "Under The Hood", "Feedback"]
+      }
+    ],
+    "followHeading": "Follow me",
+    "socialLinks": [
+      {
+        "href": "https://github.com/brrrrdy/pickup",
+        "label": "github"
+      },
+      {
+        "href": "https://www.linkedin.com/in/tom-alvarez-ryan-80423951/",
+        "label": "linkedin"
+      }
+    ],
+    "socialAccessibilityLabelPrefix": "open",
+    "copyrightSuffix": "tom alvarez. all rights reserved."
+  },
+  "es": {
+    "linkGroups": [
+      {
+        "heading": "legal",
+        "links": ["Cookies", "Privacidad", "Términos y condiciones"]
+      },
+      {
+        "heading": "pickup",
+        "links": ["Manifiesto", "Entre bastidores", "Comentarios"]
+      }
+    ],
+    "followHeading": "Sígueme",
+    "socialLinks": [
+      {
+        "href": "https://github.com/brrrrdy/pickup",
+        "label": "github"
+      },
+      {
+        "href": "https://www.linkedin.com/in/tom-alvarez-ryan-80423951/",
+        "label": "linkedin"
+      }
+    ],
+    "socialAccessibilityLabelPrefix": "abrir",
+    "copyrightSuffix": "tom alvarez. todos los derechos reservados."
+  },
+  "gz": {
+    "linkGroups": [
+      {
+        "heading": "legal",
+        "links": ["Cookies", "Privacidade", "Termos e condicións"]
+      },
+      {
+        "heading": "pickup",
+        "links": ["Manifesto", "Por dentro", "Comentarios"]
+      }
+    ],
+    "followHeading": "Sígueme",
+    "socialLinks": [
+      {
+        "href": "https://github.com/brrrrdy/pickup",
+        "label": "github"
+      },
+      {
+        "href": "https://www.linkedin.com/in/tom-alvarez-ryan-80423951/",
+        "label": "linkedin"
+      }
+    ],
+    "socialAccessibilityLabelPrefix": "abrir",
+    "copyrightSuffix": "tom alvarez. todos os dereitos reservados."
+  }
+}

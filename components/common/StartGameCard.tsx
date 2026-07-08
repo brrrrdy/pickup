@@ -367,7 +367,7 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
           value={players}
           onChangeText={setPlayers}
           keyboardType="number-pad"
-          inputClassName="text-base"
+          inputClassName="text-sm"
         />
         <CalendarField
           label={copy.dateheader}
