@@ -150,7 +150,7 @@ export default function CalendarField({
         <View className="flex-row flex-wrap">
           {WEEKDAY_LABELS.map((labelText) => (
             <View key={labelText} className="mb-2 w-1/7 items-center">
-              <Text className="text-xs font-semibold uppercase text-defaulttext/60">
+              <Text className="text-sm font-semibold uppercase text-defaulttext/60">
                 {labelText}
               </Text>
             </View>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Platform, UIManager, View } from "react-native";
+import { Platform, UIManager } from "react-native";
 import profile from "../mockdata/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
@@ -12,7 +12,7 @@ import PageLayout from "../components/layout/PageLayout";
 import type {
   FindSportMockData,
   GameTemplateMockData,
-} from "../components/types/find-game";
+} from "../types/find-game";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import PageContent from "../components/layout/PageContent";
 
@@ -52,7 +52,7 @@ export default function Profile() {
 
   return (
     <PageLayout>
-      <PageContent className="items-start justify-start gap-10">
+      <PageContent className="items-stretch justify-start gap-10">
         <PageHeader>account details and preferences</PageHeader>
 
         <PageBody>

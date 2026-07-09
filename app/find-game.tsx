@@ -32,7 +32,7 @@ export default function FindGame() {
     <PageLayout>
       <PageContent className="w-full px-4 pt-6">
         <View className="w-full gap-4">
-          <PageSection>
+          <PageSection className="items-center">
             <LocationSearchBar
               value={locationInput}
               onChangeText={setLocationInput}
@@ -47,7 +47,7 @@ export default function FindGame() {
           </PageSection>
 
           {hasLocation ? (
-            <PageSection className="gap-4">
+            <PageSection className="items-center gap-4">
               {availableSports.length > 0 ? (
                 <>
                   <SportSearch
@@ -69,7 +69,7 @@ export default function FindGame() {
                   />
                 </>
               ) : (
-                <Text className="w-full max-w-xl text-left text-sm text-defaulttext">
+                <Text className="w-full max-w-4xl text-left text-sm text-defaulttext">
                   {content.noOpenGamesInLocationPrefix} {location}.
                 </Text>
               )}

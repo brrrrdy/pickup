@@ -29,7 +29,7 @@ export default function AccountDetailsSection({
     >
       {profileItems.map((item) => (
         <View key={item.label} className="gap-1">
-          <Text className="text-xs font-semibold uppercase tracking-wide text-defaulttext/70">
+          <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
             {item.label}
           </Text>
           <Text className="text-base text-defaulttext">{item.value}</Text>
@@ -37,7 +37,7 @@ export default function AccountDetailsSection({
       ))}
 
       <View className="gap-2">
-        <Text className="text-xs font-semibold uppercase tracking-wide text-defaulttext/70">
+        <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
           favourite sports
         </Text>
         <View className="flex-row flex-wrap gap-2">

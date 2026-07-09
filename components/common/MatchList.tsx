@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import type { MatchCardData } from "../types/find-game";
+import type { MatchCardData } from "../../types/find-game";
 import MatchCard from "./MatchCard";
 
 type MatchListProps = {
@@ -21,7 +21,7 @@ export default function MatchList({
 
   if (matches.length === 0) {
     return (
-      <Text className="w-full max-w-xl text-left text-base text-defaulttext">
+      <Text className="w-full max-w-4xl text-left text-base text-defaulttext">
         {emptyMessage}
       </Text>
     );

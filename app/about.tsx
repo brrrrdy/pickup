@@ -8,7 +8,7 @@ export default function About() {
 
   return (
     <PageLayout>
-      <PageContent className="items-start justify-start gap-10">
+      <PageContent className="items-stretch justify-start gap-10">
         <PageHeader>{content.header}</PageHeader>
         <PageBody>{content.body}</PageBody>
       </PageContent>

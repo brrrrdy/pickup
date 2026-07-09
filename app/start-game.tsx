@@ -16,7 +16,7 @@ export default function StartGame() {
     <PageLayout ref={scrollRef}>
       <PageContent className="px-4 pt-6">
         <View className="w-full gap-4">
-          <PageSection>
+          <PageSection className="items-center">
             <StartGameCard onResetToTop={handleResetToTop} />
           </PageSection>
         </View>

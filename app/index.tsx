@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import Logo from "../components/common/Logo";
 import StartGameButton from "../components/buttons/StartGameButton";
 import FindGameButton from "../components/buttons/FindGameButton";
@@ -10,11 +10,8 @@ export default function Landing() {
   const router = useRouter();
 
   return (
-    <PageLayout fillViewport>
-      <PageContent
-        className="items-center justify-start"
-        style={{ minHeight: "100%" }}
-      >
+    <PageLayout>
+      <PageContent className="items-stretch justify-start">
         <View className="w-full items-center justify-start pt-4">
           <Logo />
           <View className="flex-row gap-4 mt-4">

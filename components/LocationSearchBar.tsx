@@ -1,4 +1,5 @@
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
+import FormField from "./common/FormField";
 
 type LocationSearchBarProps = {
   value: string;
@@ -24,16 +25,16 @@ export default function LocationSearchBar({
   onBlur,
 }: LocationSearchBarProps) {
   return (
-    <View className="w-full max-w-xl gap-2">
-      <TextInput
-        className="w-full rounded-xl border border-transparent bg-secondary px-4 py-3 text-foreground"
+    <View className="w-full max-w-4xl gap-2">
+      <FormField
         placeholder={placeholder}
-        placeholderTextColor="#35513f"
+        label=""
         value={value}
         onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
+        onSubmitEditing={onSubmitEditing ? () => onSubmitEditing() : undefined}
         onBlur={onBlur}
         returnKeyType="search"
+        inputClassName="rounded-xl border-transparent bg-secondary"
       />
 
       {showSuggestions && suggestions.length > 0 ? (

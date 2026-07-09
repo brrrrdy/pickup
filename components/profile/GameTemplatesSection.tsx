@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import type { ProfileGameTemplateDisplay } from "../types/find-game";
+import type { ProfileGameTemplateDisplay } from "../../types/find-game";
 import ProfileAccordionSection from "../common/ProfileAccordionSection";
 
 type GameTemplatesSectionProps = {
@@ -30,7 +30,7 @@ export default function GameTemplatesSection({
             <Text className="text-sm font-semibold text-defaulttext">
               {template.templateName}
             </Text>
-            <Text className="text-xs font-semibold uppercase tracking-wide text-defaulttext/70">
+            <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
               {template.sportName}
             </Text>
             <Text className="text-sm text-defaulttext/80">

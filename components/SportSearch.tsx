@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import sportPillContent from "../content/sportpill.json";
 import ActionButton from "./common/ActionButton";
 import SportOptionPill from "./common/SportOptionPill";
-import type { SportOption } from "./types/find-game";
+import type { SportOption } from "../types/find-game";
 
 function formatSportPillLabel(sportName: string, count: number) {
   return sportPillContent.en.labelTemplate
@@ -34,7 +34,7 @@ export default function SportSearch({
   const canShowGames = selectedIds.length > 0;
 
   return (
-    <View className="w-full max-w-xl rounded-2xl bg-secondary p-4">
+    <View className="w-full max-w-4xl rounded-2xl bg-secondary p-4">
       <Text className="text-lg font-semibold text-defaulttext">
         {availableGamesInPrefix} {location || availableGamesInFallback}
       </Text>

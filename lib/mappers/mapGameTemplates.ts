@@ -7,7 +7,7 @@ import type {
   ProfileGameTemplateDisplay,
   SportRow,
   VenueRow,
-} from "../../components/types/find-game";
+} from "../../types/find-game";
 
 function fallbackMatchId() {
   return `template-match-${Date.now()}-${Math.floor(Math.random() * 10000)}`;

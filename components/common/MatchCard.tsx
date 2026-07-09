@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import matchCardContent from "../../content/matchcard.json";
 import JoinGameButton from "../buttons/JoinGameButton";
 import ViewGameButton from "../buttons/ViewGameButton";
-import type { MatchCardData } from "../types/find-game";
+import type { MatchCardData } from "../../types/find-game";
 
 type MatchCardProps = {
   match: MatchCardData;
@@ -29,7 +29,7 @@ export default function MatchCard({ match, location }: MatchCardProps) {
   const copy = matchCardContent.en;
 
   return (
-    <View className="w-full max-w-xl rounded-xl border border-transparent bg-white p-4">
+    <View className="w-full max-w-4xl rounded-xl border border-transparent bg-white p-4">
       <Text className="text-base font-semibold text-defaulttext">
         {match.title}
       </Text>

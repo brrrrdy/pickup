@@ -19,7 +19,7 @@ export default function ProfileAccordionSection({
   children,
 }: ProfileAccordionSectionProps) {
   return (
-    <View className="w-full max-w-xl rounded-2xl border border-border bg-secondary p-5">
+    <View className="w-full max-w-4xl self-center rounded-2xl border border-border bg-secondary p-5">
       <Pressable
         onPress={() => {
           LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);

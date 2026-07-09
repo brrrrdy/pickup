@@ -4,7 +4,7 @@ import PageLayout from "../components/layout/PageLayout";
 import { PageBody, PageHeader } from "../components/typography/Typography";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
-import type { FindSportMockData } from "../components/types/find-game";
+import type { FindSportMockData } from "../types/find-game";
 
 const pastMatches = mapAttendingMatchesByTime(
   findSportData as FindSportMockData,
@@ -19,14 +19,14 @@ export default function MatchHistory() {
           <PageHeader>match history</PageHeader>
           <PageBody>Your previous matches and results.</PageBody>
 
-          <View className="w-full max-w-xl rounded-2xl border border-border bg-secondary p-5 gap-4">
+          <View className="w-full max-w-4xl self-center rounded-2xl border border-border bg-secondary p-5 gap-4">
             {pastMatches.length > 0 ? (
               pastMatches.map((match) => (
                 <View
                   key={match.id}
                   className="gap-1 rounded-xl border border-border bg-white px-3 py-3"
                 >
-                  <Text className="text-xs font-semibold uppercase tracking-wide text-defaulttext/70">
+                  <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
                     {match.sportName}
                   </Text>
                   <Text className="text-base text-defaulttext">

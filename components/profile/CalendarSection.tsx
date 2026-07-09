@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Pressable, Text, View } from "react-native";
-import type { AttendingMatchDisplay } from "../types/find-game";
+import type { AttendingMatchDisplay } from "../../types/find-game";
 import ProfileAccordionSection from "../common/ProfileAccordionSection";
 
 type CalendarSectionProps = {
@@ -28,7 +28,7 @@ export default function CalendarSection({
             key={match.id}
             className="gap-1 rounded-xl border border-border bg-white px-3 py-3"
           >
-            <Text className="text-xs font-semibold uppercase tracking-wide text-defaulttext/70">
+            <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
               {match.sportName}
             </Text>
             <Text className="text-base text-defaulttext">

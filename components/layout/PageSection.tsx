@@ -10,11 +10,5 @@ export default function PageSection({
   children,
   className = "",
 }: PageSectionProps) {
-  return (
-    <View
-      className={`w-full flex flex-col items-center justify-center ${className}`.trim()}
-    >
-      {children}
-    </View>
-  );
+  return <View className={`w-full ${className}`.trim()}>{children}</View>;
 }

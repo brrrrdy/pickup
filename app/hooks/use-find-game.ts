@@ -1,8 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import type {
-  MatchCardData,
-  SportOption,
-} from "../../components/types/find-game";
+import type { FindSportMockData, MatchCardData } from "../../types/find-game";
 import mockFindSportData from "../../mockdata/find-sport-data.json";
 import {
   mapOpenMatchesForSelectedSports,
@@ -48,6 +45,8 @@ function resolveLocationInput(validLocations: string[], input: string) {
 }
 
 export default function useFindGame() {
+  const findSportData = mockFindSportData as FindSportMockData;
+
   const [location, setLocation] = useState("");
   const [locationInput, setLocationInput] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -58,7 +57,7 @@ export default function useFindGame() {
     () =>
       Array.from(
         new Set(
-          (mockFindSportData.venues ?? [])
+          (findSportData.venues ?? [])
             .map((venue) => venue.city.trim())
             .filter((cityName) => cityName.length > 0),
         ),
@@ -93,10 +92,8 @@ export default function useFindGame() {
 
   const availableSports = useMemo(
     () =>
-      hasLocation
-        ? mapSportsWithOpenGameCounts(mockFindSportData, location)
-        : [],
-    [hasLocation, location],
+      hasLocation ? mapSportsWithOpenGameCounts(findSportData, location) : [],
+    [findSportData, hasLocation, location],
   );
 
   const selectedSports = useMemo(
@@ -172,12 +169,12 @@ export default function useFindGame() {
     () =>
       hasLocation
         ? mapOpenMatchesForSelectedSports(
-            mockFindSportData,
+            findSportData,
             selectedSports,
             location,
           )
         : [],
-    [hasLocation, location, selectedSports],
+    [findSportData, hasLocation, location, selectedSports],
   );
 
   return {

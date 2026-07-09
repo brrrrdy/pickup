@@ -1,0 +1,200 @@
+{
+  "en": {
+    "title": "contact",
+    "hero": {
+      "heading": "get in touch",
+      "subheading": "i'm always happy to hear your suggestions or improvements!"
+    },
+    "fields": {
+      "firstName": {
+        "label": "First name",
+        "placeholder": "tom"
+      },
+      "lastName": {
+        "label": "Last name",
+        "placeholder": "alvarez"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "ACME COMPUTERS"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "you@example.com"
+      },
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "600 000 000"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "type your message here."
+      }
+    },
+    "countryOptions": ["US", "CA", "EU"],
+    "consent": {
+      "label": "by selecting this, you agree to our privacy policy."
+    },
+    "submit": {
+      "label": "send"
+    },
+    "alerts": {
+      "privacy": {
+        "title": "Privacy policy",
+        "message": "please agree to the privacy policy first."
+      },
+      "missingDetails": {
+        "title": "Missing details",
+        "message": "please add at least your first name and email."
+      },
+      "mailError": {
+        "title": "Could not open mail app",
+        "message": "please try again in a moment."
+      }
+    },
+    "mail": {
+      "to": "tom@tomalvarez.xyz",
+      "defaultSubject": "Contact",
+      "bodyLabels": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "company": "Company",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message"
+      }
+    }
+  },
+  "es": {
+    "title": "contacto",
+    "hero": {
+      "heading": "Contactar con ventas",
+      "subheading": "Cuéntanos lo que necesitas y te ayudamos a organizar tu próximo partido."
+    },
+    "fields": {
+      "firstName": {
+        "label": "Nombre",
+        "placeholder": "Jaime"
+      },
+      "lastName": {
+        "label": "Apellidos",
+        "placeholder": "Rivera"
+      },
+      "company": {
+        "label": "Empresa",
+        "placeholder": "Pickup Labs"
+      },
+      "email": {
+        "label": "Correo electronico",
+        "placeholder": "tu@ejemplo.com"
+      },
+      "phone": {
+        "label": "Telefono",
+        "placeholder": "123-456-7890"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Cuéntanos sobre tu equipo, objetivos y plazos."
+      }
+    },
+    "countryOptions": ["US", "CA", "EU"],
+    "consent": {
+      "label": "Al seleccionar esto, aceptas nuestra politica de privacidad."
+    },
+    "submit": {
+      "label": "Hablemos"
+    },
+    "alerts": {
+      "privacy": {
+        "title": "Politica de privacidad",
+        "message": "Acepta primero la politica de privacidad."
+      },
+      "missingDetails": {
+        "title": "Faltan datos",
+        "message": "Introduce al menos tu nombre y correo electronico."
+      },
+      "mailError": {
+        "title": "No se pudo abrir la app de correo",
+        "message": "Vuelve a intentarlo en un momento."
+      }
+    },
+    "mail": {
+      "to": "tom@tomalvarez.xyz",
+      "defaultSubject": "Contacto",
+      "bodyLabels": {
+        "firstName": "Nombre",
+        "lastName": "Apellidos",
+        "company": "Empresa",
+        "email": "Correo",
+        "phone": "Telefono",
+        "message": "Mensaje"
+      }
+    }
+  },
+  "gz": {
+    "title": "contacto",
+    "hero": {
+      "heading": "Contactar con vendas",
+      "subheading": "Conta o que precisas e axudamoste a organizar o teu proximo partido."
+    },
+    "fields": {
+      "firstName": {
+        "label": "Nome",
+        "placeholder": "Xaime"
+      },
+      "lastName": {
+        "label": "Apelidos",
+        "placeholder": "Rivera"
+      },
+      "company": {
+        "label": "Empresa",
+        "placeholder": "Pickup Labs"
+      },
+      "email": {
+        "label": "Correo electronico",
+        "placeholder": "ti@exemplo.com"
+      },
+      "phone": {
+        "label": "Telefono",
+        "placeholder": "123-456-7890"
+      },
+      "message": {
+        "label": "Mensaxe",
+        "placeholder": "Contanos sobre o teu equipo, obxectivos e prazos."
+      }
+    },
+    "countryOptions": ["US", "CA", "EU"],
+    "consent": {
+      "label": "Ao seleccionar isto, aceptas a nosa politica de privacidade."
+    },
+    "submit": {
+      "label": "Falemos"
+    },
+    "alerts": {
+      "privacy": {
+        "title": "Politica de privacidade",
+        "message": "Acepta primeiro a politica de privacidade."
+      },
+      "missingDetails": {
+        "title": "Faltan datos",
+        "message": "Engade polo menos o teu nome e correo electronico."
+      },
+      "mailError": {
+        "title": "Non se puido abrir a app de correo",
+        "message": "Tentao de novo nun momento."
+      }
+    },
+    "mail": {
+      "to": "tom@tomalvarez.xyz",
+      "defaultSubject": "Contacto",
+      "bodyLabels": {
+        "firstName": "Nome",
+        "lastName": "Apelidos",
+        "company": "Empresa",
+        "email": "Correo",
+        "phone": "Telefono",
+        "message": "Mensaxe"
+      }
+    }
+  }
+}
