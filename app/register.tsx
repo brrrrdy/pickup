@@ -23,11 +23,7 @@ export default function Register() {
 
   const handleOpenTermsAndPrivacy = () => {
     if (Platform.OS === "web") {
-      globalThis.open?.(
-        "/terms-and-privacy",
-        "_blank",
-        "noopener,noreferrer",
-      );
+      globalThis.open?.("/terms-and-privacy", "_blank", "noopener,noreferrer");
       return;
     }
 
