@@ -33,7 +33,9 @@
     },
     "countryOptions": ["US", "CA", "EU"],
     "consent": {
-      "label": "by selecting this, you agree to our privacy policy."
+      "prefix": "by selecting this, you agree to our ",
+      "linkLabel": "privacy policy",
+      "suffix": "."
     },
     "submit": {
       "label": "send"

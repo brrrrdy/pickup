@@ -9,7 +9,7 @@ type LoginOrRegisterButtonProps = {
 };
 
 export default function LoginOrRegisterButton({
-  href = "/register",
+  href = "/login",
   className = "",
 }: LoginOrRegisterButtonProps) {
   return (

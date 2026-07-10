@@ -33,26 +33,61 @@ export default function AppFooter() {
   };
 
   const isManifestoLabel = (label: string) => {
-    const normalized = label.toLowerCase();
+    const normalized = label
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
 
     return normalized === "manifesto" || normalized === "manifiesto";
+  };
+
+  const isTermsOrPrivacyLabel = (label: string) => {
+    const normalized = label
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+    return (
+      normalized.includes("privacy") ||
+      normalized.includes("privacidad") ||
+      normalized.includes("privacidade") ||
+      normalized.includes("terms") ||
+      normalized.includes("terminos") ||
+      normalized.includes("termos") ||
+      normalized === "ts and cs"
+    );
   };
 
   const noop = () => {};
 
   return (
-    <View className="w-full self-center max-w-3xl gap-8">
-      <View className="self-start flex-row flex-wrap justify-start gap-x-8 gap-y-6">
+    <View className="w-full self-center max-w-3xl items-center gap-8">
+      <View className="w-full flex-row flex-wrap justify-center gap-x-8 gap-y-6">
         {content.linkGroups.map((group) => (
-          <View key={group.heading} className="min-w-35 flex-1 gap-3">
+          <View
+            key={group.heading}
+            className="min-w-35 flex-1 items-center gap-3"
+          >
             <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext">
               {group.heading}
             </Text>
 
-            <View className="gap-2">
+            <View className="items-center gap-2">
               {group.links.map((label) =>
                 isManifestoLabel(label) ? (
                   <Link key={label} href="/manifesto" asChild>
+                    <Pressable
+                      accessibilityRole="link"
+                      accessibilityLabel={label}
+                      hitSlop={8}
+                    >
+                      <Text className="text-sm text-defaulttext/75">
+                        {label}
+                      </Text>
+                    </Pressable>
+                  </Link>
+                ) : isTermsOrPrivacyLabel(label) ? (
+                  <Link key={label} href="/terms-and-privacy" asChild>
                     <Pressable
                       accessibilityRole="link"
                       accessibilityLabel={label}
@@ -80,12 +115,12 @@ export default function AppFooter() {
         ))}
       </View>
 
-      <View className="self-start items-start gap-4">
+      <View className="items-center gap-4">
         <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext">
           {content.followHeading}
         </Text>
 
-        <View className="flex-row items-center justify-start gap-4">
+        <View className="flex-row items-center justify-center gap-4">
           {socialLinks.map(({ href, label, Icon }) => (
             <Pressable
               key={label}
@@ -99,7 +134,7 @@ export default function AppFooter() {
           ))}
         </View>
 
-        <Text className="text-left text-sm text-defaulttext/50">
+        <Text className="text-center text-sm text-defaulttext/50">
           © {year} {content.copyrightSuffix}
         </Text>
       </View>

@@ -1,0 +1,40 @@
+{
+  "en": {
+    "hero": {
+      "heading": "welcome back",
+      "subheading": "sign in to jump back into games, messages, and your player profile."
+    },
+    "fields": {
+      "username": {
+        "label": "Username",
+        "placeholder": "enter your username..."
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "enter your password..."
+      }
+    },
+    "submit": {
+      "label": "log in"
+    },
+    "registerLink": {
+      "label": "not signed up, register here"
+    },
+    "alerts": {
+      "missingDetails": {
+        "title": "Missing details",
+        "message": "please enter your username and password."
+      },
+      "shortPassword": {
+        "title": "Password too short",
+        "message": "please use at least 8 characters for your password."
+      },
+      "success": {
+        "title": "Signed in",
+        "message": "you are now signed in."
+      }
+    }
+  },
+  "es": {},
+  "gz": {}
+}

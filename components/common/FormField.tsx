@@ -16,6 +16,7 @@ type FormFieldProps = {
   | "autoCapitalize"
   | "keyboardType"
   | "autoCorrect"
+  | "secureTextEntry"
   | "onSubmitEditing"
   | "onBlur"
   | "returnKeyType"
@@ -33,6 +34,7 @@ export default function FormField({
   autoCapitalize,
   keyboardType,
   autoCorrect,
+  secureTextEntry,
   onSubmitEditing,
   onBlur,
   returnKeyType,
@@ -48,6 +50,7 @@ export default function FormField({
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
         autoCorrect={autoCorrect}
+        secureTextEntry={secureTextEntry}
         onSubmitEditing={onSubmitEditing}
         onBlur={onBlur}
         returnKeyType={returnKeyType}

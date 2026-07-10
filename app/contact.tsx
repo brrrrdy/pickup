@@ -1,4 +1,6 @@
+import { useRouter } from "expo-router";
 import { Pressable, Switch, Text, View } from "react-native";
+import { Platform } from "react-native";
 import { useContactForm } from "./hooks/use-contact-form";
 import contactFormContent from "../content/contactform.json";
 import FormField from "../components/common/FormField";
@@ -8,6 +10,7 @@ import PageLayout from "../components/layout/PageLayout";
 import { THEME_COLORS } from "../lib/theme/colors";
 
 export default function Contact() {
+  const router = useRouter();
   const content = contactFormContent.en;
 
   const {
@@ -20,6 +23,19 @@ export default function Contact() {
     setAgreeToPolicies,
     handleSubmit,
   } = useContactForm({ content });
+
+  const handleOpenTermsAndPrivacy = () => {
+    if (Platform.OS === "web") {
+      globalThis.open?.(
+        "/terms-and-privacy",
+        "_blank",
+        "noopener,noreferrer",
+      );
+      return;
+    }
+
+    router.push("/terms-and-privacy");
+  };
 
   return (
     <PageLayout>
@@ -115,9 +131,23 @@ export default function Contact() {
                 true: THEME_COLORS.purpleaccent,
               }}
             />
-            <Text className="flex-1 text-sm text-defaulttext">
-              {content.consent.label}
-            </Text>
+            <View className="flex-1 flex-row flex-wrap items-center">
+              <Text className="text-sm text-defaulttext">
+                {content.consent.prefix}
+              </Text>
+              <Pressable
+                onPress={handleOpenTermsAndPrivacy}
+                accessibilityRole="link"
+                accessibilityLabel={content.consent.linkLabel}
+              >
+                <Text className="text-sm text-defaulttext underline">
+                  {content.consent.linkLabel}
+                </Text>
+              </Pressable>
+              <Text className="text-sm text-defaulttext">
+                {content.consent.suffix}
+              </Text>
+            </View>
           </View>
 
           <Pressable

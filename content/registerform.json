@@ -1,0 +1,69 @@
+{
+  "en": {
+    "hero": {
+      "heading": "create your account",
+      "subheading": "join pickup to host games, join sessions, and keep your match history in one place."
+    },
+    "fields": {
+      "firstName": {
+        "label": "First name",
+        "placeholder": "first name"
+      },
+      "lastName": {
+        "label": "Last name(s)",
+        "placeholder": "last name(s)"
+      },
+      "username": {
+        "label": "Username",
+        "placeholder": "enter your username"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "choose a password"
+      },
+      "confirmPassword": {
+        "label": "Confirm password",
+        "placeholder": "re-enter your password"
+      }
+    },
+    "consent": {
+      "prefix": "i agree to the ",
+      "linkLabel": "terms and privacy policy",
+      "suffix": "."
+    },
+    "submit": {
+      "label": "create account"
+    },
+    "signInLink": {
+      "label": "already got an account, sign in"
+    },
+    "alerts": {
+      "missingDetails": {
+        "title": "Missing details",
+        "message": "please complete every field before creating your account."
+      },
+      "passwordMismatch": {
+        "title": "Passwords do not match",
+        "message": "please make sure your password fields match."
+      },
+      "shortPassword": {
+        "title": "Password too short",
+        "message": "please use at least 8 characters for your password."
+      },
+      "consentRequired": {
+        "title": "Consent required",
+        "message": "please accept the terms and privacy policy to continue."
+      },
+      "success": {
+        "title": "Account ready",
+        "message": "your account details were captured successfully."
+      }
+    }
+  },
+  "es": {},
+  "gz": {}
+}
