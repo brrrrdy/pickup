@@ -31,7 +31,7 @@ export default function NavMenuDrawer({
 }: NavMenuDrawerProps) {
   const router = useRouter();
   const { width } = useWindowDimensions();
-  const panelWidth = width * 0.7;
+  const panelWidth = Math.min(width * 0.8, 360);
   const progress = useRef(new Animated.Value(0)).current;
   const [isVisible, setIsVisible] = useState(isOpen);
 
