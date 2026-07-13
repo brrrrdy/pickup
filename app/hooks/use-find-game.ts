@@ -85,6 +85,9 @@ export default function useFindGame() {
   // whether the location suggestion dropdown is open
   const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
   // unique city names extracted from venue data
+
+  // console.time("filter array");
+
   const validLocations = useMemo(
     () =>
       Array.from(
@@ -96,6 +99,8 @@ export default function useFindGame() {
       ),
     [findSportData],
   );
+
+  // console.timeEnd("filter array");
 
   const hasLocation = useMemo(() => isValidLocation(location), [location]);
 
