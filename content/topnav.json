@@ -1,0 +1,44 @@
+{
+  "en": {
+    "navLinks": [
+      { "href": "/", "label": "home" },
+      { "href": "/about", "label": "about" },
+      { "href": "/manifesto", "label": "manifesto" },
+      { "href": "/contact", "label": "contact" },
+      { "href": "/profile", "label": "profile" }
+    ],
+    "accessibility": {
+      "homeLink": "go to homepage",
+      "openMenu": "open navigation menu",
+      "closeMenu": "close navigation menu"
+    }
+  },
+  "es": {
+    "navLinks": [
+      { "href": "/", "label": "" },
+      { "href": "/about", "label": "" },
+      { "href": "/manifesto", "label": "" },
+      { "href": "/contact", "label": "" },
+      { "href": "/profile", "label": "" }
+    ],
+    "accessibility": {
+      "homeLink": "",
+      "openMenu": "",
+      "closeMenu": ""
+    }
+  },
+  "gz": {
+    "navLinks": [
+      { "href": "/", "label": "" },
+      { "href": "/about", "label": "" },
+      { "href": "/manifesto", "label": "" },
+      { "href": "/contact", "label": "" },
+      { "href": "/profile", "label": "" }
+    ],
+    "accessibility": {
+      "homeLink": "",
+      "openMenu": "",
+      "closeMenu": ""
+    }
+  }
+}

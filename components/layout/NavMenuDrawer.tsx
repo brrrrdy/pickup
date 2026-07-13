@@ -11,7 +11,7 @@ import {
 import FindGameButton from "../buttons/FindGameButton";
 import StartGameButton from "../buttons/StartGameButton";
 
-type NavLink = {
+export type NavLink = {
   href: "/" | "/about" | "/contact" | "/profile" | "/find-game" | "/manifesto";
   label: string;
 };

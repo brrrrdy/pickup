@@ -2,17 +2,17 @@ import { Link, usePathname } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
+import topNavContent from "../../content/topnav.json";
 import LoginOrRegisterButton from "../buttons/LoginOrRegisterButton";
 import Logo from "../common/Logo";
-import NavMenuDrawer from "./NavMenuDrawer";
+import NavMenuDrawer, { type NavLink } from "./NavMenuDrawer";
 
-const navLinks = [
-  { href: "/", label: "home" },
-  { href: "/about", label: "about" },
-  { href: "/manifesto", label: "manifesto" },
-  { href: "/contact", label: "contact" },
-  { href: "/profile", label: "profile" },
-] as const;
+const content = topNavContent.en;
+
+const navLinks: readonly NavLink[] = content.navLinks.map((link) => ({
+  href: link.href as NavLink["href"],
+  label: link.label,
+}));
 
 export default function TopNav() {
   const pathname = usePathname();
@@ -31,7 +31,7 @@ export default function TopNav() {
             <Link href="/" asChild>
               <Pressable
                 accessibilityRole="link"
-                accessibilityLabel="go to homepage"
+                accessibilityLabel={content.accessibility.homeLink}
               >
                 <Logo width={120} height={36} />
               </Pressable>
@@ -48,7 +48,9 @@ export default function TopNav() {
             onPress={() => setIsMenuOpen((prev) => !prev)}
             accessibilityRole="button"
             accessibilityLabel={
-              isMenuOpen ? "close navigation menu" : "open navigation menu"
+              isMenuOpen
+                ? content.accessibility.closeMenu
+                : content.accessibility.openMenu
             }
           >
             <Svg width={28} height={28} viewBox="0 0 24 24">
