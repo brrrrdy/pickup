@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { View } from "react-native";
+import { twMerge } from "tailwind-merge";
 
 type PageSectionProps = {
   children: ReactNode;
@@ -10,5 +11,7 @@ export default function PageSection({
   children,
   className = "",
 }: PageSectionProps) {
-  return <View className={`w-full ${className}`.trim()}>{children}</View>;
+  return (
+    <View className={twMerge("w-full gap-2.5", className)}>{children}</View>
+  );
 }

@@ -1,7 +1,10 @@
 import { forwardRef, type ReactNode } from "react";
 import { type StyleProp, type ViewStyle, ScrollView, View } from "react-native";
+import { twMerge } from "tailwind-merge";
 import AppFooter from "./AppFooter";
 import { PageBody, PageHeader } from "../typography/Typography";
+
+const defaultVerticalGapClass = "gap-2.5";
 
 type PageShellProps = {
   children: ReactNode;
@@ -35,9 +38,17 @@ const PageShell = forwardRef<ScrollView, PageShellProps>(function PageShell(
       contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }}
       showsVerticalScrollIndicator={false}
     >
-      <View className={`w-full gap-6 bg-cream px-4 py-4 ${className}`.trim()}>
+      <View
+        className={twMerge(
+          `w-full ${defaultVerticalGapClass} bg-cream px-4 py-4`,
+          className,
+        )}
+      >
         <View
-          className={`w-full self-center max-w-5xl px-4 py-1 ${contentClassName}`.trim()}
+          className={twMerge(
+            "w-full self-center max-w-5xl px-4 py-1",
+            contentClassName,
+          )}
         >
           {children}
         </View>
@@ -59,7 +70,10 @@ export function PageShellHeader({
 }: PageShellSectionProps) {
   return (
     <View
-      className={`w-full max-w-4xl self-center gap-4 ${className}`.trim()}
+      className={twMerge(
+        `w-full max-w-4xl self-center ${defaultVerticalGapClass}`,
+        className,
+      )}
       style={style}
     >
       {children}
@@ -89,7 +103,10 @@ export function PageShellBody({
 }: PageShellSectionProps) {
   return (
     <View
-      className={`w-full max-w-4xl self-center mt-6 gap-6 ${className}`.trim()}
+      className={twMerge(
+        `w-full max-w-4xl self-center mt-2.5 ${defaultVerticalGapClass}`,
+        className,
+      )}
       style={style}
     >
       {children}

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Image, View } from "react-native";
 import { useRouter } from "expo-router";
 import Logo from "../components/common/Logo";
 import StartGameButton from "../components/buttons/StartGameButton";
@@ -12,6 +12,13 @@ export default function Landing() {
     <PageShell>
       <PageShellBody className="items-center justify-start pt-4">
         <Logo />
+        {/* hero section requires component */}
+        <Image
+          source={require("../assets/placeholderbanner.webp")}
+          className="h-32 w-full max-w-md"
+          resizeMode="contain"
+          accessibilityLabel="Placeholder banner"
+        />
         <View className="mt-4 flex-row gap-4">
           <StartGameButton onPress={() => router.push("/start-game")} />
           <FindGameButton onPress={() => router.push("/find-game")} />
