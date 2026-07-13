@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Platform, UIManager } from "react-native";
+import { Platform, UIManager, View } from "react-native";
 import profile from "../mockdata/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
@@ -8,13 +8,14 @@ import { mapGameTemplatesForProfile } from "../lib/mappers/mapGameTemplates";
 import AccountDetailsSection from "../components/profile/AccountDetailsSection";
 import CalendarSection from "../components/profile/CalendarSection";
 import GameTemplatesSection from "../components/profile/GameTemplatesSection";
-import PageLayout from "../components/layout/PageLayout";
+import PageShell, {
+  PageShellBody,
+  PageShellIntro,
+} from "../components/layout/PageShell";
 import type {
   FindSportMockData,
   GameTemplateMockData,
 } from "../types/find-game";
-import { PageBody, PageHeader } from "../components/typography/Typography";
-import PageContent from "../components/layout/PageContent";
 
 export default function Profile() {
   const content = profile;
@@ -51,14 +52,13 @@ export default function Profile() {
   );
 
   return (
-    <PageLayout>
-      <PageContent className="items-stretch justify-start gap-10">
-        <PageHeader>account details and preferences</PageHeader>
+    <PageShell>
+      <PageShellIntro
+        title="account details and preferences"
+        body="Manage your account preferences and favorite sports."
+      />
 
-        <PageBody>
-          Manage your account preferences and favorite sports.
-        </PageBody>
-
+      <PageShellBody>
         <AccountDetailsSection
           isOpen={isAccountSectionOpen}
           onToggle={() => setIsAccountSectionOpen((prev) => !prev)}
@@ -77,7 +77,7 @@ export default function Profile() {
           onToggle={() => setIsTemplatesSectionOpen((prev) => !prev)}
           templates={profileTemplates}
         />
-      </PageContent>
-    </PageLayout>
+      </PageShellBody>
+    </PageShell>
   );
 }

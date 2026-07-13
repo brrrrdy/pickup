@@ -3,23 +3,20 @@ import { useRouter } from "expo-router";
 import Logo from "../components/common/Logo";
 import StartGameButton from "../components/buttons/StartGameButton";
 import FindGameButton from "../components/buttons/FindGameButton";
-import PageContent from "../components/layout/PageContent";
-import PageLayout from "../components/layout/PageLayout";
+import PageShell, { PageShellBody } from "../components/layout/PageShell";
 
 export default function Landing() {
   const router = useRouter();
 
   return (
-    <PageLayout>
-      <PageContent className="items-stretch justify-start">
-        <View className="w-full items-center justify-start pt-4">
-          <Logo />
-          <View className="flex-row gap-4 mt-4">
-            <StartGameButton onPress={() => router.push("/start-game")} />
-            <FindGameButton onPress={() => router.push("/find-game")} />
-          </View>
+    <PageShell>
+      <PageShellBody className="items-center justify-start pt-4">
+        <Logo />
+        <View className="mt-4 flex-row gap-4">
+          <StartGameButton onPress={() => router.push("/start-game")} />
+          <FindGameButton onPress={() => router.push("/find-game")} />
         </View>
-      </PageContent>
-    </PageLayout>
+      </PageShellBody>
+    </PageShell>
   );
 }

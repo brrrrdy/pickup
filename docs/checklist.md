@@ -1,0 +1,1 @@
+1. Page structure should be consistent across all pages from single source of truth. This entails one shared shell for every page on the app with classes defined for Header, Intro, Body wrappers at a minimum. Layout and design customisation available within each shared component.

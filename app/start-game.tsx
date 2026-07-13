@@ -2,8 +2,7 @@ import { useRef } from "react";
 import { ScrollView, View } from "react-native";
 import StartGameCard from "../components/common/StartGameCard";
 import PageSection from "../components/layout/PageSection";
-import PageContent from "../components/layout/PageContent";
-import PageLayout from "../components/layout/PageLayout";
+import PageShell, { PageShellBody } from "../components/layout/PageShell";
 
 export default function StartGame() {
   const scrollRef = useRef<ScrollView>(null);
@@ -13,14 +12,12 @@ export default function StartGame() {
   };
 
   return (
-    <PageLayout ref={scrollRef}>
-      <PageContent className="px-4 pt-6">
-        <View className="w-full gap-4">
-          <PageSection className="items-center">
-            <StartGameCard onResetToTop={handleResetToTop} />
-          </PageSection>
-        </View>
-      </PageContent>
-    </PageLayout>
+    <PageShell ref={scrollRef}>
+      <PageShellBody className="max-w-5xl gap-4">
+        <PageSection className="items-center">
+          <StartGameCard onResetToTop={handleResetToTop} />
+        </PageSection>
+      </PageShellBody>
+    </PageShell>
   );
 }
