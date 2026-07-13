@@ -3,6 +3,7 @@ import PageShell, {
   PageShellBody,
   PageShellIntro,
 } from "../components/layout/PageShell";
+import matchhistory from "../content/matchhistory.json";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
 import type { FindSportMockData } from "../types/find-game";
@@ -13,12 +14,10 @@ const pastMatches = mapAttendingMatchesByTime(
 );
 
 export default function MatchHistory() {
+  const content = matchhistory.en;
   return (
     <PageShell>
-      <PageShellIntro
-        title="match history"
-        body="Your previous matches and results."
-      />
+      <PageShellIntro title={content.intro.title} body={content.intro.body} />
 
       <PageShellBody>
         <View className="w-full rounded-2xl border border-border bg-secondary p-5 gap-4">
