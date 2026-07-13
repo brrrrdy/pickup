@@ -37,7 +37,7 @@ const PageShell = forwardRef<ScrollView, PageShellProps>(function PageShell(
     >
       <View className={`w-full gap-6 bg-cream px-4 py-4 ${className}`.trim()}>
         <View
-          className={`w-full self-center max-w-5xl px-4 pt-6 ${contentClassName}`.trim()}
+          className={`w-full self-center max-w-5xl px-4 py-1 ${contentClassName}`.trim()}
         >
           {children}
         </View>
@@ -59,7 +59,7 @@ export function PageShellHeader({
 }: PageShellSectionProps) {
   return (
     <View
-      className={`w-full max-w-4xl self-center gap-2 ${className}`.trim()}
+      className={`w-full max-w-4xl self-center gap-4 ${className}`.trim()}
       style={style}
     >
       {children}
@@ -89,7 +89,7 @@ export function PageShellBody({
 }: PageShellSectionProps) {
   return (
     <View
-      className={`w-full max-w-4xl self-center gap-6 ${className}`.trim()}
+      className={`w-full max-w-4xl self-center mt-6 gap-6 ${className}`.trim()}
       style={style}
     >
       {children}
