@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Platform, UIManager, View } from "react-native";
 import profile from "../mockdata/profile.json";
+import profileContent from "../content/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";
 import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
 import gameTemplateData from "../mockdata/game-templates.json";
@@ -18,7 +19,8 @@ import type {
 } from "../types/find-game";
 
 export default function Profile() {
-  const content = profile;
+  const profileData = profile;
+  const content = profileContent.en;
   const [isAccountSectionOpen, setIsAccountSectionOpen] = useState(false);
   const [isCalendarSectionOpen, setIsCalendarSectionOpen] = useState(false);
   const [isTemplatesSectionOpen, setIsTemplatesSectionOpen] = useState(false);
@@ -33,12 +35,21 @@ export default function Profile() {
   }, []);
 
   const profileItems = [
-    { label: "email", value: content.email },
-    { label: "username", value: content.username },
-    { label: "website language", value: content.websiteLanguage },
-    { label: "appearance", value: content.appearance },
-    { label: "current timezone", value: content.currentTimezone },
-    { label: "location (country)", value: content.locationCountry },
+    { label: content.fields.email, value: profileData.email },
+    { label: content.fields.username, value: profileData.username },
+    {
+      label: content.fields.websiteLanguage,
+      value: profileData.websiteLanguage,
+    },
+    { label: content.fields.appearance, value: profileData.appearance },
+    {
+      label: content.fields.currentTimezone,
+      value: profileData.currentTimezone,
+    },
+    {
+      label: content.fields.locationCountry,
+      value: profileData.locationCountry,
+    },
   ];
 
   const upcomingMatches = mapAttendingMatchesByTime(
@@ -53,17 +64,14 @@ export default function Profile() {
 
   return (
     <PageShell>
-      <PageShellIntro
-        title="account details and preferences"
-        body="Manage your account preferences and favorite sports."
-      />
+      <PageShellIntro title={content.intro.title} body={content.intro.body} />
 
       <PageShellBody>
         <AccountDetailsSection
           isOpen={isAccountSectionOpen}
           onToggle={() => setIsAccountSectionOpen((prev) => !prev)}
           profileItems={profileItems}
-          favouriteSports={content.favouriteSports}
+          favouriteSports={profileData.favouriteSports}
         />
 
         <CalendarSection

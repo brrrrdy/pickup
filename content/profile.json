@@ -1,0 +1,16 @@
+{
+  "en": {
+    "intro": {
+      "title": "account details and preferences",
+      "body": "manage your account preferences and favorite sports."
+    },
+    "fields": {
+      "email": "email",
+      "username": "username",
+      "websiteLanguage": "website language",
+      "appearance": "appearance",
+      "currentTimezone": "current timezone",
+      "locationCountry": "location (country)"
+    }
+  }
+}
