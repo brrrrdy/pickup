@@ -11,17 +11,13 @@ export function useForm<T extends Record<string, unknown>>(initialValues: T) {
     [],
   );
 
-  const setFormValues = useCallback((nextValues: T) => {
-    setValues(nextValues);
-  }, []);
-
   const resetForm = useCallback(() => {
     setValues(initialValuesRef.current);
   }, []);
 
   return {
     values,
-    setValues: setFormValues,
+    setValues,
     setFieldValue,
     resetForm,
   };
