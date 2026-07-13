@@ -4,7 +4,6 @@ import { Platform } from "react-native";
 import { useContactForm } from "./hooks/use-contact-form";
 import contactFormContent from "../content/contactform.json";
 import FormField from "../components/common/FormField";
-import FormLabel from "../components/common/FormLabel";
 import PageShell, {
   PageShellBody,
   PageShellIntro,
@@ -17,11 +16,9 @@ export default function Contact() {
 
   const {
     values,
-    country,
     agreeToPolicies,
     canSubmit,
     setFieldValue,
-    setCountry,
     setAgreeToPolicies,
     handleSubmit,
   } = useContactForm({ content });
@@ -60,11 +57,11 @@ export default function Contact() {
         />
 
         <FormField
-          label={content.fields.company.label}
-          value={values.company}
-          onChangeText={(value) => setFieldValue("company", value)}
+          label={content.fields.organisation.label}
+          value={values.organisation}
+          onChangeText={(value) => setFieldValue("organisation", value)}
           autoComplete="organization"
-          placeholder={content.fields.company.placeholder}
+          placeholder={content.fields.organisation.placeholder}
         />
 
         <FormField
@@ -76,34 +73,6 @@ export default function Contact() {
           autoCapitalize="none"
           placeholder={content.fields.email.placeholder}
         />
-
-        <View className="w-full gap-2">
-          <FormLabel>{content.fields.phone.label}</FormLabel>
-
-          <View className="flex-row gap-2">
-            {content.countryOptions.map((option) => (
-              <Pressable
-                key={option}
-                onPress={() => setCountry(option)}
-                className={`rounded-full border px-4 py-2 ${country === option ? "border-purpleaccent bg-purpleaccent/25" : "border-defaulttext/20 bg-secondary/65"}`}
-              >
-                <Text className="text-sm font-semibold text-defaulttext">
-                  {option}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
-
-          <FormField
-            label=""
-            value={values.phone}
-            onChangeText={(value) => setFieldValue("phone", value)}
-            keyboardType="phone-pad"
-            autoComplete="tel"
-            placeholder={content.fields.phone.placeholder}
-            inputClassName="mt-1"
-          />
-        </View>
 
         <FormField
           label={content.fields.message.label}

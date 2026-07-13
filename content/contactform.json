@@ -8,30 +8,25 @@
     "fields": {
       "firstName": {
         "label": "First name",
-        "placeholder": "tom"
+        "placeholder": "please enter your first name"
       },
       "lastName": {
         "label": "Last name",
-        "placeholder": "alvarez"
+        "placeholder": "please enter your last name(s)"
       },
-      "company": {
-        "label": "Company",
-        "placeholder": "ACME COMPUTERS"
+      "organisation": {
+        "label": "Organisation",
+        "placeholder": "optional"
       },
       "email": {
         "label": "Email",
         "placeholder": "you@example.com"
       },
-      "phone": {
-        "label": "Phone number",
-        "placeholder": "600 000 000"
-      },
       "message": {
         "label": "Message",
-        "placeholder": "type your message here."
+        "placeholder": "type your message here"
       }
     },
-    "countryOptions": ["US", "CA", "EU"],
     "consent": {
       "prefix": "by selecting this, you agree to our ",
       "linkLabel": "privacy policy",
@@ -60,9 +55,8 @@
       "bodyLabels": {
         "firstName": "First name",
         "lastName": "Last name",
-        "company": "Company",
+        "organisation": "Organisation",
         "email": "Email",
-        "phone": "Phone",
         "message": "Message"
       }
     }
@@ -82,24 +76,19 @@
         "label": "Apellidos",
         "placeholder": "Rivera"
       },
-      "company": {
-        "label": "Empresa",
+      "organisation": {
+        "label": "Organizacion",
         "placeholder": "Pickup Labs"
       },
       "email": {
         "label": "Correo electronico",
         "placeholder": "tu@ejemplo.com"
       },
-      "phone": {
-        "label": "Telefono",
-        "placeholder": "123-456-7890"
-      },
       "message": {
         "label": "Mensaje",
         "placeholder": "Cuéntanos sobre tu equipo, objetivos y plazos."
       }
     },
-    "countryOptions": ["US", "CA", "EU"],
     "consent": {
       "label": "Al seleccionar esto, aceptas nuestra politica de privacidad."
     },
@@ -126,9 +115,8 @@
       "bodyLabels": {
         "firstName": "Nombre",
         "lastName": "Apellidos",
-        "company": "Empresa",
+        "organisation": "Organizacion",
         "email": "Correo",
-        "phone": "Telefono",
         "message": "Mensaje"
       }
     }
@@ -148,24 +136,19 @@
         "label": "Apelidos",
         "placeholder": "Rivera"
       },
-      "company": {
-        "label": "Empresa",
+      "organisation": {
+        "label": "Organizacion",
         "placeholder": "Pickup Labs"
       },
       "email": {
         "label": "Correo electronico",
         "placeholder": "ti@exemplo.com"
       },
-      "phone": {
-        "label": "Telefono",
-        "placeholder": "123-456-7890"
-      },
       "message": {
         "label": "Mensaxe",
         "placeholder": "Contanos sobre o teu equipo, obxectivos e prazos."
       }
     },
-    "countryOptions": ["US", "CA", "EU"],
     "consent": {
       "label": "Ao seleccionar isto, aceptas a nosa politica de privacidade."
     },
@@ -192,9 +175,8 @@
       "bodyLabels": {
         "firstName": "Nome",
         "lastName": "Apelidos",
-        "company": "Empresa",
+        "organisation": "Organizacion",
         "email": "Correo",
-        "phone": "Telefono",
         "message": "Mensaxe"
       }
     }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Alert, Linking } from "react-native";
 import { useForm } from "./use-form";
 import {
@@ -6,8 +6,9 @@ import {
   type ContactFormValues,
 } from "../../lib/contact/mail";
 
+// shape of the content object passed in from the page's JSON content file. Keeps all copy and config out of the hook logic.
+
 type ContactFormContent = {
-  countryOptions: string[];
   alerts: {
     privacy: { title: string; message: string };
     missingDetails: { title: string; message: string };
@@ -19,9 +20,8 @@ type ContactFormContent = {
     bodyLabels: {
       firstName: string;
       lastName: string;
-      company: string;
+      organisation: string;
       email: string;
-      phone: string;
       message: string;
     };
   };
@@ -31,32 +31,36 @@ type UseContactFormParams = {
   content: ContactFormContent;
 };
 
+// manages state and submission logic for the contact form. composes useForm for field state, adds country selection and policy consent, and handles mailto URL construction and opening.
+
 export function useContactForm({ content }: UseContactFormParams) {
+  // generic form state — field values, setter, and reset
+
   const formState = useForm<ContactFormValues>({
     firstName: "",
     lastName: "",
-    company: "",
+    organisation: "",
     email: "",
-    phone: "",
     message: "",
   });
 
-  const [country, setCountry] = useState(content.countryOptions[0] ?? "US");
+  // user must toggle this before submitting
+
   const [agreeToPolicies, setAgreeToPolicies] = useState(false);
 
-  const canSubmit = useMemo(
-    () =>
-      formState.values.firstName.trim().length > 0 &&
-      formState.values.email.trim().length > 0,
-    [formState.values.email, formState.values.firstName],
-  );
+  // form only submittable when the minimum required fields are filled
+
+  const canSubmit =
+    formState.values.firstName.trim().length > 0 &&
+    formState.values.email.trim().length > 0;
 
   const handleSubmit = async () => {
+    // block submission if the user hasn't accepted the privacy policy
     if (!agreeToPolicies) {
       Alert.alert(content.alerts.privacy.title, content.alerts.privacy.message);
       return;
     }
-
+    // block submission if required fields are empty
     if (!canSubmit) {
       Alert.alert(
         content.alerts.missingDetails.title,
@@ -64,14 +68,14 @@ export function useContactForm({ content }: UseContactFormParams) {
       );
       return;
     }
-
+    // build mailto URL from form values and content config
     const mailtoUrl = buildContactMailtoUrl({
       to: content.mail.to,
       defaultSubject: content.mail.defaultSubject,
       bodyLabels: content.mail.bodyLabels,
-      country,
       form: formState.values,
     });
+    // open user's mail client — show error alert if it fails
 
     try {
       await Linking.openURL(mailtoUrl);
@@ -87,10 +91,8 @@ export function useContactForm({ content }: UseContactFormParams) {
     values: formState.values,
     setFieldValue: formState.setFieldValue,
     resetForm: formState.resetForm,
-    country,
     agreeToPolicies,
     canSubmit,
-    setCountry,
     setAgreeToPolicies,
     handleSubmit,
   };
