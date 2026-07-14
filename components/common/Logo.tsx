@@ -7,7 +7,7 @@ interface LogoProps {
   height?: number;
 }
 
-export default function Logo({ width = 300, height = 180 }: LogoProps) {
+export default function Logo({ width = 300, height = 100 }: LogoProps) {
   return (
     <View style={{ width, height }}>
       <Image
