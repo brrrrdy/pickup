@@ -29,15 +29,17 @@ export default function AccountDetailsSection({
     >
       {profileItems.map((item) => (
         <View key={item.label} className="gap-1">
-          <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
+          <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
             {item.label}
           </Text>
-          <Text className="text-base text-defaulttext">{item.value}</Text>
+          <Text className="text-base font-sans text-defaulttext">
+            {item.value}
+          </Text>
         </View>
       ))}
 
       <View className="gap-2">
-        <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
+        <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
           favourite sports
         </Text>
         <View className="flex-row flex-wrap gap-2">
@@ -46,7 +48,9 @@ export default function AccountDetailsSection({
               key={sport}
               className="rounded-full border border-border bg-white px-3 py-1"
             >
-              <Text className="text-sm text-defaulttext">{sport}</Text>
+              <Text className="text-sm font-sans text-defaulttext">
+                {sport}
+              </Text>
             </View>
           ))}
         </View>

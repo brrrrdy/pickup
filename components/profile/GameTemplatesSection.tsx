@@ -27,23 +27,23 @@ export default function GameTemplatesSection({
             key={template.id}
             className="gap-1 rounded-xl border border-border bg-white px-3 py-3"
           >
-            <Text className="text-sm font-semibold text-defaulttext">
+            <Text className="text-sm font-semibold font-sans text-defaulttext">
               {template.templateName}
             </Text>
-            <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
+            <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
               {template.sportName}
             </Text>
-            <Text className="text-sm text-defaulttext/80">
+            <Text className="text-sm font-sans text-defaulttext/80">
               {template.location}
             </Text>
-            <Text className="text-sm text-defaulttext/80">
+            <Text className="text-sm font-sans text-defaulttext/80">
               Duration: {template.durationMinutes} min
             </Text>
-            <Text className="text-sm text-defaulttext/80">
+            <Text className="text-sm font-sans text-defaulttext/80">
               Players: {template.maxPlayers}
             </Text>
             {template.notes ? (
-              <Text className="text-sm text-defaulttext/70">
+              <Text className="text-sm font-sans text-defaulttext/70">
                 {template.notes}
               </Text>
             ) : null}

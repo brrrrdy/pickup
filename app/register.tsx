@@ -108,7 +108,7 @@ export default function Register() {
             }}
           />
           <View className="flex-1 flex-row flex-wrap items-center">
-            <Text className="text-sm text-defaulttext">
+            <Text className="text-sm font-sans text-defaulttext">
               {content.consent.prefix}
             </Text>
             <Pressable
@@ -116,11 +116,11 @@ export default function Register() {
               accessibilityRole="link"
               accessibilityLabel={content.consent.linkLabel}
             >
-              <Text className="text-sm text-defaulttext underline">
+              <Text className="text-sm font-sans text-defaulttext underline">
                 {content.consent.linkLabel}
               </Text>
             </Pressable>
-            <Text className="text-sm text-defaulttext">
+            <Text className="text-sm font-sans text-defaulttext">
               {content.consent.suffix}
             </Text>
           </View>
@@ -137,7 +137,7 @@ export default function Register() {
 
         <View className="items-center">
           <Link href="/login" asChild>
-            <Text className="text-sm text-defaulttext underline">
+            <Text className="text-sm font-sans text-defaulttext underline">
               {content.signInLink.label}
             </Text>
           </Link>

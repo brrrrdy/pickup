@@ -121,7 +121,7 @@ export default function CalendarField({
             accessibilityState={{ disabled: !canShowPreviousMonth }}
             accessibilityLabel="show previous month"
           >
-            <Text className="text-defaulttext">prev</Text>
+            <Text className="font-sans text-defaulttext">prev</Text>
           </Pressable>
 
           <Text className="text-base font-semibold font-sans text-defaulttext">
@@ -143,7 +143,7 @@ export default function CalendarField({
             accessibilityRole="button"
             accessibilityLabel="show next month"
           >
-            <Text className="text-defaulttext">next</Text>
+            <Text className="font-sans text-defaulttext">next</Text>
           </Pressable>
         </View>
 
@@ -185,7 +185,7 @@ export default function CalendarField({
                   accessibilityLabel={`select ${dayValue}`}
                 >
                   <Text
-                    className={`${
+                    className={`font-sans ${
                       isPastDate
                         ? "text-defaulttext/25"
                         : isOutsideMonth

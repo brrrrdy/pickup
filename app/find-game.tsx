@@ -67,7 +67,7 @@ export default function FindGame() {
                 />
               </>
             ) : (
-              <Text className="w-full max-w-4xl text-left text-sm text-defaulttext">
+              <Text className="w-full max-w-4xl text-left text-sm font-sans text-defaulttext">
                 {content.noOpenGamesInLocationPrefix} {location}.
               </Text>
             )}

@@ -27,19 +27,19 @@ export default function MatchHistory() {
                 key={match.id}
                 className="gap-1 rounded-xl border border-border bg-white px-3 py-3"
               >
-                <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/70">
+                <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
                   {match.sportName}
                 </Text>
-                <Text className="text-base text-defaulttext">
+                <Text className="text-base font-sans text-defaulttext">
                   {match.displayDateTime}
                 </Text>
-                <Text className="text-sm text-defaulttext/80">
+                <Text className="text-sm font-sans text-defaulttext/80">
                   {match.location}
                 </Text>
               </View>
             ))
           ) : (
-            <Text className="text-sm text-defaulttext/80">
+            <Text className="text-sm font-sans text-defaulttext/80">
               No attended match history yet.
             </Text>
           )}

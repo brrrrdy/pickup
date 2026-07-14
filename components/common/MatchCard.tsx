@@ -33,19 +33,19 @@ export default function MatchCard({ match, location }: MatchCardProps) {
       <Text className="text-base font-semibold font-sans text-defaulttext">
         {match.title}
       </Text>
-      <Text className="mt-1 text-base text-defaulttext">
+      <Text className="mt-1 text-base font-sans text-defaulttext">
         {copy.sportLabel}: {match.sportName}
       </Text>
-      <Text className="mt-1 text-base text-defaulttext">
+      <Text className="mt-1 text-base font-sans text-defaulttext">
         {copy.startsLabel}: {formatStartTime(match.startsAt)}
       </Text>
-      <Text className="mt-1 text-base text-defaulttext">
+      <Text className="mt-1 text-base font-sans text-defaulttext">
         {copy.durationLabel}:{" "}
         {match.durationMinutes > 0
           ? `${match.durationMinutes} min`
           : copy.durationTbd}
       </Text>
-      <Text className="mt-1 text-base text-defaulttext">
+      <Text className="mt-1 text-base font-sans text-defaulttext">
         {copy.locationLabel}: {location || copy.fallbackLocation}
       </Text>
 

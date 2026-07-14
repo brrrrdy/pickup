@@ -55,7 +55,7 @@ export default function Login() {
 
         <View className="items-center">
           <Link href="/register" asChild>
-            <Text className="text-sm text-defaulttext underline">
+            <Text className="text-sm font-sans text-defaulttext underline">
               {content.registerLink.label}
             </Text>
           </Link>

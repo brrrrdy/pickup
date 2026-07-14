@@ -29,10 +29,10 @@ export default function ProfileAccordionSection({
         accessibilityRole="button"
         accessibilityLabel={isOpen ? collapseLabel : expandLabel}
       >
-        <Text className="text-base font-semibold text-defaulttext">
+        <Text className="text-base font-semibold font-sans text-defaulttext">
           {title}
         </Text>
-        <Text className="text-xl text-defaulttext/70">
+        <Text className="text-xl font-sans text-defaulttext/70">
           {isOpen ? "▴" : "▾"}
         </Text>
       </Pressable>

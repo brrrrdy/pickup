@@ -85,7 +85,7 @@ function WheelColumn({
 }: WheelColumnProps) {
   return (
     <View className="flex-1 gap-2">
-      <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/60">
+      <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/60">
         {title}
       </Text>
 
@@ -105,7 +105,7 @@ function WheelColumn({
               }`}
             >
               <Text
-                className={`text-center ${
+                className={`text-center font-sans ${
                   isSelected
                     ? "font-semibold text-defaulttext"
                     : "text-defaulttext/80"
@@ -147,7 +147,7 @@ export default function TimeWheelField({
 
   return (
     <View className="w-full gap-2">
-      <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext/80">
+      <Text className="text-base font-semibold font-sans uppercase tracking-wide text-defaulttext/80">
         {label}
       </Text>
 
@@ -168,7 +168,7 @@ export default function TimeWheelField({
         </View>
       ) : (
         <View className="rounded-xl border border-border bg-white px-4 py-3">
-          <Text className="text-base text-defaulttext/70">
+          <Text className="text-base font-sans text-defaulttext/70">
             no future time slots are available for the selected date.
           </Text>
         </View>

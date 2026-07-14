@@ -136,7 +136,7 @@ export default function AppFooter() {
           ))}
         </View>
 
-        <Text className="text-center text-sm text-defaulttext/50">
+        <Text className="text-center text-sm font-sans text-defaulttext/50">
           © {year} {content.copyrightSuffix}
         </Text>
       </View>

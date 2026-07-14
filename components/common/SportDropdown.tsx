@@ -60,7 +60,9 @@ export default function SportDropdown({
                 accessibilityState={{ selected: isSelected }}
                 accessibilityLabel={`select ${option}`}
               >
-                <Text className="text-sm font-sans text-defaulttext">{option}</Text>
+                <Text className="text-sm font-sans text-defaulttext">
+                  {option}
+                </Text>
               </Pressable>
             );
           })}

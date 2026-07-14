@@ -47,7 +47,7 @@ export default function LocationSearchBar({
               accessibilityRole="button"
               accessibilityLabel={`${suggestionA11yPrefix} ${suggestion}`}
             >
-              <Text className="text-defaulttext">{suggestion}</Text>
+              <Text className="font-sans text-defaulttext">{suggestion}</Text>
             </Pressable>
           ))}
         </View>

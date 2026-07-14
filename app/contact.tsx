@@ -94,7 +94,7 @@ export default function Contact() {
             }}
           />
           <View className="flex-1 flex-row flex-wrap items-center">
-            <Text className="text-sm text-defaulttext">
+            <Text className="text-sm font-sans text-defaulttext">
               {content.consent.prefix}
             </Text>
             <Pressable
@@ -102,11 +102,11 @@ export default function Contact() {
               accessibilityRole="link"
               accessibilityLabel={content.consent.linkLabel}
             >
-              <Text className="text-sm text-defaulttext underline">
+              <Text className="text-sm font-sans text-defaulttext underline">
                 {content.consent.linkLabel}
               </Text>
             </Pressable>
-            <Text className="text-sm text-defaulttext">
+            <Text className="text-sm font-sans text-defaulttext">
               {content.consent.suffix}
             </Text>
           </View>
@@ -116,7 +116,7 @@ export default function Contact() {
           onPress={handleSubmit}
           className={`mt-2 rounded-lg px-4 py-3 ${canSubmit ? "bg-purpleaccent" : "bg-purpleaccent/45"}`}
         >
-          <Text className="text-center text-sm font-semibold text-defaulttext">
+          <Text className="text-center text-sm font-semibold font-sans text-defaulttext">
             {content.submit.label}
           </Text>
         </Pressable>
