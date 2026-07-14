@@ -4,7 +4,7 @@ import PageShell, {
   PageShellBody,
   PageShellIntro,
 } from "../components/layout/PageShell";
-import HandshakeIcon from "../assets/handshake_200dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.svg";
+import HandshakeIcon from "../assets/images/handshake_200dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.svg";
 
 export default function Manifesto() {
   const content = manifesto.en;

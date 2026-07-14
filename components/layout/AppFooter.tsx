@@ -1,8 +1,8 @@
 import { Link } from "expo-router";
 import { Linking, Pressable, Text, View } from "react-native";
 import appFooterContent from "../../content/appfooter.json";
-import GitHubIcon from "../../assets/github-original.svg";
-import LinkedInIcon from "../../assets/linkedin.svg";
+import GitHubIcon from "../../assets/images/github-original.svg";
+import LinkedInIcon from "../../assets/images/linkedin.svg";
 
 const socialIcons = {
   github: GitHubIcon,

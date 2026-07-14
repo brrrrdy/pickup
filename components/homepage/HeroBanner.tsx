@@ -1,5 +1,5 @@
 import { Image, type ImageSourcePropType, View } from "react-native";
-import PlaceholderBanner from "../../assets/placeholderbanner.webp";
+import PlaceholderBanner from "../../assets/images/placeholderbanner.webp";
 
 type HeroBannerProps = {
   imageSource?: ImageSourcePropType;

@@ -1,6 +1,6 @@
 import { Image, View } from "react-native";
 
-import PickupLogo from "../../assets/pickuplogo.webp";
+import PickupLogo from "../../assets/images/pickuplogo.webp";
 
 interface LogoProps {
   width?: number;
