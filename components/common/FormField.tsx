@@ -59,7 +59,7 @@ export default function FormField({
         multiline={multiline}
         numberOfLines={numberOfLines}
         textAlignVertical={multiline ? "top" : "center"}
-        className={`w-full rounded-lg border border-defaulttext/20 bg-secondary/65 px-4 py-3 text-base text-defaulttext ${multiline ? "min-h-32" : ""} ${inputClassName}`.trim()}
+        className={`w-full rounded-xl border border-border bg-white px-4 py-3 text-base text-defaulttext font-sans ${multiline ? "min-h-32" : ""} ${inputClassName}`.trim()}
       />
     </View>
   );

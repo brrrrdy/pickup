@@ -115,7 +115,9 @@ export default function NavMenuDrawer({
               accessibilityRole="button"
               accessibilityLabel="close navigation panel"
             >
-              <Text className="text-lg font-semibold text-white">X</Text>
+              <Text className="text-lg font-semibold font-sans text-white">
+                X
+              </Text>
             </Pressable>
 
             <View className="gap-1">
@@ -132,8 +134,8 @@ export default function NavMenuDrawer({
                       <Text
                         className={
                           isActive
-                            ? "text-lg font-semibold text-defaulttext"
-                            : "text-lg text-defaulttext"
+                            ? "text-lg font-semibold font-sans text-defaulttext"
+                            : "text-lg font-sans text-defaulttext"
                         }
                       >
                         {link.label}

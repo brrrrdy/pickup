@@ -18,7 +18,7 @@ export default function ResetButton({
       onPress={onPress}
       disabled={disabled}
       className="mt-3 border border-redaccent/50 bg-redaccent"
-      textClassName="text-base font-semibold text-secondary"
+      textClassName="text-base font-semibold font-sans text-secondary"
     />
   );
 }

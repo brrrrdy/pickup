@@ -12,7 +12,7 @@ export function PageHeader({
 }: TypographyProps) {
   return (
     <Text
-      className={`text-4xl font-bold text-defaulttext ${className}`.trim()}
+      className={`text-4xl font-bold font-display text-defaulttext ${className}`.trim()}
       {...props}
     >
       {children}
@@ -27,7 +27,7 @@ export function PageBody({
 }: TypographyProps) {
   return (
     <Text
-      className={`text-base text-defaulttext ${className}`.trim()}
+      className={`text-base font-sans text-defaulttext ${className}`.trim()}
       {...props}
     >
       {children}
@@ -41,7 +41,10 @@ export function PageSmall({
   ...props
 }: TypographyProps) {
   return (
-    <Text className={`text-sm text-defaulttext ${className}`.trim()} {...props}>
+    <Text
+      className={`text-sm font-sans text-defaulttext ${className}`.trim()}
+      {...props}
+    >
       {children}
     </Text>
   );

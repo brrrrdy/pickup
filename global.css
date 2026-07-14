@@ -32,6 +32,12 @@
   --color-defaulttext: #3d3c3c;
 }
 
+@theme {
+  --font-sans: "GoogleSans";
+  --font-display: "ContrailOne";
+  --font-alt: "ContrailOne";
+}
+
 * {
   border-color: transparent !important;
 }

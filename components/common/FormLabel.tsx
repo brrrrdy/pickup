@@ -12,7 +12,7 @@ export default function FormLabel({
 }: FormLabelProps) {
   return (
     <Text
-      className={`text-sm font-semibold uppercase tracking-wide text-defaulttext/85 ${className}`.trim()}
+      className={`text-base font-semibold font-sans uppercase tracking-wide text-defaulttext/85 ${className}`.trim()}
       {...props}
     >
       {children}

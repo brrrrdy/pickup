@@ -17,7 +17,7 @@ export default function FindGameButton({
       label={label}
       onPress={onPress}
       className={className}
-      textClassName="text-lg font-semibold text-defaulttext"
+      textClassName="text-lg font-semibold font-sans text-defaulttext"
     />
   );
 }

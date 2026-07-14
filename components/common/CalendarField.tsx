@@ -96,7 +96,7 @@ export default function CalendarField({
 
   return (
     <View className="w-full gap-2">
-      <Text className="text-sm font-semibold uppercase tracking-wide text-defaulttext/80">
+      <Text className="text-base font-semibold font-sans uppercase tracking-wide text-defaulttext/80">
         {label}
       </Text>
 
@@ -124,7 +124,7 @@ export default function CalendarField({
             <Text className="text-defaulttext">prev</Text>
           </Pressable>
 
-          <Text className="text-base font-semibold text-defaulttext">
+          <Text className="text-base font-semibold font-sans text-defaulttext">
             {MONTH_LABELS[visibleMonth.getMonth()]} {visibleMonth.getFullYear()}
           </Text>
 
@@ -150,7 +150,7 @@ export default function CalendarField({
         <View className="flex-row flex-wrap">
           {WEEKDAY_LABELS.map((labelText) => (
             <View key={labelText} className="mb-2 w-1/7 items-center">
-              <Text className="text-sm font-semibold uppercase text-defaulttext/60">
+              <Text className="text-sm font-semibold font-sans uppercase text-defaulttext/60">
                 {labelText}
               </Text>
             </View>

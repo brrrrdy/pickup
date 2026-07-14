@@ -30,7 +30,7 @@ export default function MatchCard({ match, location }: MatchCardProps) {
 
   return (
     <View className="w-full max-w-4xl rounded-xl border border-transparent bg-white p-4">
-      <Text className="text-base font-semibold text-defaulttext">
+      <Text className="text-base font-semibold font-sans text-defaulttext">
         {match.title}
       </Text>
       <Text className="mt-1 text-base text-defaulttext">

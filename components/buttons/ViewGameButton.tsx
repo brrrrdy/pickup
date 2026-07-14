@@ -18,7 +18,7 @@ export default function ViewGameButton({
       onPress={onPress}
       disabled={disabled}
       className="flex-1 border border-defaulttext/20 bg-purpleaccent px-4"
-      textClassName="text-base font-semibold text-secondary"
+      textClassName="text-base font-semibold font-sans text-secondary"
     />
   );
 }

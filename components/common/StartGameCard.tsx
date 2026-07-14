@@ -123,7 +123,7 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
       </View>
 
       {!isFormValid ? (
-        <Text className="mt-4 text-sm text-defaulttext/70">
+        <Text className="mt-4 text-sm font-sans text-defaulttext/70">
           {copy.invalidformmessage} {currentTimezone}.
         </Text>
       ) : null}

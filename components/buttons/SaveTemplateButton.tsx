@@ -18,7 +18,7 @@ export default function SaveTemplateButton({
       onPress={onPress}
       disabled={disabled}
       className="mt-3 border border-defaulttext/20 bg-orangeaccent"
-      textClassName="text-base font-semibold text-defaulttext"
+      textClassName="text-base font-semibold font-sans text-defaulttext"
     />
   );
 }

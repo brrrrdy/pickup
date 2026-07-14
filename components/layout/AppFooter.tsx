@@ -68,7 +68,7 @@ export default function AppFooter() {
             key={group.heading}
             className="min-w-35 flex-1 items-center gap-3"
           >
-            <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext">
+            <Text className="text-base font-semibold font-sans uppercase tracking-wide text-defaulttext">
               {group.heading}
             </Text>
 
@@ -81,7 +81,7 @@ export default function AppFooter() {
                       accessibilityLabel={label}
                       hitSlop={8}
                     >
-                      <Text className="text-sm text-defaulttext/75">
+                      <Text className="text-sm font-sans text-defaulttext/75">
                         {label}
                       </Text>
                     </Pressable>
@@ -93,7 +93,7 @@ export default function AppFooter() {
                       accessibilityLabel={label}
                       hitSlop={8}
                     >
-                      <Text className="text-sm text-defaulttext/75">
+                      <Text className="text-sm font-sans text-defaulttext/75">
                         {label}
                       </Text>
                     </Pressable>
@@ -106,7 +106,9 @@ export default function AppFooter() {
                     accessibilityLabel={label}
                     hitSlop={8}
                   >
-                    <Text className="text-sm text-defaulttext/75">{label}</Text>
+                    <Text className="text-sm font-sans text-defaulttext/75">
+                      {label}
+                    </Text>
                   </Pressable>
                 ),
               )}
@@ -116,7 +118,7 @@ export default function AppFooter() {
       </View>
 
       <View className="items-center gap-4">
-        <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext">
+        <Text className="text-base font-sans font-semibold uppercase tracking-wide text-defaulttext">
           {content.followHeading}
         </Text>
 

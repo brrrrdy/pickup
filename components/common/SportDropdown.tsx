@@ -25,7 +25,7 @@ export default function SportDropdown({
 }: SportDropdownProps) {
   return (
     <View className="w-full gap-2">
-      <Text className="text-base font-semibold uppercase tracking-wide text-defaulttext/80">
+      <Text className="text-base font-semibold font-sans uppercase tracking-wide text-defaulttext/80">
         {label}
       </Text>
 
@@ -40,7 +40,7 @@ export default function SportDropdown({
         accessibilityLabel={accessibilityLabel}
       >
         <Text
-          className={`text-sm ${selectedValue ? "text-defaulttext" : "text-defaulttext/60"}`}
+          className={`text-sm font-sans ${selectedValue ? "text-defaulttext" : "text-defaulttext/60"}`}
         >
           {selectedValue || placeholder}
         </Text>
@@ -60,7 +60,7 @@ export default function SportDropdown({
                 accessibilityState={{ selected: isSelected }}
                 accessibilityLabel={`select ${option}`}
               >
-                <Text className="text-sm text-defaulttext">{option}</Text>
+                <Text className="text-sm font-sans text-defaulttext">{option}</Text>
               </Pressable>
             );
           })}

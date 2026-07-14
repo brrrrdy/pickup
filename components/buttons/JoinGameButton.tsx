@@ -18,7 +18,7 @@ export default function JoinGameButton({
       onPress={onPress}
       disabled={disabled}
       className="flex-1 bg-greenaccent px-4"
-      textClassName="text-base font-semibold text-defaulttext"
+      textClassName="text-base font-semibold font-sans text-defaulttext"
     />
   );
 }

@@ -19,7 +19,7 @@ export default function LoginOrRegisterButton({
         accessibilityRole="link"
         accessibilityLabel={`go to ${actionButtonsContent.en.loginOrRegister}`}
       >
-        <Text className="text-base font-medium text-defaulttext">
+        <Text className="text-base font-medium font- text-defaulttext">
           {actionButtonsContent.en.loginOrRegister}
         </Text>
         <Svg width={28} height={28} viewBox="0 0 24 24">

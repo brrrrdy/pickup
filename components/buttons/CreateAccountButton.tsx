@@ -19,7 +19,7 @@ export default function CreateAccountButton({
       onPress={onPress}
       disabled={disabled}
       className={className}
-      textClassName="text-sm font-semibold text-defaulttext"
+      textClassName="text-sm font-semibold font-sans text-defaulttext"
     />
   );
 }
