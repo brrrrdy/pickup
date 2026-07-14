@@ -1,3 +1,5 @@
+// app/index.tsx
+
 import { View } from "react-native";
 import { useRouter } from "expo-router";
 import home from "../content/home.json";
@@ -22,7 +24,6 @@ export default function Landing() {
         <PageSmall className="w-full text-center mt-5">
           {content.heroSubText}
         </PageSmall>
-
         <View className="flex-row gap-4">
           <StartGameButton onPress={() => router.push("/start-game")} />
           <FindGameButton onPress={() => router.push("/find-game")} />
