@@ -1,4 +1,4 @@
-import about from "../content/about.json";
+import underTheHood from "../content/underthehood.json";
 import PageShell, {
   PageShellBody,
   PageShellIntro,
@@ -6,13 +6,13 @@ import PageShell, {
 import RichTextSection from "../components/layout/RichTextSection";
 import type { RichContentBlock } from "../types/rich-content";
 
-type AboutLocaleContent = {
+type UnderTheHoodLocaleContent = {
   header: string;
   blocks: RichContentBlock[];
 };
 
-export default function About() {
-  const content = about.en as AboutLocaleContent;
+export default function UnderTheHood() {
+  const content = underTheHood.en as UnderTheHoodLocaleContent;
 
   return (
     <PageShell>

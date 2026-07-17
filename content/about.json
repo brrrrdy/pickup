@@ -1,14 +1,47 @@
 {
   "en": {
     "header": "about pickup",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pickup is a cross-platform application that brings together users searching for casual, non-competitive 'pick-up' sports games hosted at both free-to-use public venues (public basketball courts, padel courts, parks, town squares) and privately owned venues (tennis clubs, venues that require an external booking, golf courses, 5-a-side pitches, private tennis and basketball courts etc)."
+      },
+      {
+        "type": "paragraph",
+        "text": "I am trying to appeal to people interested in picking up a sport for the first time. It can be difficult and even counter-productive to start in a more formal environment when trying something new. Sports clubs can be expensive and daunting to join, and private lessons are often prohibitably expensive as a first step. I want to remove that barrier, to encourage community outside the closed-garden of traditional sports clubs, and to make casually playing a sport a truly good experience."
+      },
+      {
+        "type": "paragraph",
+        "text": "Users will download and sign up to pickup. They will be able to create matches at a venue, specify values such as a start time and how long they would like to play for, skill level, languages spoken, age ranges, competitiveness, availability to teach players how to play, and then push the match 'live'. Other users on the app interested in playing casual sports will be presented with these matches and will subsequently register for a particular session."
+      },
+      {
+        "type": "paragraph",
+        "text": "Overall, the intention is to make playing organised sport a fun, safe, and seamless experience for everyone. It is not a place for competitiveness for the sake of competitiveness, but it is the place for a kickabout, a knock-up, or a pickup!"
+      },
+      {
+        "type": "indentedParagraph",
+        "text": "— tom alvarez, engineer of pickups",
+        "linkText": "tom alvarez",
+        "linkHref": "https://www.linkedin.com/in/tom-alvarez-ryan-80423951/"
+      }
+    ]
   },
   "es": {
     "header": "sobre pickup",
-    "body": "¡Hola y gracias por visitar mi página! Soy un desarrollador web afincado en Galicia que crea experiencias accesibles, bien pensadas y divertidas que a la gente le encanta usar. Me especializo en el ecosistema React y cuento con experiencia profesional en investigación y diseño de UX, formación y edición digital."
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "¡Hola y gracias por visitar mi página! Soy un desarrollador web afincado en Galicia que crea experiencias accesibles, bien pensadas y divertidas que a la gente le encanta usar. Me especializo en el ecosistema React y cuento con experiencia profesional en investigación y diseño de UX, formación y edición digital."
+      }
+    ]
   },
   "gz": {
     "header": "sobre pickup",
-    "body": "Ola, e grazas por pasar por aquí! Son un desenvolvedor web con base en Galiza que crea experiencias accesibles, coidadosas e xoguetonas que á xente lle encanta usar. Especialízome no ecosistema React, con experiencia profesional en investigación e deseño de UX, educación e publicación dixital."
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Ola, e grazas por pasar por aquí! Son un desenvolvedor web con base en Galiza que crea experiencias accesibles, coidadosas e xoguetonas que á xente lle encanta usar. Especialízome no ecosistema React, con experiencia profesional en investigación e deseño de UX, educación e publicación dixital."
+      }
+    ]
   }
 }

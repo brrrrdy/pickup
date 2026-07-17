@@ -1,0 +1,37 @@
+{
+  "en": {
+    "header": "under the hood",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pickup is being built as an Expo application with a React and TypeScript codebase, leaning on reusable page shells, shared typography primitives, and content-driven sections to keep the surface area small and consistent."
+      },
+      {
+        "type": "paragraph",
+        "text": "The current focus is on making it straightforward to browse or create casual games, while keeping forms, page sections, and navigation predictable across web and mobile. That means pushing repeated layout decisions into shared components and keeping page copy in JSON wherever the structure is stable."
+      },
+      {
+        "type": "paragraph",
+        "text": "As the product grows, the aim is to keep the internals legible: typed content models, thin route files, and reusable UI slices that can evolve without forcing every page to be rewritten."
+      }
+    ]
+  },
+  "es": {
+    "header": "entre bastidores",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pickup se está construyendo como una aplicación Expo con una base de código en React y TypeScript, apoyándose en contenedores de página reutilizables, primitivas tipográficas compartidas y secciones guiadas por contenido para mantener una superficie pequeña y coherente."
+      }
+    ]
+  },
+  "gz": {
+    "header": "por dentro",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pickup está a construírse como unha aplicación Expo cunha base de código en React e TypeScript, apoiándose en estruturas de páxina reutilizables, primitivas tipográficas compartidas e seccións guiadas por contido para manter unha superficie pequena e coherente."
+      }
+    ]
+  }
+}

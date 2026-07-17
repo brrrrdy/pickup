@@ -58,6 +58,28 @@ export default function AppFooter() {
     );
   };
 
+  const isFeedbackLabel = (label: string) => {
+    const normalized = label
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+    return normalized === "feedback" || normalized === "comentarios";
+  };
+
+  const isUnderTheHoodLabel = (label: string) => {
+    const normalized = label
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+    return (
+      normalized === "under the hood" ||
+      normalized === "entre bastidores" ||
+      normalized === "por dentro"
+    );
+  };
+
   const noop = () => {};
 
   return (
@@ -88,6 +110,30 @@ export default function AppFooter() {
                   </Link>
                 ) : isTermsOrPrivacyLabel(label) ? (
                   <Link key={label} href="/terms-and-privacy" asChild>
+                    <Pressable
+                      accessibilityRole="link"
+                      accessibilityLabel={label}
+                      hitSlop={8}
+                    >
+                      <Text className="text-sm font-sans text-defaulttext/75">
+                        {label}
+                      </Text>
+                    </Pressable>
+                  </Link>
+                ) : isFeedbackLabel(label) ? (
+                  <Link key={label} href="/contact" asChild>
+                    <Pressable
+                      accessibilityRole="link"
+                      accessibilityLabel={label}
+                      hitSlop={8}
+                    >
+                      <Text className="text-sm font-sans text-defaulttext/75">
+                        {label}
+                      </Text>
+                    </Pressable>
+                  </Link>
+                ) : isUnderTheHoodLabel(label) ? (
+                  <Link key={label} href="/under-the-hood" asChild>
                     <Pressable
                       accessibilityRole="link"
                       accessibilityLabel={label}

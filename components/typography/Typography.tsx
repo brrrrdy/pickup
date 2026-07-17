@@ -12,7 +12,7 @@ export function PageHeader({
 }: TypographyProps) {
   return (
     <Text
-      className={`text-4xl font-bold font-display text-defaulttext ${className}`.trim()}
+      className={`text-4xl font-bold font-display text-defaulttext pb-2 ${className}`.trim()}
       {...props}
     >
       {children}
