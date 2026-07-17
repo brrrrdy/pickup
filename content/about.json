@@ -23,6 +23,10 @@
         "text": "— tom alvarez, engineer of pickups",
         "linkText": "tom alvarez",
         "linkHref": "https://www.linkedin.com/in/tom-alvarez-ryan-80423951/"
+      },
+      {
+        "type": "indentedParagraph",
+        "text": "made with care in Monforte de Lemos, Galicia"
       }
     ]
   },
