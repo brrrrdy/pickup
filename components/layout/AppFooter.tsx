@@ -61,12 +61,12 @@ export default function AppFooter() {
   const noop = () => {};
 
   return (
-    <View className="w-full self-center max-w-3xl items-center gap-8">
-      <View className="w-full flex-row flex-wrap justify-center gap-x-8 gap-y-6">
+    <View className="w-full self-center max-w-3xl items-center gap-6">
+      <View className="w-full flex-row flex-wrap justify-center gap-x-6 gap-y-4">
         {content.linkGroups.map((group) => (
           <View
             key={group.heading}
-            className="min-w-35 flex-1 items-center gap-3"
+            className="min-w-35 flex-1 items-center gap-2"
           >
             <Text className="text-base font-semibold font-sans uppercase tracking-wide text-defaulttext">
               {group.heading}
@@ -117,7 +117,7 @@ export default function AppFooter() {
         ))}
       </View>
 
-      <View className="items-center gap-4">
+      <View className="items-center gap-3">
         <Text className="text-base font-sans font-semibold uppercase tracking-wide text-defaulttext">
           {content.followHeading}
         </Text>

@@ -3,6 +3,7 @@ import { type StyleProp, type ViewStyle, ScrollView, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 import AppFooter from "./AppFooter";
 import { PageBody, PageHeader } from "../typography/Typography";
+import { useWindowDimensions } from "react-native";
 
 const defaultVerticalGapClass = "gap-2.5";
 
@@ -31,16 +32,19 @@ const PageShell = forwardRef<ScrollView, PageShellProps>(function PageShell(
   { children, className = "", contentClassName = "", showFooter = true },
   ref,
 ) {
+  const { height } = useWindowDimensions();
+  const footerMinHeight = Math.round(height / 6);
+
   return (
     <ScrollView
       ref={ref}
       className="w-full flex-1"
-      contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }}
+      contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
       <View
         className={twMerge(
-          `w-full ${defaultVerticalGapClass} bg-cream px-4 py-4`,
+          `w-full flex-1 ${defaultVerticalGapClass} bg-cream px-4 py-4`,
           className,
         )}
       >
@@ -55,7 +59,10 @@ const PageShell = forwardRef<ScrollView, PageShellProps>(function PageShell(
       </View>
 
       {showFooter ? (
-        <View className="w-full border-t border-transparent bg-primary px-4 pt-4 pb-3">
+        <View
+          className="w-full border-t border-transparent bg-primary px-4 pt-3 pb-3"
+          style={{ minHeight: footerMinHeight, justifyContent: "center" }}
+        >
           <AppFooter />
         </View>
       ) : null}
