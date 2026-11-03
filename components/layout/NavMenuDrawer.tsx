@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import FindGameButton from "../buttons/FindGameButton";
+import LoginOrRegisterButton from "../buttons/LoginOrRegisterButton";
 import StartGameButton from "../buttons/StartGameButton";
 import { useUniwind } from "uniwind";
 import topNavContent from "../../content/topnav.json";
@@ -160,6 +161,10 @@ export default function NavMenuDrawer({
                   </Link>
                 );
               })}
+              <LoginOrRegisterButton
+                className="self-start rounded-lg px-3 py-3"
+                textClassName="text-lg font-sans text-defaulttext"
+              />
             </View>
 
             <View className="mt-6 items-start gap-3 border-t border-border pt-4">

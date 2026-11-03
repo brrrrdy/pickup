@@ -7,11 +7,13 @@ import { useThemeColor } from "../../lib/theme/use-theme-color";
 type LoginOrRegisterButtonProps = {
   href?: string;
   className?: string;
+  textClassName?: string;
 };
 
 export default function LoginOrRegisterButton({
   href = "/login",
   className = "",
+  textClassName = "text-base font-medium font-sans text-defaulttext",
 }: LoginOrRegisterButtonProps) {
   const iconColor = useThemeColor("defaulttext");
 
@@ -22,7 +24,7 @@ export default function LoginOrRegisterButton({
         accessibilityRole="link"
         accessibilityLabel={`go to ${actionButtonsContent.en.loginOrRegister}`}
       >
-        <Text className="text-base font-medium font-sans text-defaulttext">
+        <Text className={textClassName}>
           {actionButtonsContent.en.loginOrRegister}
         </Text>
         <Svg width={28} height={28} viewBox="0 0 24 24">
