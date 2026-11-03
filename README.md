@@ -11,3 +11,73 @@ Whilst free-to-use outdoor spaces such as municipal parks, recreation grounds, b
 Users will download and sign up to pickup. They will be able to create matches at a venue, specify values such as a start time and how long they would like to play for, skill level, languages spoken, age ranges, competitiveness, availability to teach players how to play, and then push the match 'live'. Other users on the app interested in playing casual sports will be presented with these matches and subsequently sign up for a particular session.
 
 My intention for security and privacy purposes is to handle all communication within the app itself. Users are free to share personal contact details but should be dissuaded from doing so as, in addition to security concerns, keeping these interactions in-house and within the 'ecosystem' promotes inclusion and new users hoping to join games.
+
+## Development
+
+### Setup
+
+```sh
+npm install
+```
+
+Create a `.env` file in the project root (it is git-ignored):
+
+```sh
+EXPO_PUBLIC_SUPABASE_URL=...
+EXPO_PUBLIC_SUPABASE_ANON_KEY=...
+```
+
+### Run the app
+
+| Command | What it does |
+| --- | --- |
+| `npm run web` | Start the dev server and open the web app |
+| `npm start` | Start the dev server (press `w` web, `i` iOS, `a` Android) |
+| `npm run ios` / `npm run android` | Start the dev server and open a simulator/emulator |
+| `npx expo start --web --localhost` | Dev server on this machine only |
+| `npx expo start --lan` | Dev server reachable from a phone on the same Wi-Fi |
+| `npx expo start -c` | Start with a cleared Metro cache (use after CSS/theme or config changes) |
+
+### Test and check
+
+| Command | What it does |
+| --- | --- |
+| `npm test` | Run the Jest test suite once |
+| `npm run test:watch` | Re-run tests as files change |
+| `npm run typecheck` | TypeScript check with no output files |
+| `npm run validate` | Typecheck + tests: run this before pushing |
+| `npx jest __tests__/lib/time.test.ts` | Run a single test file |
+
+Tests live in `__tests__/` (`lib/` for pure logic, `hooks/` for hooks); shared test data is in `__tests__/fixtures/`.
+
+### Build and deploy
+
+| Command | What it does |
+| --- | --- |
+| `npm run build:web` | Export the static web build to `dist/` |
+| `npx expo serve` | Serve the exported `dist/` locally to check the production build |
+| `git push origin main` | Deploys to Vercel. The Vercel build runs `npm run validate` first, so a failing test or type error stops the deploy |
+
+### Optional: check before every push
+
+To run `npm run validate` automatically on `git push`, create `.githooks/pre-push`:
+
+```sh
+#!/bin/sh
+npm run validate --silent
+```
+
+then run:
+
+```sh
+chmod +x .githooks/pre-push && git config core.hooksPath .githooks
+```
+
+Bypass it in an emergency with `git push --no-verify`.
+
+### Dependencies
+
+| Command | What it does |
+| --- | --- |
+| `npx expo install <package>` | Add a package at the version compatible with this Expo SDK |
+| `npx expo install --check` | Check installed packages match the Expo SDK |
