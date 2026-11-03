@@ -11,6 +11,10 @@
       "homeLink": "go to homepage",
       "openMenu": "open navigation menu",
       "closeMenu": "close navigation menu"
+    },
+    "darkMode": {
+      "label": "dark mode",
+      "accessibilityLabel": "toggle dark mode"
     }
   },
   "es": {
@@ -25,6 +29,10 @@
       "homeLink": "",
       "openMenu": "",
       "closeMenu": ""
+    },
+    "darkMode": {
+      "label": "",
+      "accessibilityLabel": ""
     }
   },
   "gz": {
@@ -39,6 +47,10 @@
       "homeLink": "",
       "openMenu": "",
       "closeMenu": ""
+    },
+    "darkMode": {
+      "label": "",
+      "accessibilityLabel": ""
     }
   }
 }

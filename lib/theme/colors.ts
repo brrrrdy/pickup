@@ -7,4 +7,8 @@ export const THEME_COLORS = {
   orangeaccent: "#ff9500",
   redaccent: "#fd3c59",
   defaulttext: "#3d3c3c",
+  surface: "#ffffff",
+  ink: "#3d3c3c",
+  paper: "#f0e1c9",
+  brand: "#e29159",
 } as const;

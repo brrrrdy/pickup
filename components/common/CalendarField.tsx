@@ -100,7 +100,7 @@ export default function CalendarField({
         {label}
       </Text>
 
-      <View className="rounded-xl border border-border bg-white p-4">
+      <View className="rounded-xl border border-border bg-surface p-4">
         <View className="mb-4 flex-row items-center justify-between">
           <Pressable
             onPress={() =>
@@ -115,7 +115,7 @@ export default function CalendarField({
             }
             disabled={!canShowPreviousMonth}
             className={`rounded-lg border border-border px-3 py-2 ${
-              canShowPreviousMonth ? "bg-white" : "bg-white/60"
+              canShowPreviousMonth ? "bg-surface" : "bg-surface/60"
             }`}
             accessibilityRole="button"
             accessibilityState={{ disabled: !canShowPreviousMonth }}
@@ -172,10 +172,10 @@ export default function CalendarField({
                     isSelected
                       ? "bg-greenaccent"
                       : isPastDate
-                        ? "bg-white/40"
+                        ? "bg-surface/40"
                         : isMinDate
-                          ? "border-greenaccent bg-white"
-                          : "bg-white"
+                          ? "border-greenaccent bg-surface"
+                          : "bg-surface"
                   }`}
                   accessibilityRole="button"
                   accessibilityState={{

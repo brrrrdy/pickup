@@ -9,10 +9,13 @@ import PageShell, {
   PageShellIntro,
 } from "../components/layout/PageShell";
 import { THEME_COLORS } from "../lib/theme/colors";
+import { useThemeColor } from "../lib/theme/use-theme-color";
 
 export default function Contact() {
   const router = useRouter();
   const content = contactFormContent.en;
+  const switchThumbColor = useThemeColor("cream");
+  const switchTrackColor = useThemeColor("defaulttext");
 
   const {
     values,
@@ -87,9 +90,9 @@ export default function Contact() {
           <Switch
             value={agreeToPolicies}
             onValueChange={setAgreeToPolicies}
-            thumbColor={THEME_COLORS.cream}
+            thumbColor={switchThumbColor}
             trackColor={{
-              false: THEME_COLORS.defaulttext,
+              false: switchTrackColor,
               true: THEME_COLORS.purpleaccent,
             }}
           />

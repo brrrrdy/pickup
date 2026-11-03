@@ -25,7 +25,7 @@ export default function MatchHistory() {
             pastMatches.map((match) => (
               <View
                 key={match.id}
-                className="gap-1 rounded-xl border border-border bg-white px-3 py-3"
+                className="gap-1 rounded-xl border border-border bg-surface px-3 py-3"
               >
                 <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
                   {match.sportName}

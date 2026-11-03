@@ -38,7 +38,7 @@ export default function LocationSearchBar({
       />
 
       {showSuggestions && suggestions.length > 0 ? (
-        <View className="overflow-hidden rounded-xl border border-border bg-white">
+        <View className="overflow-hidden rounded-xl border border-border bg-surface">
           {suggestions.map((suggestion) => (
             <Pressable
               key={suggestion}

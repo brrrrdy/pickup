@@ -29,7 +29,7 @@ export default function MatchCard({ match, location }: MatchCardProps) {
   const copy = matchCardContent.en;
 
   return (
-    <View className="w-full max-w-4xl rounded-xl border border-transparent bg-white p-4">
+    <View className="w-full max-w-4xl rounded-xl border border-transparent bg-surface p-4">
       <Text className="text-base font-semibold font-sans text-defaulttext">
         {match.title}
       </Text>

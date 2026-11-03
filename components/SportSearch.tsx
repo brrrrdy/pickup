@@ -60,7 +60,7 @@ export default function SportSearch({
         onPress={onShowGames}
         disabled={!canShowGames}
         className={`mt-4 ${canShowGames ? "bg-greenaccent" : "bg-secondary"}`}
-        textClassName="text-base font-semibold text-defaulttext"
+        textClassName={`text-base font-semibold ${canShowGames ? "text-ink" : "text-defaulttext"}`}
       />
     </View>
   );

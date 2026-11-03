@@ -33,7 +33,7 @@ export default function SportDropdown({
         onPress={onToggle}
         disabled={disabled}
         className={`w-full rounded-xl border border-border px-4 py-3 ${
-          disabled ? "bg-white/60" : "bg-white"
+          disabled ? "bg-surface/60" : "bg-surface"
         }`}
         accessibilityRole="button"
         accessibilityState={{ expanded: isOpen, disabled }}
@@ -47,7 +47,7 @@ export default function SportDropdown({
       </Pressable>
 
       {isOpen && !disabled ? (
-        <View className="overflow-hidden rounded-xl border border-border bg-white">
+        <View className="overflow-hidden rounded-xl border border-border bg-surface">
           {options.map((option) => {
             const isSelected = option === selectedValue;
 
@@ -55,7 +55,7 @@ export default function SportDropdown({
               <Pressable
                 key={option}
                 onPress={() => onSelect(option)}
-                className={`px-4 py-3 ${isSelected ? "bg-greenaccent" : "bg-white"}`}
+                className={`px-4 py-3 ${isSelected ? "bg-greenaccent" : "bg-surface"}`}
                 accessibilityRole="button"
                 accessibilityState={{ selected: isSelected }}
                 accessibilityLabel={`select ${option}`}

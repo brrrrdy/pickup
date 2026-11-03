@@ -20,7 +20,7 @@ export default function StartGameButton({
       onPress={onPress}
       disabled={disabled}
       className={className}
-      textClassName="text-lg font-semibold font-sans text-primary"
+      textClassName="text-lg font-semibold font-sans text-brand"
     />
   );
 }

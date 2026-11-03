@@ -46,7 +46,7 @@ export default function AccountDetailsSection({
           {favouriteSports.map((sport) => (
             <View
               key={sport}
-              className="rounded-full border border-border bg-white px-3 py-1"
+              className="rounded-full border border-border bg-surface px-3 py-1"
             >
               <Text className="text-sm font-sans text-defaulttext">
                 {sport}

@@ -7,12 +7,15 @@ import PageShell, {
   PageShellIntro,
 } from "../components/layout/PageShell";
 import { THEME_COLORS } from "../lib/theme/colors";
+import { useThemeColor } from "../lib/theme/use-theme-color";
 import registerFormContent from "../content/registerform.json";
 import { useRegisterForm } from "./hooks/use-register-form";
 
 export default function Register() {
   const router = useRouter();
   const content = registerFormContent.en;
+  const switchThumbColor = useThemeColor("cream");
+  const switchTrackColor = useThemeColor("defaulttext");
 
   const {
     values,
@@ -101,9 +104,9 @@ export default function Register() {
           <Switch
             value={agreeToPolicies}
             onValueChange={setAgreeToPolicies}
-            thumbColor={THEME_COLORS.cream}
+            thumbColor={switchThumbColor}
             trackColor={{
-              false: THEME_COLORS.defaulttext,
+              false: switchTrackColor,
               true: THEME_COLORS.purpleaccent,
             }}
           />

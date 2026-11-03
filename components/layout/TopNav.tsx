@@ -5,6 +5,7 @@ import Svg, { Rect } from "react-native-svg";
 import topNavContent from "../../content/topnav.json";
 import LoginOrRegisterButton from "../buttons/LoginOrRegisterButton";
 import Logo from "../common/Logo";
+import { useThemeColor } from "../../lib/theme/use-theme-color";
 import NavMenuDrawer, { type NavLink } from "./NavMenuDrawer";
 
 const content = topNavContent.en;
@@ -18,6 +19,7 @@ export default function TopNav() {
   const pathname = usePathname();
   const showNavLogo = pathname !== "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const iconColor = useThemeColor("defaulttext");
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -60,7 +62,7 @@ export default function TopNav() {
                 width="20"
                 height="2"
                 rx="1"
-                fill="currentColor"
+                fill={iconColor}
               />
               <Rect
                 x="2"
@@ -68,7 +70,7 @@ export default function TopNav() {
                 width="20"
                 height="2"
                 rx="1"
-                fill="currentColor"
+                fill={iconColor}
               />
               <Rect
                 x="2"
@@ -76,7 +78,7 @@ export default function TopNav() {
                 width="20"
                 height="2"
                 rx="1"
-                fill="currentColor"
+                fill={iconColor}
               />
             </Svg>
           </Pressable>

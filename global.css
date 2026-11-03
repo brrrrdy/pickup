@@ -21,15 +21,36 @@
   --radius-lg: 12px;
   --radius-xl: 16px;
 
-  /* Add custom colors */
-  --color-primary: #e29159;
-  --color-secondary: #f0e1c9;
-  --color-cream: #f7eed5;
+  /* Static colors (same in light and dark) */
   --color-purpleaccent: #714cdc;
   --color-greenaccent: #00c8b3;
   --color-orangeaccent: #ff9500;
   --color-redaccent: #fd3c59;
-  --color-defaulttext: #3d3c3c;
+  /* Fixed text/brand colors for use on accent backgrounds */
+  --color-ink: #3d3c3c;
+  --color-paper: #f0e1c9;
+  --color-brand: #e29159;
+}
+
+/* Themed colors, toggled with Uniwind.setTheme("light" | "dark") */
+@layer theme {
+  :root {
+    @variant light {
+      --color-primary: #e29159;
+      --color-secondary: #f0e1c9;
+      --color-cream: #f7eed5;
+      --color-surface: #ffffff;
+      --color-defaulttext: #3d3c3c;
+    }
+
+    @variant dark {
+      --color-primary: #0f1629;
+      --color-secondary: #141c33;
+      --color-cream: #0b1020;
+      --color-surface: #1c2540;
+      --color-defaulttext: #ede4d3;
+    }
+  }
 }
 
 @theme {

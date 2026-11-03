@@ -4,12 +4,20 @@ import {
   Animated,
   Modal,
   Pressable,
+  Switch,
   Text,
   useWindowDimensions,
   View,
 } from "react-native";
 import FindGameButton from "../buttons/FindGameButton";
 import StartGameButton from "../buttons/StartGameButton";
+import { useUniwind } from "uniwind";
+import topNavContent from "../../content/topnav.json";
+import { setThemePreference } from "../../lib/theme/theme-preference";
+import { THEME_COLORS } from "../../lib/theme/colors";
+import { useThemeColor } from "../../lib/theme/use-theme-color";
+
+const darkModeContent = topNavContent.en.darkMode;
 
 export type NavLink = {
   href: "/" | "/about" | "/contact" | "/profile" | "/find-game" | "/manifesto";
@@ -34,6 +42,10 @@ export default function NavMenuDrawer({
   const panelWidth = Math.min(width * 0.8, 360);
   const progress = useRef(new Animated.Value(0)).current;
   const [isVisible, setIsVisible] = useState(isOpen);
+  const { theme } = useUniwind();
+  const isDarkMode = theme === "dark";
+  const switchThumbColor = useThemeColor("cream");
+  const switchTrackColor = useThemeColor("defaulttext");
 
   const overlayOpacity = useMemo(
     () =>
@@ -111,7 +123,7 @@ export default function NavMenuDrawer({
           >
             <Pressable
               onPress={onClose}
-              className="absolute -left-11 top-4 z-10 h-9 w-9 items-center justify-center rounded-full bg-defaulttext"
+              className="absolute -left-11 top-4 z-10 h-9 w-9 items-center justify-center rounded-full bg-ink"
               accessibilityRole="button"
               accessibilityLabel="close navigation panel"
             >
@@ -160,6 +172,24 @@ export default function NavMenuDrawer({
                   onClose();
                   router.push("/find-game");
                 }}
+              />
+            </View>
+
+            <View className="mt-6 flex-row items-center justify-between border-t border-border px-3 pt-4">
+              <Text className="text-lg font-sans text-defaulttext">
+                {darkModeContent.label}
+              </Text>
+              <Switch
+                value={isDarkMode}
+                onValueChange={(value) =>
+                  setThemePreference(value ? "dark" : "light")
+                }
+                thumbColor={switchThumbColor}
+                trackColor={{
+                  false: switchTrackColor,
+                  true: THEME_COLORS.purpleaccent,
+                }}
+                accessibilityLabel={darkModeContent.accessibilityLabel}
               />
             </View>
           </Animated.View>

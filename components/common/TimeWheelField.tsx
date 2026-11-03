@@ -90,7 +90,7 @@ function WheelColumn({
       </Text>
 
       <ScrollView
-        className="h-40 rounded-xl border border-border bg-white"
+        className="h-40 rounded-xl border border-border bg-surface"
         showsVerticalScrollIndicator={false}
       >
         {options.map((option) => {
@@ -101,7 +101,7 @@ function WheelColumn({
               key={option}
               onPress={() => onSelect(option)}
               className={`px-4 py-3 ${
-                isSelected ? "bg-greenaccent" : "bg-white"
+                isSelected ? "bg-greenaccent" : "bg-surface"
               }`}
             >
               <Text
@@ -167,7 +167,7 @@ export default function TimeWheelField({
           />
         </View>
       ) : (
-        <View className="rounded-xl border border-border bg-white px-4 py-3">
+        <View className="rounded-xl border border-border bg-surface px-4 py-3">
           <Text className="text-base font-sans text-defaulttext/70">
             no future time slots are available for the selected date.
           </Text>

@@ -1,6 +1,6 @@
 import { TextInput, type TextInputProps, View } from "react-native";
 import FormLabel from "./FormLabel";
-import { THEME_COLORS } from "../../lib/theme/colors";
+import { useThemeColor } from "../../lib/theme/use-theme-color";
 
 type FormFieldProps = {
   label?: string;
@@ -39,6 +39,8 @@ export default function FormField({
   onBlur,
   returnKeyType,
 }: FormFieldProps) {
+  const placeholderColor = useThemeColor("defaulttext");
+
   return (
     <View className="w-full gap-2">
       {label ? <FormLabel>{label}</FormLabel> : null}
@@ -55,11 +57,11 @@ export default function FormField({
         onBlur={onBlur}
         returnKeyType={returnKeyType}
         placeholder={placeholder}
-        placeholderTextColor={THEME_COLORS.defaulttext}
+        placeholderTextColor={placeholderColor}
         multiline={multiline}
         numberOfLines={numberOfLines}
         textAlignVertical={multiline ? "top" : "center"}
-        className={`w-full rounded-xl border border-border bg-white px-4 py-3 text-base text-defaulttext font-sans ${multiline ? "min-h-32" : ""} ${inputClassName}`.trim()}
+        className={`w-full rounded-xl border border-border bg-surface px-4 py-3 text-base text-defaulttext font-sans ${multiline ? "min-h-32" : ""} ${inputClassName}`.trim()}
       />
     </View>
   );
