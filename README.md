@@ -58,22 +58,15 @@ Tests live in `__tests__/` (`lib/` for pure logic, `hooks/` for hooks); shared t
 | `npx expo serve` | Serve the exported `dist/` locally to check the production build |
 | `git push origin main` | Deploys to Vercel. The Vercel build runs `npm run validate` first, so a failing test or type error stops the deploy |
 
-### Optional: check before every push
+### Pre-commit check
 
-To run `npm run validate` automatically on `git push`, create `.githooks/pre-push`:
-
-```sh
-#!/bin/sh
-npm run validate --silent
-```
-
-then run:
+`.githooks/pre-commit` runs `npm run validate` and blocks the commit if the typecheck or tests fail. Enable it once per clone:
 
 ```sh
-chmod +x .githooks/pre-push && git config core.hooksPath .githooks
+git config core.hooksPath .githooks
 ```
 
-Bypass it in an emergency with `git push --no-verify`.
+Bypass it in an emergency with `git commit --no-verify`.
 
 ### Dependencies
 

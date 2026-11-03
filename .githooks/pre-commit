@@ -1,0 +1,3 @@
+#!/bin/sh
+# Block the commit if the typecheck or Jest suite fails (same check as the Vercel build).
+npm run validate --silent
