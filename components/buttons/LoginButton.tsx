@@ -19,7 +19,7 @@ export default function LoginButton({
       onPress={onPress}
       disabled={disabled}
       className={className}
-      textClassName="text-sm font-semibold font-sans text-ink"
+      textClassName="text-sm font-semibold font-sans text-defaulttext"
     />
   );
 }
