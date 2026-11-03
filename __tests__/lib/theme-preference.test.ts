@@ -32,7 +32,13 @@ describe("theme preference", () => {
     jest.clearAllMocks();
   });
 
-  it("defaults to light when nothing is saved", async () => {
+  it("follows the device setting when nothing is saved", async () => {
+    await expect(loadThemePreference()).resolves.toBe("system");
+  });
+
+  it("uses a saved light preference over the device setting", async () => {
+    setThemePreference("light");
+
     await expect(loadThemePreference()).resolves.toBe("light");
   });
 
@@ -43,11 +49,11 @@ describe("theme preference", () => {
     await expect(loadThemePreference()).resolves.toBe("dark");
   });
 
-  it("falls back to light when storage fails", async () => {
+  it("follows the device setting when storage fails", async () => {
     jest
       .mocked(AsyncStorage.getItem)
       .mockRejectedValueOnce(new Error("storage unavailable"));
 
-    await expect(loadThemePreference()).resolves.toBe("light");
+    await expect(loadThemePreference()).resolves.toBe("system");
   });
 });

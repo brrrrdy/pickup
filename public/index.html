@@ -35,6 +35,13 @@
       body {
         background-color: var(--color-primary, #e29159);
       }
+      /* Before the app loads, match the OS dark mode so there is no orange flash. */
+      @media (prefers-color-scheme: dark) {
+        html,
+        body {
+          background-color: var(--color-primary, #0f1629);
+        }
+      }
     </style>
   </head>
 
