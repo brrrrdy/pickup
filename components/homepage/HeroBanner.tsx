@@ -1,14 +1,13 @@
 import { Image, type ImageSourcePropType, View } from "react-native";
-import PlaceholderBanner from "../../assets/images/placeholderbanner.webp";
 
 type HeroBannerProps = {
-  imageSource?: ImageSourcePropType;
+  imageSource: ImageSourcePropType;
   accessibilityLabel?: string;
   resizeMode?: "cover" | "contain";
 };
 
 export default function HeroBanner({
-  imageSource = PlaceholderBanner,
+  imageSource,
   accessibilityLabel = "Hero banner",
   resizeMode = "contain",
 }: HeroBannerProps) {
