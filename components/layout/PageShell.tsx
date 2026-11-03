@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import AppFooter from "./AppFooter";
 import { PageBody, PageHeader } from "../typography/Typography";
 import { useWindowDimensions } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const defaultVerticalGapClass = "gap-2.5";
 
@@ -34,6 +35,7 @@ const PageShell = forwardRef<ScrollView, PageShellProps>(function PageShell(
 ) {
   const { height } = useWindowDimensions();
   const footerMinHeight = Math.round(height / 6);
+  const insets = useSafeAreaInsets();
 
   return (
     <ScrollView
@@ -60,8 +62,12 @@ const PageShell = forwardRef<ScrollView, PageShellProps>(function PageShell(
 
       {showFooter ? (
         <View
-          className="w-full border-t border-transparent bg-primary px-4 pt-3 pb-3"
-          style={{ minHeight: footerMinHeight, justifyContent: "center" }}
+          className="w-full border-t border-transparent bg-primary px-4 pt-3"
+          style={{
+            minHeight: footerMinHeight,
+            justifyContent: "center",
+            paddingBottom: 12 + insets.bottom,
+          }}
         >
           <AppFooter />
         </View>
