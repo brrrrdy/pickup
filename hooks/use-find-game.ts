@@ -97,7 +97,7 @@ export default function useFindGame() {
             .filter((cityName) => cityName.length > 0),
         ),
       ),
-    [findSportData],
+    [],
   );
 
   // console.timeEnd("filter array");
@@ -140,7 +140,7 @@ export default function useFindGame() {
   const availableSports = useMemo(
     () =>
       hasLocation ? mapSportsWithOpenGameCounts(findSportData, location) : [],
-    [findSportData, hasLocation, location],
+    [hasLocation, location],
   );
 
   // subset of availableSports the user has selected
@@ -234,7 +234,7 @@ export default function useFindGame() {
             location,
           )
         : [],
-    [findSportData, hasLocation, location, selectedSports],
+    [hasLocation, location, selectedSports],
   );
 
   return {

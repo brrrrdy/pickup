@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import StartGameCard from "../components/common/StartGameCard";
 import PageSection from "../components/layout/PageSection";
 import PageShell, { PageShellBody } from "../components/layout/PageShell";

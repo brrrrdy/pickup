@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
-import { Slot } from "expo-router";
-import { SplashScreen } from "expo-router";
+import { Slot, SplashScreen } from "expo-router";
 import "../global.css";
 import AppShell from "../components/layout/AppShell";
 import { Uniwind } from "uniwind";

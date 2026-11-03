@@ -29,38 +29,38 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=...
 
 ### Run the app
 
-| Command | What it does |
-| --- | --- |
-| `npm run web` | Start the dev server and open the web app |
-| `npm start` | Start the dev server (press `w` web, `i` iOS, `a` Android) |
-| `npm run ios` / `npm run android` | Start the dev server and open a simulator/emulator |
-| `npx expo start --web --localhost` | Dev server on this machine only |
-| `npx expo start --lan` | Dev server reachable from a phone on the same Wi-Fi |
-| `npx expo start -c` | Start with a cleared Metro cache (use after CSS/theme or config changes) |
+| Command                            | What it does                                                             |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| `npm run web`                      | Start the dev server and open the web app                                |
+| `npm start`                        | Start the dev server (press `w` web, `i` iOS, `a` Android)               |
+| `npm run ios` / `npm run android`  | Start the dev server and open a simulator/emulator                       |
+| `npx expo start --web --localhost` | Dev server on this machine only                                          |
+| `npx expo start --lan`             | Dev server reachable from a phone on the same Wi-Fi                      |
+| `npx expo start -c`                | Start with a cleared Metro cache (use after CSS/theme or config changes) |
 
 ### Test and check
 
-| Command | What it does |
-| --- | --- |
-| `npm test` | Run the Jest test suite once |
-| `npm run test:watch` | Re-run tests as files change |
-| `npm run typecheck` | TypeScript check with no output files |
-| `npm run validate` | Typecheck + tests: run this before pushing |
-| `npx jest __tests__/lib/time.test.ts` | Run a single test file |
+| Command                               | What it does                                      |
+| ------------------------------------- | ------------------------------------------------- |
+| `npm test`                            | Run the Jest test suite once                      |
+| `npm run test:watch`                  | Re-run tests as files change                      |
+| `npm run typecheck`                   | TypeScript check with no output files             |
+| `npm run validate`                    | Typecheck + lint + tests: run this before pushing |
+| `npx jest __tests__/lib/time.test.ts` | Run a single test file                            |
 
 Tests live in `__tests__/` (`lib/` for pure logic, `hooks/` for hooks); shared test data is in `__tests__/fixtures/`.
 
 ### Build and deploy
 
-| Command | What it does |
-| --- | --- |
-| `npm run build:web` | Export the static web build to `dist/` |
-| `npx expo serve` | Serve the exported `dist/` locally to check the production build |
-| `git push origin main` | Deploys to Vercel. The Vercel build runs `npm run validate` first, so a failing test or type error stops the deploy |
+| Command                | What it does                                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run build:web`    | Export the static web build to `dist/`                                                                                          |
+| `npx expo serve`       | Serve the exported `dist/` locally to check the production build                                                                |
+| `git push origin main` | Deploys to Vercel. The Vercel build runs `npm run validate` first, so a failing test, type error or lint error stops the deploy |
 
 ### Pre-commit check
 
-`.githooks/pre-commit` runs `npm run validate` and blocks the commit if the typecheck or tests fail. Enable it once per clone:
+`.githooks/pre-commit` runs `npm run validate` and blocks the commit if the typecheck, lint or tests fail. Enable it once per clone:
 
 ```sh
 git config core.hooksPath .githooks
@@ -70,7 +70,7 @@ Bypass it in an emergency with `git commit --no-verify`.
 
 ### Dependencies
 
-| Command | What it does |
-| --- | --- |
+| Command                      | What it does                                               |
+| ---------------------------- | ---------------------------------------------------------- |
 | `npx expo install <package>` | Add a package at the version compatible with this Expo SDK |
-| `npx expo install --check` | Check installed packages match the Expo SDK |
+| `npx expo install --check`   | Check installed packages match the Expo SDK                |

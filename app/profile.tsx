@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Platform, UIManager, View } from "react-native";
+import { Platform, UIManager } from "react-native";
 import profile from "../mockdata/profile.json";
 import profileContent from "../content/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";

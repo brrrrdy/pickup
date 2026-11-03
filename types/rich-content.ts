@@ -22,8 +22,6 @@ export type RichImageBlock = {
 };
 
 export type RichContentBlock =
-  | RichParagraphBlock
-  | RichIndentedParagraphBlock
-  | RichImageBlock;
+  RichParagraphBlock | RichIndentedParagraphBlock | RichImageBlock;
 
 export type RichContentImageMap = Record<string, ImageSourcePropType>;

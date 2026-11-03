@@ -1,5 +1,5 @@
 import { Link, usePathname } from "expo-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pressable, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import topNavContent from "../../content/topnav.json";
@@ -18,12 +18,14 @@ const navLinks: readonly NavLink[] = content.navLinks.map((link) => ({
 export default function TopNav() {
   const pathname = usePathname();
   const showNavLogo = pathname !== "/";
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // The menu is open only for the page it was opened on, so navigating closes it.
+  const [menuOpenOnPath, setMenuOpenOnPath] = useState<string | null>(null);
+  const isMenuOpen = menuOpenOnPath === pathname;
+  const setIsMenuOpen = (update: boolean | ((prev: boolean) => boolean)) => {
+    const next = typeof update === "function" ? update(isMenuOpen) : update;
+    setMenuOpenOnPath(next ? pathname : null);
+  };
   const iconColor = useThemeColor("defaulttext");
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
 
   return (
     <View className="relative z-50 w-full py-4" style={{ elevation: 20 }}>
@@ -56,14 +58,7 @@ export default function TopNav() {
             }
           >
             <Svg width={28} height={28} viewBox="0 0 24 24">
-              <Rect
-                x="2"
-                y="5"
-                width="20"
-                height="2"
-                rx="1"
-                fill={iconColor}
-              />
+              <Rect x="2" y="5" width="20" height="2" rx="1" fill={iconColor} />
               <Rect
                 x="2"
                 y="11"

@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import PageShell, { PageShellBody } from "../components/layout/PageShell";
 import PageSection from "../components/layout/PageSection";
 import findAGameContent from "../content/findagame.json";

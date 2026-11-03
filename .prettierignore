@@ -1,0 +1,4 @@
+dist
+.expo
+package-lock.json
+uniwind-types.d.ts

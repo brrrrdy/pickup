@@ -1,5 +1,5 @@
 import { Link, useRouter } from "expo-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Animated,
   Modal,
@@ -40,8 +40,13 @@ export default function NavMenuDrawer({
   const router = useRouter();
   const { width } = useWindowDimensions();
   const panelWidth = Math.min(width * 0.8, 360);
-  const progress = useRef(new Animated.Value(0)).current;
+  const [progress] = useState(() => new Animated.Value(0));
   const [isVisible, setIsVisible] = useState(isOpen);
+
+  // Mount the modal as soon as it opens; it unmounts after the close animation.
+  if (isOpen && !isVisible) {
+    setIsVisible(true);
+  }
   const { theme } = useUniwind();
   const isDarkMode = theme === "dark";
   const switchThumbColor = useThemeColor("cream");
@@ -67,7 +72,6 @@ export default function NavMenuDrawer({
 
   useEffect(() => {
     if (isOpen) {
-      setIsVisible(true);
       Animated.timing(progress, {
         toValue: 1,
         duration: 220,

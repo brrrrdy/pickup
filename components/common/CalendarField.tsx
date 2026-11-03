@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
 type CalendarFieldProps = {
@@ -74,13 +74,14 @@ export default function CalendarField({
     return getMonthStart(new Date());
   });
 
-  useEffect(() => {
-    if (!selectedDate) {
-      return;
+  // Jump to the selected date's month whenever the selection changes.
+  const [prevSelectedDate, setPrevSelectedDate] = useState(selectedDate);
+  if (selectedDate !== prevSelectedDate) {
+    setPrevSelectedDate(selectedDate);
+    if (selectedDate) {
+      setVisibleMonth(getMonthStart(new Date(`${selectedDate}T00:00:00`)));
     }
-
-    setVisibleMonth(getMonthStart(new Date(`${selectedDate}T00:00:00`)));
-  }, [selectedDate]);
+  }
 
   const calendarDays = useMemo(
     () => buildCalendarDays(visibleMonth),

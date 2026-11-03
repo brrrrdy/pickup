@@ -53,7 +53,9 @@ describe("useRegisterForm", () => {
     const { result } = await renderHook(() => useRegisterForm({ content }));
 
     await fillValidForm(result.current);
-    await act(() => result.current.setFieldValue("confirmPassword", "different1"));
+    await act(() =>
+      result.current.setFieldValue("confirmPassword", "different1"),
+    );
     await act(() => result.current.setAgreeToPolicies(true));
 
     expect(result.current.canSubmit).toBe(false);

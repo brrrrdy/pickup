@@ -1,6 +1,5 @@
 import { useRouter } from "expo-router";
-import { Pressable, Switch, Text, View } from "react-native";
-import { Platform } from "react-native";
+import { Pressable, Switch, Text, View, Platform } from "react-native";
 import { useContactForm } from "../hooks/use-contact-form";
 import contactFormContent from "../content/contactform.json";
 import FormField from "../components/common/FormField";

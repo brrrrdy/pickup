@@ -35,9 +35,7 @@ describe("mapGameTemplatesForProfile", () => {
   it("falls back when the sport or venue is unknown", () => {
     const [display] = mapGameTemplatesForProfile(
       {
-        templates: [
-          { ...template, sport_id: "missing", venue_id: "missing" },
-        ],
+        templates: [{ ...template, sport_id: "missing", venue_id: "missing" }],
       },
       sportData,
     );
