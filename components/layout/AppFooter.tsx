@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Linking, Pressable, Text, View } from "react-native";
+import { Linking, Platform, Pressable, Text, View } from "react-native";
 import appFooterContent from "../../content/appfooter.json";
 import GitHubIcon from "../../assets/images/github-original.svg";
 import LinkedInIcon from "../../assets/images/linkedin.svg";
@@ -8,6 +8,19 @@ const socialIcons = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
 } as const;
+
+// On web, render a real <a> that opens in a new tab; on iOS/Android, open the
+// link in the browser.
+function externalLinkProps(url: string) {
+  if (Platform.OS === "web") {
+    return {
+      href: url,
+      hrefAttrs: { target: "_blank", rel: "noopener noreferrer" },
+    } as object;
+  }
+
+  return { onPress: () => Linking.openURL(url) };
+}
 
 export default function AppFooter() {
   const year = new Date().getFullYear();
@@ -183,7 +196,15 @@ export default function AppFooter() {
         </View>
 
         <Text className="text-center text-sm font-sans text-defaulttext/50">
-          © {year} {content.copyrightSuffix}
+          © {year}{" "}
+          <Text
+            className="underline"
+            accessibilityRole="link"
+            {...externalLinkProps(content.copyrightHref)}
+          >
+            {content.copyrightName}
+          </Text>
+          {content.copyrightSuffix}
         </Text>
       </View>
     </View>

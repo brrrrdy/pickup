@@ -22,7 +22,9 @@
       }
     ],
     "socialAccessibilityLabelPrefix": "open",
-    "copyrightSuffix": "tom alvarez. all rights reserved."
+    "copyrightName": "tom alvarez",
+    "copyrightHref": "https://tomalvarez.xyz/",
+    "copyrightSuffix": ". all rights reserved."
   },
   "es": {
     "linkGroups": [
@@ -47,7 +49,9 @@
       }
     ],
     "socialAccessibilityLabelPrefix": "abrir",
-    "copyrightSuffix": "tom alvarez. todos los derechos reservados."
+    "copyrightName": "tom alvarez",
+    "copyrightHref": "https://tomalvarez.xyz/",
+    "copyrightSuffix": ". todos los derechos reservados."
   },
   "gz": {
     "linkGroups": [
@@ -72,6 +76,8 @@
       }
     ],
     "socialAccessibilityLabelPrefix": "abrir",
-    "copyrightSuffix": "tom alvarez. todos os dereitos reservados."
+    "copyrightName": "tom alvarez",
+    "copyrightHref": "https://tomalvarez.xyz/",
+    "copyrightSuffix": ". todos os dereitos reservados."
   }
 }
