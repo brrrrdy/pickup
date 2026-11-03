@@ -7,7 +7,7 @@ import PageShell, {
   PageShellIntro,
 } from "../components/layout/PageShell";
 import loginFormContent from "../content/loginform.json";
-import { useLoginForm } from "./hooks/use-login-form";
+import { useLoginForm } from "../hooks/use-login-form";
 
 export default function Login() {
   const content = loginFormContent.en;

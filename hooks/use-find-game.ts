@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
-import type { FindSportMockData, MatchCardData } from "../../types/find-game";
-import mockFindSportData from "../../mockdata/find-sport-data.json";
+import type { FindSportMockData, MatchCardData } from "../types/find-game";
+import mockFindSportData from "../mockdata/find-sport-data.json";
 import {
   mapOpenMatchesForSelectedSports,
   mapSportsWithOpenGameCounts,
-} from "../../lib/mappers/mapFindSports";
+} from "../lib/mappers/mapFindSports";
 
 const findSportData = mockFindSportData as FindSportMockData;
 

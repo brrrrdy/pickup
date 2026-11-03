@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import type { FindSportMockData } from "../../types/find-game";
+import type { FindSportMockData } from "../types/find-game";
 import {
   getSportIdByName,
   getValidCities,
   getValidSports,
   getValidVenues,
-} from "../../lib/start-game/options";
+} from "../lib/start-game/options";
 import {
   getMinimumTimeSlot,
   getValidTimeOptions,
-} from "../../lib/start-game/time";
+} from "../lib/start-game/time";
 import { useForm } from "./use-form";
 
 type StartGameFormValues = {

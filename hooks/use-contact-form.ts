@@ -4,7 +4,7 @@ import { useForm } from "./use-form";
 import {
   buildContactMailtoUrl,
   type ContactFormValues,
-} from "../../lib/contact/mail";
+} from "../lib/contact/mail";
 
 // shape of the content object passed in from the page's JSON content file. Keeps all copy and config out of the hook logic.
 

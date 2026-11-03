@@ -9,7 +9,7 @@ import PageShell, {
 import { THEME_COLORS } from "../lib/theme/colors";
 import { useThemeColor } from "../lib/theme/use-theme-color";
 import registerFormContent from "../content/registerform.json";
-import { useRegisterForm } from "./hooks/use-register-form";
+import { useRegisterForm } from "../hooks/use-register-form";
 
 export default function Register() {
   const router = useRouter();

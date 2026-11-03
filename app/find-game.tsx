@@ -5,7 +5,7 @@ import findAGameContent from "../content/findagame.json";
 import LocationSearchBar from "../components/LocationSearchBar";
 import SportSearch from "../components/SportSearch";
 import MatchList from "../components/common/MatchList";
-import useFindGame from "./hooks/use-find-game";
+import useFindGame from "../hooks/use-find-game";
 
 export default function FindGame() {
   const content = findAGameContent.en;

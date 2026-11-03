@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { useStartGameForm } from "../../app/hooks/use-start-game-form";
+import { useStartGameForm } from "../../hooks/use-start-game-form";
 import type { FindSportMockData } from "../../types/find-game";
 import startGameCardContent from "../../content/startgamecard.json";
 import profile from "../../mockdata/profile.json";
