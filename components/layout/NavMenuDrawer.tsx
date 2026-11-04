@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Animated,
   Modal,
+  Platform,
   Pressable,
   Switch,
   Text,
@@ -76,7 +77,7 @@ export default function NavMenuDrawer({
       Animated.timing(progress, {
         toValue: 1,
         duration: 220,
-        useNativeDriver: true,
+        useNativeDriver: Platform.OS !== "web",
       }).start();
       return;
     }
@@ -84,7 +85,7 @@ export default function NavMenuDrawer({
     Animated.timing(progress, {
       toValue: 0,
       duration: 180,
-      useNativeDriver: true,
+      useNativeDriver: Platform.OS !== "web",
     }).start(({ finished }) => {
       if (finished) {
         setIsVisible(false);

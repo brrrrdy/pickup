@@ -153,14 +153,14 @@ export default function SportCarousel() {
             toValue: target,
             duration: reduceMotion ? 0 : SLIDE_MS,
             easing: Easing.inOut(Easing.cubic),
-            useNativeDriver: true,
+            useNativeDriver: Platform.OS !== "web",
           }),
           ...(reduceMotion ? [] : SHUDDER_STEPS).map((offset) =>
             Animated.timing(position, {
               toValue: target + offset,
               duration: SHUDDER_STEP_MS,
               easing: Easing.linear,
-              useNativeDriver: true,
+              useNativeDriver: Platform.OS !== "web",
             }),
           ),
         ];
