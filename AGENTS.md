@@ -22,7 +22,7 @@ Run `npm run validate` (typecheck + lint + Jest) before every commit, and do not
 # Supabase
 
 - Local stack (Docker): `npx supabase start` runs Postgres, Auth, REST and Studio at http://127.0.0.1:54323. Stop it with `npx supabase stop`.
-- `.env.local` points the app and scripts at the local stack, overriding `.env`. Delete it to use the hosted project. Restart `npm start` after changing env files.
+- `.env.local` points the app and the local user scripts at the local stack, overriding `.env` (see `.env.local.example`). To run the app against the hosted project, rename it (e.g. `.env.local.off`); the local user scripts need it, so put it back afterwards. Restart `npm start` after changing env files.
 - `npx supabase db reset` re-applies all migrations locally and wipes local data (re-run `npm run users:invite` afterwards).
 - `npm run db:types` regenerates `lib/database.types.ts` from the local database after a schema change.
 - Schema lives in `supabase/migrations/`. Never edit an applied migration; add a new one with `npx supabase migration new <name>`.
@@ -31,8 +31,8 @@ Run `npm run validate` (typecheck + lint + Jest) before every commit, and do not
 - Accounts are invite-only. Public signup is off in the dashboard (Authentication → Sign In / Providers) and in `supabase/config.toml`.
 - `npm run users:invite`: create the accounts listed in `supabase/invites.json` (git-ignored; copy `invites.example.json`).
 - `npm run users:delete -- <email>`: delete an account. Its matches are kept, with the user shown as deleted.
-- Both scripts need `SUPABASE_SECRET_KEY` in `.env.local` (git-ignored; see `.env.local.example`). Never give it an `EXPO_PUBLIC_` prefix or import it from app code.
-- Hosted accounts: `npm run users:invite:hosted` (reads `supabase/invites.hosted.json`) and `npm run users:delete:hosted -- <email>`. They use `.env` for the URL and the hosted secret key from `.env.hosted.local` (git-ignored; see `.env.hosted.local.example`). Each script prints its target first.
+- The local scripts need the local stack's `SUPABASE_SECRET_KEY` (from `npx supabase status`) in `.env.local`. Never put the hosted secret key there, never give it an `EXPO_PUBLIC_` prefix, and never import it from app code.
+- Hosted accounts: `npm run users:invite:hosted` (reads `supabase/invites.hosted.json`) and `npm run users:delete:hosted -- <email>`. They use `.env` for the URL and the hosted secret key from `.env.hosted.local` (git-ignored; see `.env.hosted.local.example`). They ask for confirmation before changing anything. Local scripts refuse a hosted URL and `:hosted` scripts refuse a local one.
 - Hosted CLI commands need `--remote` (e.g. `npx supabase db push --remote`); without it they target the local stack.
 - Venues are never deleted. Retire one with `update public.venues set is_active = false where name = '...'`.
 - A venue only appears in Start Game for the sports listed for it in `public.venue_sports`. Add those rows with every new venue or sport (in a migration).

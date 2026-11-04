@@ -1,17 +1,25 @@
 // Delete a user's account by email.
-// Usage: npm run users:delete -- someone@example.com          (local)
-//        npm run users:delete:hosted -- someone@example.com   (hosted)
+// Usage: npm run users:delete -- someone@example.com          (local stack)
+//        npm run users:delete:hosted -- someone@example.com   (hosted project; asks first)
 // Their profile and templates are removed; matches they hosted or played in are kept
 // with the user link set to NULL (shown as "Deleted user").
-import { createAdminClient, findUserByEmail } from "./admin-client.mjs";
+import {
+  createAdminClient,
+  findUserByEmail,
+  isHostedRun,
+  scriptArgs,
+} from "./admin-client.mjs";
 
-const email = process.argv[2];
+const email = scriptArgs[0];
 if (!email) {
-  console.error("Usage: npm run users:delete -- <email>");
+  console.error(
+    `Usage: npm run ${isHostedRun ? "users:delete:hosted" : "users:delete"} -- <email>`,
+  );
   process.exit(1);
 }
 
-const supabase = createAdminClient();
+console.log(`Deleting ${email}.`);
+const supabase = await createAdminClient();
 const user = await findUserByEmail(supabase, email);
 
 if (!user) {

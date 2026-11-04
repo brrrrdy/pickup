@@ -1,12 +1,14 @@
-// Create invited users from supabase/invites.json.
-// Usage: npm run users:invite          (local, supabase/invites.json)
-//        npm run users:invite:hosted   (hosted, supabase/invites.hosted.json)
+// Create invited users from a JSON list.
+// Usage: npm run users:invite          (local stack, supabase/invites.json)
+//        npm run users:invite:hosted   (hosted project, supabase/invites.hosted.json; asks first)
 // Each entry: { "email": "...", "password": "...", "display_name": "..." }
 // A profile row is created automatically by the on_auth_user_created trigger.
 import { readFileSync } from "node:fs";
-import { createAdminClient } from "./admin-client.mjs";
+import { createAdminClient, isHostedRun } from "./admin-client.mjs";
 
-const INVITES_PATH = process.argv[2] ?? "supabase/invites.json";
+const INVITES_PATH = isHostedRun
+  ? "supabase/invites.hosted.json"
+  : "supabase/invites.json";
 
 let invites;
 try {
@@ -17,7 +19,8 @@ try {
   process.exit(1);
 }
 
-const supabase = createAdminClient();
+console.log(`${invites.length} account(s) listed in ${INVITES_PATH}.`);
+const supabase = await createAdminClient();
 const summary = { created: 0, skipped: 0, failed: 0 };
 
 for (const invite of invites) {
