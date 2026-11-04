@@ -1,3 +1,4 @@
+import RequireAuth from "../lib/auth/RequireAuth";
 import { useEffect, useState } from "react";
 import { Platform, UIManager } from "react-native";
 import profile from "../mockdata/profile.json";
@@ -18,7 +19,7 @@ import type {
   GameTemplateMockData,
 } from "../types/find-game";
 
-export default function Profile() {
+function Profile() {
   const profileData = profile;
   const content = profileContent.en;
   const [isAccountSectionOpen, setIsAccountSectionOpen] = useState(false);
@@ -87,5 +88,13 @@ export default function Profile() {
         />
       </PageShellBody>
     </PageShell>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <RequireAuth>
+      <Profile />
+    </RequireAuth>
   );
 }

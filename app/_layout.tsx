@@ -4,16 +4,26 @@ import { Slot, SplashScreen } from "expo-router";
 import "../global.css";
 import AppShell from "../components/layout/AppShell";
 import { Uniwind } from "uniwind";
+import { AuthProvider, useAuth } from "../lib/auth/AuthProvider";
 import { loadThemePreference } from "../lib/theme/theme-preference";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <RootContent />
+    </AuthProvider>
+  );
+}
+
+function RootContent() {
   const [loaded, error] = useFonts({
     GoogleSans: require("../assets/fonts/GoogleSans.ttf"),
     ContrailOne: require("../assets/fonts/ContrailOne-Regular.ttf"),
   });
   const [themeReady, setThemeReady] = useState(false);
+  const { isLoading: authLoading } = useAuth();
 
   useEffect(() => {
     loadThemePreference().then((theme) => {
@@ -22,13 +32,15 @@ export default function RootLayout() {
     });
   }, []);
 
+  const ready = (loaded || error) && themeReady && !authLoading;
+
   useEffect(() => {
-    if ((loaded || error) && themeReady) {
+    if (ready) {
       SplashScreen.hideAsync();
     }
-  }, [loaded, error, themeReady]);
+  }, [ready]);
 
-  if ((!loaded && !error) || !themeReady) {
+  if (!ready) {
     return null;
   }
 

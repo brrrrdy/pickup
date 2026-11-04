@@ -2,12 +2,12 @@
   "en": {
     "hero": {
       "heading": "welcome back",
-      "subheading": "sign in to jump back into games, messages, and your player profile."
+      "subheading": "sign in with the email and password you were given to jump back into games."
     },
     "fields": {
-      "username": {
-        "label": "Username",
-        "placeholder": "enter your username..."
+      "email": {
+        "label": "Email",
+        "placeholder": "enter your email..."
       },
       "password": {
         "label": "Password",
@@ -15,23 +15,27 @@
       }
     },
     "submit": {
-      "label": "log in"
+      "label": "log in",
+      "submittingLabel": "logging in..."
     },
-    "registerLink": {
-      "label": "not signed up, register here"
+    "inviteOnly": {
+      "label": "pickup is invite-only during alpha"
     },
-    "alerts": {
+    "errors": {
       "missingDetails": {
-        "title": "Missing details",
-        "message": "please enter your username and password."
+        "message": "please enter your email and password."
+      },
+      "invalidEmail": {
+        "message": "please enter a valid email address."
       },
       "shortPassword": {
-        "title": "Password too short",
-        "message": "please use at least 8 characters for your password."
+        "message": "passwords are at least 8 characters."
       },
-      "success": {
-        "title": "Signed in",
-        "message": "you are now signed in."
+      "invalidCredentials": {
+        "message": "that email and password don't match. check them and try again."
+      },
+      "signInFailed": {
+        "message": "we couldn't sign you in right now. please try again in a moment."
       }
     }
   },

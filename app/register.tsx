@@ -11,7 +11,34 @@ import { useThemeColor } from "../lib/theme/use-theme-color";
 import registerFormContent from "../content/registerform.json";
 import { useRegisterForm } from "../hooks/use-register-form";
 
-export default function Register() {
+// Public signup is off during the invite-only alpha (also disabled in Supabase).
+// Flip this once self-signup is wired up to supabase.auth.signUp.
+const SIGNUP_ENABLED = false;
+
+export default function RegisterPage() {
+  return SIGNUP_ENABLED ? <Register /> : <InviteOnlyNotice />;
+}
+
+function InviteOnlyNotice() {
+  const content = registerFormContent.en.inviteOnly;
+
+  return (
+    <PageShell contentClassName="relative overflow-hidden pb-3">
+      <PageShellIntro title={content.heading} body={content.body} />
+      <PageShellBody className="gap-5">
+        <View className="items-center">
+          <Link href="/login" asChild>
+            <Text className="text-sm font-sans text-defaulttext underline">
+              {content.signInLink}
+            </Text>
+          </Link>
+        </View>
+      </PageShellBody>
+    </PageShell>
+  );
+}
+
+function Register() {
   const router = useRouter();
   const content = registerFormContent.en;
   const switchThumbColor = useThemeColor("cream");

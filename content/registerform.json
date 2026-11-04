@@ -62,6 +62,11 @@
         "title": "Account ready",
         "message": "your account details were captured successfully."
       }
+    },
+    "inviteOnly": {
+      "heading": "invite only for now",
+      "body": "pickup is in alpha, so accounts are created by invitation. if you've been invited, sign in with the email and password you were given.",
+      "signInLink": "go to log in"
     }
   },
   "es": {},

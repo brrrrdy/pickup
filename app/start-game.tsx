@@ -1,10 +1,11 @@
+import RequireAuth from "../lib/auth/RequireAuth";
 import { useRef } from "react";
 import { ScrollView } from "react-native";
 import StartGameCard from "../components/common/StartGameCard";
 import PageSection from "../components/layout/PageSection";
 import PageShell, { PageShellBody } from "../components/layout/PageShell";
 
-export default function StartGame() {
+function StartGame() {
   const scrollRef = useRef<ScrollView>(null);
 
   const handleResetToTop = () => {
@@ -19,5 +20,13 @@ export default function StartGame() {
         </PageSection>
       </PageShellBody>
     </PageShell>
+  );
+}
+
+export default function StartGamePage() {
+  return (
+    <RequireAuth>
+      <StartGame />
+    </RequireAuth>
   );
 }

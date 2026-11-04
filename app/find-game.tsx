@@ -1,3 +1,4 @@
+import RequireAuth from "../lib/auth/RequireAuth";
 import { Text } from "react-native";
 import PageShell, { PageShellBody } from "../components/layout/PageShell";
 import PageSection from "../components/layout/PageSection";
@@ -7,7 +8,7 @@ import SportSearch from "../components/SportSearch";
 import MatchList from "../components/common/MatchList";
 import useFindGame from "../hooks/use-find-game";
 
-export default function FindGame() {
+function FindGame() {
   const content = findAGameContent.en;
 
   const {
@@ -75,5 +76,13 @@ export default function FindGame() {
         ) : null}
       </PageShellBody>
     </PageShell>
+  );
+}
+
+export default function FindGamePage() {
+  return (
+    <RequireAuth>
+      <FindGame />
+    </RequireAuth>
   );
 }

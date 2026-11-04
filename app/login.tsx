@@ -1,4 +1,3 @@
-import { Link } from "expo-router";
 import { Text, View } from "react-native";
 import LoginButton from "../components/buttons/LoginButton";
 import FormField from "../components/common/FormField";
@@ -12,9 +11,14 @@ import { useLoginForm } from "../hooks/use-login-form";
 export default function Login() {
   const content = loginFormContent.en;
 
-  const { values, canSubmit, setFieldValue, handleSubmit } = useLoginForm({
-    content,
-  });
+  const {
+    values,
+    canSubmit,
+    isSubmitting,
+    error,
+    setFieldValue,
+    handleSubmit,
+  } = useLoginForm({ content });
 
   return (
     <PageShell contentClassName="relative overflow-hidden pb-3">
@@ -25,12 +29,14 @@ export default function Login() {
 
       <PageShellBody className="gap-5">
         <FormField
-          label={content.fields.username.label}
-          value={values.username}
-          onChangeText={(value) => setFieldValue("username", value)}
+          label={content.fields.email.label}
+          value={values.email}
+          onChangeText={(value) => setFieldValue("email", value)}
+          autoComplete="email"
+          keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={content.fields.username.placeholder}
+          placeholder={content.fields.email.placeholder}
         />
 
         <FormField
@@ -42,11 +48,26 @@ export default function Login() {
           autoCorrect={false}
           secureTextEntry
           placeholder={content.fields.password.placeholder}
+          returnKeyType="go"
+          onSubmitEditing={() => {
+            if (canSubmit) handleSubmit();
+          }}
         />
+
+        {error ? (
+          <Text
+            accessibilityRole="alert"
+            className="text-sm font-sans text-redaccent"
+          >
+            {error}
+          </Text>
+        ) : null}
 
         <LoginButton
           onPress={handleSubmit}
-          label={content.submit.label}
+          label={
+            isSubmitting ? content.submit.submittingLabel : content.submit.label
+          }
           disabled={!canSubmit}
           className={
             canSubmit ? "mt-2 bg-purpleaccent" : "mt-2 bg-purpleaccent/45"
@@ -54,11 +75,9 @@ export default function Login() {
         />
 
         <View className="items-center">
-          <Link href="/register" asChild>
-            <Text className="text-sm font-sans text-defaulttext underline">
-              {content.registerLink.label}
-            </Text>
-          </Link>
+          <Text className="text-sm font-sans text-defaulttext">
+            {content.inviteOnly.label}
+          </Text>
         </View>
       </PageShellBody>
     </PageShell>

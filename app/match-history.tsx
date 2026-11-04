@@ -1,3 +1,4 @@
+import RequireAuth from "../lib/auth/RequireAuth";
 import { Text, View } from "react-native";
 import PageShell, {
   PageShellBody,
@@ -13,7 +14,7 @@ const pastMatches = mapAttendingMatchesByTime(
   "past",
 );
 
-export default function MatchHistory() {
+function MatchHistory() {
   const content = matchhistory.en;
   return (
     <PageShell>
@@ -46,5 +47,13 @@ export default function MatchHistory() {
         </View>
       </PageShellBody>
     </PageShell>
+  );
+}
+
+export default function MatchHistoryPage() {
+  return (
+    <RequireAuth>
+      <MatchHistory />
+    </RequireAuth>
   );
 }

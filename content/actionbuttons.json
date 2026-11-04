@@ -6,7 +6,8 @@
     "saveTemplateToProfile": "save template to profile",
     "reset": "reset",
     "viewGame": "view game",
-    "joinGame": "join game"
+    "joinGame": "join game",
+    "logOut": "log out"
   },
   "es": {
     "startGame": "",
@@ -15,7 +16,8 @@
     "saveTemplateToProfile": "",
     "reset": "",
     "viewGame": "",
-    "joinGame": ""
+    "joinGame": "",
+    "logOut": ""
   },
   "gz": {
     "startGame": "",
@@ -24,6 +26,7 @@
     "saveTemplateToProfile": "",
     "reset": "",
     "viewGame": "",
-    "joinGame": ""
+    "joinGame": "",
+    "logOut": ""
   }
 }

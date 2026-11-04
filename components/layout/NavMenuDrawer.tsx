@@ -165,6 +165,7 @@ export default function NavMenuDrawer({
               <LoginOrRegisterButton
                 className="self-start rounded-lg px-3 py-3"
                 textClassName="text-lg font-sans text-defaulttext"
+                onPress={onClose}
               />
             </View>
 
