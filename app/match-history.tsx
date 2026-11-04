@@ -5,39 +5,30 @@ import PageShell, {
   PageShellIntro,
 } from "../components/layout/PageShell";
 import matchhistory from "../content/matchhistory.json";
-import findSportData from "../mockdata/find-sport-data.json";
-import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
-import type { FindSportMockData } from "../types/find-game";
-
-const pastMatches = mapAttendingMatchesByTime(
-  findSportData as FindSportMockData,
-  "past",
-);
+import MatchSummaryRow from "../components/common/MatchSummaryRow";
+import { useMatches } from "../hooks/use-matches";
 
 function MatchHistory() {
   const content = matchhistory.en;
+  const { matches, error } = useMatches("past");
+  const pastMatches = matches?.filter((match) => match.hasJoined) ?? [];
   return (
     <PageShell>
       <PageShellIntro title={content.intro.title} body={content.intro.body} />
 
       <PageShellBody>
         <View className="w-full rounded-2xl border border-border bg-secondary p-5 gap-4">
-          {pastMatches.length > 0 ? (
+          {error ? (
+            <Text className="text-sm font-sans text-defaulttext/80">
+              {"couldn't load your match history:"} {error}
+            </Text>
+          ) : matches === null ? (
+            <Text className="text-sm font-sans text-defaulttext/80">
+              Loading your match history…
+            </Text>
+          ) : pastMatches.length > 0 ? (
             pastMatches.map((match) => (
-              <View
-                key={match.id}
-                className="gap-1 rounded-xl border border-border bg-surface px-3 py-3"
-              >
-                <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
-                  {match.sportName}
-                </Text>
-                <Text className="text-base font-sans text-defaulttext">
-                  {match.displayDateTime}
-                </Text>
-                <Text className="text-sm font-sans text-defaulttext/80">
-                  {match.location}
-                </Text>
-              </View>
+              <MatchSummaryRow key={match.id} match={match} />
             ))
           ) : (
             <Text className="text-sm font-sans text-defaulttext/80">

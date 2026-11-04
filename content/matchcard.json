@@ -5,7 +5,19 @@
     "durationLabel": "duration",
     "locationLabel": "location",
     "durationTbd": "tbd",
-    "fallbackLocation": "your area"
+    "fallbackLocation": "your area",
+    "playersLabel": "players",
+    "hostLabel": "host",
+    "notesLabel": "notes",
+    "deletedHost": "deleted user",
+    "hostingBadge": "you're hosting",
+    "joinedBadge": "you're in",
+    "fullBadge": "full",
+    "leaveGame": "leave game",
+    "cancelGame": "cancel game",
+    "confirmCancel": "tap again to cancel this game",
+    "working": "…",
+    "actionError": "couldn't update the game:"
   },
   "es": {
     "sportLabel": "",

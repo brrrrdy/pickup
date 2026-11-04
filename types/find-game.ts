@@ -40,23 +40,6 @@ export type GameTemplateRow = {
   notes?: string | null;
 };
 
-export type MatchCardData = {
-  id: string;
-  sportName: string;
-  title: string;
-  startsAt: string;
-  durationMinutes: number;
-};
-
-export type AttendingMatchDisplay = {
-  id: string;
-  sportName: string;
-  title: string;
-  startsAt: string;
-  displayDateTime: string;
-  location: string;
-};
-
 export type ProfileGameTemplateDisplay = {
   id: string;
   templateName: string;
@@ -88,4 +71,23 @@ export type StartGameOptions = {
   sports: { id: string; name: string }[];
   cities: { id: string; name: string; timezone: string }[];
   venues: { id: string; name: string; cityId: string; sportIds: string[] }[];
+};
+
+export type MatchSummary = {
+  id: string;
+  sportId: string;
+  sportName: string;
+  venueName: string;
+  cityName: string;
+  timezone: string;
+  startsAt: string;
+  durationMinutes: number;
+  // null = no limit
+  maxPlayers: number | null;
+  playerCount: number;
+  notes: string | null;
+  // null once the host's account is deleted
+  hostName: string | null;
+  isHost: boolean;
+  hasJoined: boolean;
 };

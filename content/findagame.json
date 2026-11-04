@@ -7,8 +7,10 @@
     "availableGamesInPrefix": "available games in",
     "availableGamesInFallback": "your area",
     "showGamesButton": "show games for selected sports",
-    "noOpenGamesInLocationPrefix": "no open games found in",
-    "noOpenGamesForSelectedSports": "no open games found for your selected sports."
+    "noOpenGamesInLocationPrefix": "no upcoming games found in",
+    "noOpenGamesForSelectedSports": "no upcoming games found for your selected sports.",
+    "loading": "loading games…",
+    "loadError": "couldn't load games:"
   },
   "es": {
     "header": "find a game",

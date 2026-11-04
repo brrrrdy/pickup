@@ -1,12 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-import type { FindSportMockData, MatchCardData } from "../types/find-game";
-import mockFindSportData from "../mockdata/find-sport-data.json";
-import {
-  mapOpenMatchesForSelectedSports,
-  mapSportsWithOpenGameCounts,
-} from "../lib/mappers/mapFindSports";
-
-const findSportData = mockFindSportData as FindSportMockData;
+import type { MatchSummary } from "../types/find-game";
+import { getGamesForSports, getSportsWithGames } from "../lib/find-game/filter";
 
 // user entered location is valid when over two charactters.
 
@@ -68,12 +62,21 @@ function resolveLocationInput(validLocations: string[], input: string) {
  *   4. user presses "show games" → match results are displayed
  */
 
-export default function useFindGame() {
+type UseFindGameParams = {
+  // every city pickup knows about
+  cities: string[];
+  // upcoming scheduled matches
+  matches: MatchSummary[];
+};
+
+export default function useFindGame({ cities, matches }: UseFindGameParams) {
   // locationInput: raw value of the text input (may not be a valid city)
   // location: the committed, validated city name used for filtering
+  // with only one city, it starts committed so there is nothing to type.
 
-  const [location, setLocation] = useState("");
-  const [locationInput, setLocationInput] = useState("");
+  const onlyCity = cities.length === 1 ? cities[0] : "";
+  const [location, setLocation] = useState(onlyCity);
+  const [locationInput, setLocationInput] = useState(onlyCity);
 
   // ids of sports the user has toggled on
 
@@ -86,21 +89,7 @@ export default function useFindGame() {
   const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
   // unique city names extracted from venue data
 
-  // console.time("filter array");
-
-  const validLocations = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          (findSportData.venues ?? [])
-            .map((venue) => venue.city.trim())
-            .filter((cityName) => cityName.length > 0),
-        ),
-      ),
-    [],
-  );
-
-  // console.timeEnd("filter array");
+  const validLocations = cities;
 
   const hasLocation = useMemo(() => isValidLocation(location), [location]);
 
@@ -138,9 +127,8 @@ export default function useFindGame() {
   // sports available at the committed location, with open game counts
 
   const availableSports = useMemo(
-    () =>
-      hasLocation ? mapSportsWithOpenGameCounts(findSportData, location) : [],
-    [hasLocation, location],
+    () => (hasLocation ? getSportsWithGames(matches, location) : []),
+    [hasLocation, location, matches],
   );
 
   // subset of availableSports the user has selected
@@ -225,16 +213,16 @@ export default function useFindGame() {
 
   // open matches filtered by committed location and selected sports
 
-  const openMatches: MatchCardData[] = useMemo(
+  const openMatches: MatchSummary[] = useMemo(
     () =>
       hasLocation
-        ? mapOpenMatchesForSelectedSports(
-            findSportData,
-            selectedSports,
+        ? getGamesForSports(
+            matches,
             location,
+            selectedSports.map((sport) => sport.id),
           )
         : [],
-    [hasLocation, location, selectedSports],
+    [hasLocation, location, matches, selectedSports],
   );
 
   return {

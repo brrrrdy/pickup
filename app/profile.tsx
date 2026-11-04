@@ -4,7 +4,7 @@ import { Platform, UIManager } from "react-native";
 import profile from "../mockdata/profile.json";
 import profileContent from "../content/profile.json";
 import findSportData from "../mockdata/find-sport-data.json";
-import { mapAttendingMatchesByTime } from "../lib/mappers/mapFindSports";
+import { useMatches } from "../hooks/use-matches";
 import gameTemplateData from "../mockdata/game-templates.json";
 import { mapGameTemplatesForProfile } from "../lib/mappers/mapGameTemplates";
 import AccountDetailsSection from "../components/profile/AccountDetailsSection";
@@ -53,10 +53,10 @@ function Profile() {
     },
   ];
 
-  const upcomingMatches = mapAttendingMatchesByTime(
-    findSportData as FindSportMockData,
-    "future",
-  );
+  const { matches: upcoming, error: upcomingError } = useMatches("upcoming");
+  const myUpcomingMatches = upcoming
+    ? upcoming.filter((match) => match.hasJoined)
+    : null;
 
   const profileTemplates = mapGameTemplatesForProfile(
     gameTemplateData as GameTemplateMockData,
@@ -78,7 +78,8 @@ function Profile() {
         <CalendarSection
           isOpen={isCalendarSectionOpen}
           onToggle={() => setIsCalendarSectionOpen((prev) => !prev)}
-          upcomingMatches={upcomingMatches}
+          upcomingMatches={myUpcomingMatches}
+          error={upcomingError}
         />
 
         <GameTemplatesSection

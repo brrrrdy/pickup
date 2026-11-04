@@ -1,18 +1,22 @@
 import { Link } from "expo-router";
-import { Pressable, Text, View } from "react-native";
-import type { AttendingMatchDisplay } from "../../types/find-game";
+import { Pressable, Text } from "react-native";
+import type { MatchSummary } from "../../types/find-game";
+import MatchSummaryRow from "../common/MatchSummaryRow";
 import ProfileAccordionSection from "../common/ProfileAccordionSection";
 
 type CalendarSectionProps = {
   isOpen: boolean;
   onToggle: () => void;
-  upcomingMatches: AttendingMatchDisplay[];
+  // null while loading
+  upcomingMatches: MatchSummary[] | null;
+  error?: string | null;
 };
 
 export default function CalendarSection({
   isOpen,
   onToggle,
   upcomingMatches,
+  error,
 }: CalendarSectionProps) {
   return (
     <ProfileAccordionSection
@@ -22,26 +26,21 @@ export default function CalendarSection({
       expandLabel="Expand calendar"
       collapseLabel="Collapse calendar"
     >
-      {upcomingMatches.length > 0 ? (
+      {error ? (
+        <Text className="text-sm font-sans text-defaulttext/80">
+          {"couldn't load your games:"} {error}
+        </Text>
+      ) : upcomingMatches === null ? (
+        <Text className="text-sm font-sans text-defaulttext/80">
+          Loading your games…
+        </Text>
+      ) : upcomingMatches.length > 0 ? (
         upcomingMatches.map((match) => (
-          <View
-            key={match.id}
-            className="gap-1 rounded-xl border border-border bg-surface px-3 py-3"
-          >
-            <Text className="text-sm font-semibold font-sans uppercase tracking-wide text-defaulttext/70">
-              {match.sportName}
-            </Text>
-            <Text className="text-base font-sans text-defaulttext">
-              {match.displayDateTime}
-            </Text>
-            <Text className="text-sm font-sans text-defaulttext/80">
-              {match.location}
-            </Text>
-          </View>
+          <MatchSummaryRow key={match.id} match={match} />
         ))
       ) : (
         <Text className="text-sm font-sans text-defaulttext/80">
-          No upcoming attended matches yet.
+          No upcoming games yet. Start one or join one from find a game.
         </Text>
       )}
 

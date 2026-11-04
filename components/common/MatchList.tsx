@@ -1,19 +1,19 @@
 import { Text, View } from "react-native";
-import type { MatchCardData } from "../../types/find-game";
+import type { MatchSummary } from "../../types/find-game";
 import MatchCard from "./MatchCard";
 
 type MatchListProps = {
-  matches: MatchCardData[];
-  location: string;
+  matches: MatchSummary[];
   hasSearched: boolean;
   emptyMessage: string;
+  onChanged?: () => void;
 };
 
 export default function MatchList({
   matches,
-  location,
   hasSearched,
   emptyMessage,
+  onChanged,
 }: MatchListProps) {
   if (!hasSearched) {
     return null;
@@ -30,7 +30,7 @@ export default function MatchList({
   return (
     <View className="w-full items-center gap-4">
       {matches.map((match) => (
-        <MatchCard key={match.id} match={match} location={location} />
+        <MatchCard key={match.id} match={match} onChanged={onChanged} />
       ))}
     </View>
   );
