@@ -18,3 +18,15 @@ Read the exact versioned docs at https://docs.expo.dev/versions/v56.0.0/ before 
 # Important
 
 Run `npm run validate` (typecheck + lint + Jest) before every commit, and do not commit if it fails. This is what the Vercel build runs, and the `.githooks/pre-commit` hook enforces it.
+
+# Supabase
+
+- Schema lives in `supabase/migrations/`. Never edit an applied migration; add a new one with `npx supabase migration new <name>`.
+- One-time setup: `npx supabase login`, then `npx supabase link --project-ref <ref>`.
+- Apply migrations to the linked project: `npx supabase db push`.
+- Accounts are invite-only. Public signup is off in the dashboard (Authentication → Sign In / Providers) and in `supabase/config.toml`.
+- `npm run users:invite`: create the accounts listed in `supabase/invites.json` (git-ignored; copy `invites.example.json`).
+- `npm run users:delete -- <email>`: delete an account. Its matches are kept, with the user shown as deleted.
+- Both scripts need `SUPABASE_SECRET_KEY` in `.env.local` (git-ignored; see `.env.local.example`). Never give it an `EXPO_PUBLIC_` prefix or import it from app code.
+- Venues are never deleted. Retire one with `update public.venues set is_active = false where name = '...'`.
+- Matches are never deleted. Joining, leaving and cancelling go through the `join_match`, `leave_match` and `cancel_match` RPCs.
