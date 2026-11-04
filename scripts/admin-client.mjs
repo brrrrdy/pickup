@@ -8,10 +8,13 @@ export function createAdminClient() {
 
   if (!url || !secretKey) {
     console.error(
-      "Missing EXPO_PUBLIC_SUPABASE_URL (.env) or SUPABASE_SECRET_KEY (.env.local).",
+      "Missing EXPO_PUBLIC_SUPABASE_URL (.env) or SUPABASE_SECRET_KEY (.env.local or .env.hosted.local).",
     );
     process.exit(1);
   }
+
+  // Say which database is about to change, so local and hosted aren't confused.
+  console.log(`Target: ${new URL(url).host}\n`);
 
   return createClient(url, secretKey, {
     auth: { autoRefreshToken: false, persistSession: false },

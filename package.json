@@ -53,6 +53,8 @@
     "format": "prettier --write .",
     "users:invite": "node --env-file=.env --env-file=.env.local scripts/invite-users.mjs",
     "users:delete": "node --env-file=.env --env-file=.env.local scripts/delete-user.mjs",
+    "users:invite:hosted": "node --env-file=.env --env-file=.env.hosted.local scripts/invite-users.mjs supabase/invites.hosted.json",
+    "users:delete:hosted": "node --env-file=.env --env-file=.env.hosted.local scripts/delete-user.mjs",
     "db:types": "supabase gen types typescript --local > lib/database.types.ts && prettier --write lib/database.types.ts"
   },
   "private": true,

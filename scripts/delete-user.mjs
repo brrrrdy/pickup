@@ -1,5 +1,6 @@
 // Delete a user's account by email.
-// Usage: npm run users:delete -- someone@example.com
+// Usage: npm run users:delete -- someone@example.com          (local)
+//        npm run users:delete:hosted -- someone@example.com   (hosted)
 // Their profile and templates are removed; matches they hosted or played in are kept
 // with the user link set to NULL (shown as "Deleted user").
 import { createAdminClient, findUserByEmail } from "./admin-client.mjs";

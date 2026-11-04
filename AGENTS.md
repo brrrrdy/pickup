@@ -27,11 +27,13 @@ Run `npm run validate` (typecheck + lint + Jest) before every commit, and do not
 - `npm run db:types` regenerates `lib/database.types.ts` from the local database after a schema change.
 - Schema lives in `supabase/migrations/`. Never edit an applied migration; add a new one with `npx supabase migration new <name>`.
 - One-time setup: `npx supabase login`, then `npx supabase link --project-ref <ref>`.
-- Apply migrations to the linked project: `npx supabase db push`.
+- Apply migrations to the linked project: `npx supabase db push --remote` (dry run first with `--dry-run`).
 - Accounts are invite-only. Public signup is off in the dashboard (Authentication → Sign In / Providers) and in `supabase/config.toml`.
 - `npm run users:invite`: create the accounts listed in `supabase/invites.json` (git-ignored; copy `invites.example.json`).
 - `npm run users:delete -- <email>`: delete an account. Its matches are kept, with the user shown as deleted.
 - Both scripts need `SUPABASE_SECRET_KEY` in `.env.local` (git-ignored; see `.env.local.example`). Never give it an `EXPO_PUBLIC_` prefix or import it from app code.
+- Hosted accounts: `npm run users:invite:hosted` (reads `supabase/invites.hosted.json`) and `npm run users:delete:hosted -- <email>`. They use `.env` for the URL and the hosted secret key from `.env.hosted.local` (git-ignored; see `.env.hosted.local.example`). Each script prints its target first.
+- Hosted CLI commands need `--remote` (e.g. `npx supabase db push --remote`); without it they target the local stack.
 - Venues are never deleted. Retire one with `update public.venues set is_active = false where name = '...'`.
 - A venue only appears in Start Game for the sports listed for it in `public.venue_sports`. Add those rows with every new venue or sport (in a migration).
 - Match start times are entered in the city's `timezone` (default `Europe/Madrid`) and stored in UTC.

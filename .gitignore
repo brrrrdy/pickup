@@ -44,3 +44,4 @@ yarn-error.*
 
 # invited users (contains passwords)
 supabase/invites.json
+supabase/invites.hosted.json
