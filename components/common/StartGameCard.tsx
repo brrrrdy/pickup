@@ -50,10 +50,20 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
   return <StartGameForm data={data} onResetToTop={onResetToTop} />;
 }
 
+function formatDate(date: string) {
+  const [year, month, day] = date.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
 type SubmitState =
   | { kind: "idle" }
   | { kind: "saving" }
-  | { kind: "created" }
+  | { kind: "created"; summary: string }
   | { kind: "error"; message: string };
 
 function StartGameForm({
@@ -98,11 +108,14 @@ function StartGameForm({
       return;
     }
 
+    // Captured before the reset clears the form.
+    const summary = `${values.venue}, ${formatDate(values.date)} at ${values.hour}:${values.minute}`;
+
     setSubmitState({ kind: "saving" });
     try {
       await createMatch(input);
       handleReset();
-      setSubmitState({ kind: "created" });
+      setSubmitState({ kind: "created", summary });
     } catch (err) {
       setSubmitState({
         kind: "error",
@@ -118,6 +131,19 @@ function StartGameForm({
 
   return (
     <View className={cardClassName}>
+      {submitState.kind === "created" ? (
+        <View
+          className="mb-4 rounded-xl border border-purpleaccent bg-surface px-4 py-3"
+          accessibilityLiveRegion="polite"
+        >
+          <Text className="text-base font-semibold font-sans text-defaulttext">
+            {copy.created}
+          </Text>
+          <Text className="mt-1 text-sm font-sans text-defaulttext/80">
+            {submitState.summary}
+          </Text>
+        </View>
+      ) : null}
       <View className="gap-4">
         <SportDropdown
           label={copy.sportheader}
@@ -214,14 +240,6 @@ function StartGameForm({
         onPress={handleCreate}
       />
 
-      {submitState.kind === "created" ? (
-        <Text
-          className="mt-3 text-sm font-semibold font-sans text-defaulttext"
-          accessibilityLiveRegion="polite"
-        >
-          {copy.created}
-        </Text>
-      ) : null}
       {submitState.kind === "error" ? (
         <Text
           className="mt-3 text-sm font-sans text-defaulttext"
