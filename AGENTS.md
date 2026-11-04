@@ -21,6 +21,10 @@ Run `npm run validate` (typecheck + lint + Jest) before every commit, and do not
 
 # Supabase
 
+- Local stack (Docker): `npx supabase start` runs Postgres, Auth, REST and Studio at http://127.0.0.1:54323. Stop it with `npx supabase stop`.
+- `.env.local` points the app and scripts at the local stack, overriding `.env`. Delete it to use the hosted project. Restart `npm start` after changing env files.
+- `npx supabase db reset` re-applies all migrations locally and wipes local data (re-run `npm run users:invite` afterwards).
+- `npm run db:types` regenerates `lib/database.types.ts` from the local database after a schema change.
 - Schema lives in `supabase/migrations/`. Never edit an applied migration; add a new one with `npx supabase migration new <name>`.
 - One-time setup: `npx supabase login`, then `npx supabase link --project-ref <ref>`.
 - Apply migrations to the linked project: `npx supabase db push`.

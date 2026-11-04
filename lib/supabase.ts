@@ -2,6 +2,7 @@ import "react-native-url-polyfill/auto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createClient } from "@supabase/supabase-js";
 import { AppState, Platform } from "react-native";
+import type { Database } from "./database.types";
 
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
@@ -16,7 +17,7 @@ if (!supabaseUrl || !supabaseKey) {
 // persist a session; the browser picks the session up again once it loads.
 const isServer = Platform.OS === "web" && typeof window === "undefined";
 
-export const supabase = createClient(supabaseUrl, supabaseKey, {
+export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
   auth: {
     storage: isServer ? undefined : AsyncStorage,
     persistSession: !isServer,

@@ -8,11 +8,10 @@ import {
   useMemo,
   useState,
 } from "react";
+import type { Tables } from "../database.types";
 import { supabase } from "../supabase";
 
-type Profile = {
-  display_name: string;
-};
+type Profile = Pick<Tables<"profiles">, "display_name">;
 
 type AuthContextValue = {
   session: Session | null;

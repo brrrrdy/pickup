@@ -52,7 +52,8 @@
     "lint": "expo lint",
     "format": "prettier --write .",
     "users:invite": "node --env-file=.env --env-file=.env.local scripts/invite-users.mjs",
-    "users:delete": "node --env-file=.env --env-file=.env.local scripts/delete-user.mjs"
+    "users:delete": "node --env-file=.env --env-file=.env.local scripts/delete-user.mjs",
+    "db:types": "supabase gen types typescript --local > lib/database.types.ts && prettier --write lib/database.types.ts"
   },
   "private": true,
   "jest": {
