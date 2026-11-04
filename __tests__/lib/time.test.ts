@@ -1,6 +1,7 @@
 import {
   getMinimumTimeSlot,
   getValidTimeOptions,
+  zonedWallTimeToUtcIso,
 } from "../../lib/start-game/time";
 
 describe("getMinimumTimeSlot", () => {
@@ -91,5 +92,38 @@ describe("getValidTimeOptions", () => {
     expect(options.hours.at(-1)).toBe("23");
     expect(options.minutesByHour.get("13")).toEqual(["15", "30", "45"]);
     expect(options.minutesByHour.get("14")).toEqual(["00", "15", "30", "45"]);
+  });
+});
+
+describe("zonedWallTimeToUtcIso", () => {
+  it("converts Madrid winter time (CET, UTC+1)", () => {
+    expect(
+      zonedWallTimeToUtcIso("2026-11-05", "19", "00", "Europe/Madrid"),
+    ).toBe("2026-11-05T18:00:00.000Z");
+  });
+
+  it("converts Madrid summer time (CEST, UTC+2)", () => {
+    expect(
+      zonedWallTimeToUtcIso("2026-06-11", "19", "30", "Europe/Madrid"),
+    ).toBe("2026-06-11T17:30:00.000Z");
+  });
+
+  it("handles the days either side of the October clock change", () => {
+    // Clocks go back at 03:00 on 2026-10-25.
+    expect(
+      zonedWallTimeToUtcIso("2026-10-24", "10", "00", "Europe/Madrid"),
+    ).toBe("2026-10-24T08:00:00.000Z");
+    expect(
+      zonedWallTimeToUtcIso("2026-10-25", "10", "00", "Europe/Madrid"),
+    ).toBe("2026-10-25T09:00:00.000Z");
+  });
+
+  it("handles midnight and UTC", () => {
+    expect(
+      zonedWallTimeToUtcIso("2026-01-01", "00", "15", "Europe/Madrid"),
+    ).toBe("2025-12-31T23:15:00.000Z");
+    expect(zonedWallTimeToUtcIso("2026-01-01", "00", "15", "UTC")).toBe(
+      "2026-01-01T00:15:00.000Z",
+    );
   });
 });

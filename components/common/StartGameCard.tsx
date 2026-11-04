@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Text, View } from "react-native";
 import { useStartGameForm } from "../../hooks/use-start-game-form";
-import type { FindSportMockData } from "../../types/find-game";
+import { useStartGameOptions } from "../../hooks/use-start-game-options";
+import { useAuth } from "../../lib/auth/AuthProvider";
+import { createMatch } from "../../lib/start-game/api";
+import { DURATION_OPTIONS } from "../../lib/start-game/options";
+import type { StartGameOptions } from "../../types/find-game";
 import startGameCardContent from "../../content/startgamecard.json";
-import profile from "../../mockdata/profile.json";
-import mockFindSportData from "../../mockdata/find-sport-data.json";
 import ResetButton from "../buttons/ResetButton";
 import SaveTemplateButton from "../buttons/SaveTemplateButton";
 import StartGameButton from "../buttons/StartGameButton";
@@ -12,15 +15,55 @@ import CalendarField from "./CalendarField";
 import SportDropdown from "./SportDropdown";
 import TimeWheelField from "./TimeWheelField";
 
+const copy = startGameCardContent.en;
+
 type StartGameCardProps = {
   onResetToTop?: () => void;
 };
 
-export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
-  const copy = startGameCardContent.en;
-  const findSportData = mockFindSportData as FindSportMockData;
+const cardClassName =
+  "w-full max-w-4xl rounded-2xl border border-transparent bg-secondary p-5";
 
-  const currentTimezone = profile.currentTimezone;
+export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
+  const { data, error } = useStartGameOptions();
+
+  if (error) {
+    return (
+      <View className={cardClassName}>
+        <Text className="text-sm font-sans text-defaulttext">
+          {copy.loaderror} {error}
+        </Text>
+      </View>
+    );
+  }
+
+  if (!data) {
+    return (
+      <View className={cardClassName}>
+        <Text className="text-sm font-sans text-defaulttext/70">
+          {copy.loading}
+        </Text>
+      </View>
+    );
+  }
+
+  return <StartGameForm data={data} onResetToTop={onResetToTop} />;
+}
+
+type SubmitState =
+  | { kind: "idle" }
+  | { kind: "saving" }
+  | { kind: "created" }
+  | { kind: "error"; message: string };
+
+function StartGameForm({
+  data,
+  onResetToTop,
+}: StartGameCardProps & { data: StartGameOptions }) {
+  const { user } = useAuth();
+  const [submitState, setSubmitState] = useState<SubmitState>({
+    kind: "idle",
+  });
 
   const {
     values,
@@ -28,26 +71,53 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
     isSportDropdownOpen,
     isCityDropdownOpen,
     isVenueDropdownOpen,
+    isDurationDropdownOpen,
     validSports,
     validCities,
     validVenues,
+    timezone,
     minimumSlot,
     isFormValid,
+    buildMatchInput,
     setIsSportDropdownOpen,
     setIsCityDropdownOpen,
     setIsVenueDropdownOpen,
+    setIsDurationDropdownOpen,
     handleSelectSport,
     handleSelectCity,
     handleSelectVenue,
+    handleSelectDuration,
     handleReset,
-  } = useStartGameForm({
-    data: findSportData,
-    currentTimezone,
-    onResetToTop,
-  });
+  } = useStartGameForm({ data, onResetToTop });
+
+  const isSaving = submitState.kind === "saving";
+
+  const handleCreate = async () => {
+    const input = user ? buildMatchInput(user.id) : null;
+    if (!input) {
+      return;
+    }
+
+    setSubmitState({ kind: "saving" });
+    try {
+      await createMatch(input);
+      handleReset();
+      setSubmitState({ kind: "created" });
+    } catch (err) {
+      setSubmitState({
+        kind: "error",
+        message: err instanceof Error ? err.message : String(err),
+      });
+    }
+  };
+
+  const handleResetPress = () => {
+    setSubmitState({ kind: "idle" });
+    handleReset();
+  };
 
   return (
-    <View className="w-full max-w-4xl rounded-2xl border border-transparent bg-secondary p-5">
+    <View className={cardClassName}>
       <View className="gap-4">
         <SportDropdown
           label={copy.sportheader}
@@ -96,6 +166,16 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
           keyboardType="number-pad"
           inputClassName="text-sm"
         />
+        <SportDropdown
+          label={copy.durationheader}
+          options={DURATION_OPTIONS}
+          selectedValue={values.duration}
+          isOpen={isDurationDropdownOpen}
+          onToggle={() => setIsDurationDropdownOpen((prev) => !prev)}
+          onSelect={handleSelectDuration}
+          placeholder={copy.durationheaderdesc}
+          accessibilityLabel="choose a duration in minutes"
+        />
         <CalendarField
           label={copy.dateheader}
           selectedDate={values.date}
@@ -122,15 +202,37 @@ export default function StartGameCard({ onResetToTop }: StartGameCardProps) {
         />
       </View>
 
-      {!isFormValid ? (
+      {!isFormValid && submitState.kind !== "created" ? (
         <Text className="mt-4 text-sm font-sans text-defaulttext/70">
-          {copy.invalidformmessage} {currentTimezone}.
+          {copy.invalidformmessage} {timezone}.
         </Text>
       ) : null}
 
-      <StartGameButton label={copy.submitbutton} disabled={!isFormValid} />
+      <StartGameButton
+        label={isSaving ? copy.creating : copy.submitbutton}
+        disabled={!isFormValid || isSaving}
+        onPress={handleCreate}
+      />
+
+      {submitState.kind === "created" ? (
+        <Text
+          className="mt-3 text-sm font-semibold font-sans text-defaulttext"
+          accessibilityLiveRegion="polite"
+        >
+          {copy.created}
+        </Text>
+      ) : null}
+      {submitState.kind === "error" ? (
+        <Text
+          className="mt-3 text-sm font-sans text-defaulttext"
+          accessibilityLiveRegion="polite"
+        >
+          {copy.createerror} {submitState.message}
+        </Text>
+      ) : null}
+
       <SaveTemplateButton />
-      <ResetButton onPress={handleReset} />
+      <ResetButton onPress={handleResetPress} />
     </View>
   );
 }

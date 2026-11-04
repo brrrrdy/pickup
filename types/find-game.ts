@@ -83,3 +83,9 @@ export type FindSportMockData = {
 export type GameTemplateMockData = {
   templates?: GameTemplateRow[];
 };
+
+export type StartGameOptions = {
+  sports: { id: string; name: string }[];
+  cities: { id: string; name: string; timezone: string }[];
+  venues: { id: string; name: string; cityId: string; sportIds: string[] }[];
+};

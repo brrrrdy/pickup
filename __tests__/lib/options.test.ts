@@ -1,39 +1,50 @@
 import {
-  getSportIdByName,
-  getValidCities,
-  getValidSports,
-  getValidVenues,
+  findCity,
+  findSport,
+  getCityNames,
+  getSportNames,
+  getVenuesFor,
 } from "../../lib/start-game/options";
-import { FOOTBALL, PADEL, TENNIS, sportData } from "../fixtures/sport-data";
+import {
+  FOOTBALL,
+  LUGO,
+  MONFORTE,
+  PADEL,
+  TENNIS,
+  startGameOptions,
+} from "../fixtures/sport-data";
 
 describe("start game options", () => {
-  it("lists named sports only", () => {
-    expect(getValidSports(sportData)).toEqual(["football", "padel", "tennis"]);
-  });
-
-  it("lists each city once", () => {
-    expect(getValidCities(sportData)).toEqual(["London", "Bristol"]);
-  });
-
-  it("looks up a sport id by name", () => {
-    expect(getSportIdByName(sportData, "padel")).toBe(PADEL);
-    expect(getSportIdByName(sportData, "curling")).toBe("");
-  });
-
-  it("filters venues by city and configured sports", () => {
-    expect(getValidVenues(sportData, "London", FOOTBALL)).toEqual([
-      "Clapham Common",
-    ]);
-    expect(getValidVenues(sportData, "Bristol", TENNIS)).toEqual([
-      "Bristol Courts",
+  it("lists sport and city names", () => {
+    expect(getSportNames(startGameOptions)).toEqual(["football", "padel"]);
+    expect(getCityNames(startGameOptions)).toEqual([
+      "Lugo",
+      "Monforte de Lemos",
     ]);
   });
 
-  it("infers a venue's sports from its matches when none are configured", () => {
-    expect(getValidVenues(sportData, "London", PADEL)).toEqual(["Padel Club"]);
+  it("finds a sport or city by name", () => {
+    expect(findSport(startGameOptions, "padel")?.id).toBe(PADEL);
+    expect(findSport(startGameOptions, "curling")).toBeUndefined();
+    expect(findCity(startGameOptions, "Lugo")?.id).toBe(LUGO);
   });
 
-  it("returns no venues for a sport that isn't played in the city", () => {
-    expect(getValidVenues(sportData, "London", TENNIS)).toEqual([]);
+  it("filters venues by city and the sports they offer", () => {
+    const names = (cityId: string, sportId: string) =>
+      getVenuesFor(startGameOptions, cityId, sportId).map((v) => v.name);
+
+    expect(names(MONFORTE, PADEL)).toEqual(["Lemos Padel", "Club Fluvial"]);
+    expect(names(MONFORTE, FOOTBALL)).toEqual(["Club Fluvial"]);
+    expect(names(LUGO, PADEL)).toEqual(["Lugo Courts"]);
+  });
+
+  it("returns no venues for a sport that isn't offered in the city", () => {
+    expect(getVenuesFor(startGameOptions, LUGO, FOOTBALL)).toEqual([]);
+    expect(getVenuesFor(startGameOptions, MONFORTE, TENNIS)).toEqual([]);
+  });
+
+  it("returns no venues until both sport and city are chosen", () => {
+    expect(getVenuesFor(startGameOptions, undefined, PADEL)).toEqual([]);
+    expect(getVenuesFor(startGameOptions, MONFORTE, undefined)).toEqual([]);
   });
 });

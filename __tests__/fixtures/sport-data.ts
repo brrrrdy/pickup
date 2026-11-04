@@ -1,4 +1,7 @@
-import type { FindSportMockData } from "../../types/find-game";
+import type {
+  FindSportMockData,
+  StartGameOptions,
+} from "../../types/find-game";
 
 export const FOOTBALL = "sport-football";
 export const PADEL = "sport-padel";
@@ -75,6 +78,54 @@ export const sportData: FindSportMockData = {
       starts_at: "2026-06-21T10:00:00Z",
       status: "open",
       Attend: "y",
+    },
+  ],
+};
+
+export const MONFORTE = "city-monforte";
+export const LUGO = "city-lugo";
+
+export const startGameOptions: StartGameOptions = {
+  sports: [
+    { id: FOOTBALL, name: "football" },
+    { id: PADEL, name: "padel" },
+  ],
+  cities: [
+    { id: LUGO, name: "Lugo", timezone: "Europe/Madrid" },
+    { id: MONFORTE, name: "Monforte de Lemos", timezone: "Europe/Madrid" },
+  ],
+  venues: [
+    {
+      id: "venue-lemos",
+      name: "Lemos Padel",
+      cityId: MONFORTE,
+      sportIds: [PADEL],
+    },
+    {
+      id: "venue-fluvial",
+      name: "Club Fluvial",
+      cityId: MONFORTE,
+      sportIds: [PADEL, FOOTBALL],
+    },
+    {
+      id: "venue-lugo",
+      name: "Lugo Courts",
+      cityId: LUGO,
+      sportIds: [PADEL],
+    },
+  ],
+};
+
+// One sport and one city, like the alpha.
+export const singleChoiceOptions: StartGameOptions = {
+  sports: [{ id: PADEL, name: "Padel" }],
+  cities: [{ id: MONFORTE, name: "Monforte de Lemos", timezone: "UTC" }],
+  venues: [
+    {
+      id: "venue-lemos",
+      name: "Lemos Padel",
+      cityId: MONFORTE,
+      sportIds: [PADEL],
     },
   ],
 };

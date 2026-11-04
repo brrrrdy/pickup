@@ -113,3 +113,38 @@ export function getValidTimeOptions(
 
   return { hours, minutesByHour };
 }
+
+function wallClockMillis(parts: ReturnType<typeof getZonedDateParts>) {
+  return Date.UTC(
+    Number(parts.year),
+    Number(parts.month) - 1,
+    Number(parts.day),
+    Number(parts.hour) % 24,
+    Number(parts.minute),
+  );
+}
+
+/**
+ * Converts a wall-clock date and time in `timeZone` to a UTC ISO string,
+ * e.g. ("2026-11-05", "19", "00", "Europe/Madrid") -> "2026-11-05T18:00:00.000Z".
+ */
+export function zonedWallTimeToUtcIso(
+  date: string,
+  hour: string,
+  minute: string,
+  timeZone: string,
+) {
+  const [year, month, day] = date.split("-").map(Number);
+  const target = Date.UTC(year, month - 1, day, Number(hour), Number(minute));
+
+  // Treat the wall time as UTC, see how far the zone shifts it, and correct.
+  // A second pass settles cases where the first guess lands across a DST change.
+  let utc = target;
+  for (let pass = 0; pass < 2; pass += 1) {
+    const offset =
+      wallClockMillis(getZonedDateParts(new Date(utc), timeZone)) - utc;
+    utc = target - offset;
+  }
+
+  return new Date(utc).toISOString();
+}

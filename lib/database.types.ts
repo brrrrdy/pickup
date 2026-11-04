@@ -39,17 +39,20 @@ export type Database = {
           created_at: string;
           id: string;
           name: string;
+          timezone: string;
         };
         ComputedFields: never;
         Insert: {
           created_at?: string;
           id?: string;
           name: string;
+          timezone?: string;
         };
         Update: {
           created_at?: string;
           id?: string;
           name?: string;
+          timezone?: string;
         };
         Relationships: [];
       };
@@ -254,6 +257,37 @@ export type Database = {
           name?: string;
         };
         Relationships: [];
+      };
+      venue_sports: {
+        Row: {
+          sport_id: string;
+          venue_id: string;
+        };
+        ComputedFields: never;
+        Insert: {
+          sport_id: string;
+          venue_id: string;
+        };
+        Update: {
+          sport_id?: string;
+          venue_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "venue_sports_sport_id_fkey";
+            columns: ["sport_id"];
+            isOneToOne: false;
+            referencedRelation: "sports";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "venue_sports_venue_id_fkey";
+            columns: ["venue_id"];
+            isOneToOne: false;
+            referencedRelation: "venues";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       venues: {
         Row: {

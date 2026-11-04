@@ -12,7 +12,9 @@
     "venueheaderneedscity": "select a city first",
     "venueheadernoslots": "no venues for this sport in this city",
     "numplayersheader": "players participating",
-    "numplayersheaderdesc": "number of players?",
+    "numplayersheaderdesc": "number of players (at least 2)",
+    "durationheader": "duration (minutes)",
+    "durationheaderdesc": "how long will you play?",
     "dateheader": "date",
     "dateheaderdesc": "choose a date",
     "timeheader": "time",
@@ -20,9 +22,13 @@
     "notesheader": "notes",
     "notesheaderdesc": "anything else you want other players to know?",
     "submitbutton": "create game",
-    "invalidformmessage": "Select a sport, city, venue, players, date, and time at least one hour ahead in"
+    "invalidformmessage": "Select a venue, at least 2 players, a date, and a time at least one hour ahead in",
+    "loading": "loading sports and venues…",
+    "loaderror": "couldn't load sports and venues:",
+    "creating": "creating game…",
+    "created": "game created.",
+    "createerror": "couldn't create the game:"
   },
-
   "es": {
     "cardheader": "iniciar partida",
     "carddescrip": "organiza un partido improvisado en tu zona.",
@@ -41,7 +47,6 @@
     "notesheader": "",
     "notesheaderdesc": ""
   },
-
   "gz": {
     "cardheader": "iniciar un xogo",
     "carddescrip": "organiza un partido improvisado na túa zona.",

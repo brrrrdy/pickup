@@ -33,4 +33,6 @@ Run `npm run validate` (typecheck + lint + Jest) before every commit, and do not
 - `npm run users:delete -- <email>`: delete an account. Its matches are kept, with the user shown as deleted.
 - Both scripts need `SUPABASE_SECRET_KEY` in `.env.local` (git-ignored; see `.env.local.example`). Never give it an `EXPO_PUBLIC_` prefix or import it from app code.
 - Venues are never deleted. Retire one with `update public.venues set is_active = false where name = '...'`.
+- A venue only appears in Start Game for the sports listed for it in `public.venue_sports`. Add those rows with every new venue or sport (in a migration).
+- Match start times are entered in the city's `timezone` (default `Europe/Madrid`) and stored in UTC.
 - Matches are never deleted. Joining, leaving and cancelling go through the `join_match`, `leave_match` and `cancel_match` RPCs.
